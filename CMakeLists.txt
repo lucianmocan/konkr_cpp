@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.28)
 project(konkr LANGUAGES CXX)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 include(FetchContent)
 FetchContent_Declare(SFML
@@ -11,6 +12,7 @@ FetchContent_Declare(SFML
     EXCLUDE_FROM_ALL
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
+
 
 add_executable(main main.cc)
 target_compile_features(main PRIVATE cxx_std_17)
