@@ -14,4 +14,4 @@ target_link_libraries(rendering
         nlohmann_json::nlohmann_json # Private because only sprite_sheet.cc uses json
 )
 
-target_compile_features(rendering PRIVATE cxx_std_17)
+target_compile_features(rendering PRIVATE cxx_std_23)

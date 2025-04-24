@@ -5,7 +5,7 @@
 //
 // Implements the SpriteSheet class for a Konkr.io clone, handling the loading
 // and rendering of sprite sheets, as well as the management of individual sprites.
-//
+
 #include "rendering/sprite_sheet.h"
 
 #include <filesystem>
@@ -23,7 +23,7 @@
 namespace konkr {
 
 
-bool SpriteSheet::loadFromFile(const std::filesystem::path& file_path) {
+bool SpriteSheet::LoadFromFile(const std::filesystem::path& file_path) {
     if (!texture_.loadFromFile(file_path.string())) {
         return false;
     }
@@ -31,11 +31,11 @@ bool SpriteSheet::loadFromFile(const std::filesystem::path& file_path) {
     return true;
 }
 
-void SpriteSheet::addSprite(const std::string& name, const SpriteInfo& sprite_info) {
+void SpriteSheet::AddSpriteInfo(const std::string& name, const SpriteInfo& sprite_info) {
     sprites_map_.emplace(name, sprite_info);
 }
 
-std::optional<SpriteInfo> SpriteSheet::getSpriteInfo(const std::string& name) const {
+std::optional<SpriteInfo> SpriteSheet::GetSpriteInfo(const std::string& name) const {
     auto it = sprites_map_.find(name);
     if (it != sprites_map_.end()) {
         return it->second;
@@ -44,26 +44,26 @@ std::optional<SpriteInfo> SpriteSheet::getSpriteInfo(const std::string& name) co
     return std::nullopt;
 }
 
-std::optional<sf::Sprite> SpriteSheet::createSprite(const std::string& name) const {
+std::optional<sf::Sprite> SpriteSheet::CreateSprite(const std::string& name) const {
     if (!loaded_) {
         return std::nullopt;
     }
     // if the sprite is not found, then there's a mistake somewhere in the calling function
-    std::optional<SpriteInfo> sprite_info = getSpriteInfo(name);
+    std::optional<SpriteInfo> sprite_info = GetSpriteInfo(name);
     if (!sprite_info) {
         return std::nullopt;
     }
     return sf::Sprite(texture_, sprite_info->rect);
 }
 
-const sf::Texture& SpriteSheet::getTexture() const {
+const sf::Texture& SpriteSheet::GetTexture() const {
     if (!loaded_) {
         throw std::runtime_error("SpriteSheet::getTexture() called before loading the texture.");
     }
     return texture_;
 }
 
-bool SpriteSheet::loadSpriteDefinitions(const std::filesystem::path& definition_file_path) {
+bool SpriteSheet::LoadSpriteDefinitions(const std::filesystem::path& definition_file_path) {
     std::ifstream definition_stream(definition_file_path);
     if (!definition_stream.is_open()) {
         std::cerr << "Failed to open sprite definition file: " << definition_file_path << std::endl;
@@ -115,7 +115,7 @@ bool SpriteSheet::loadSpriteDefinitions(const std::filesystem::path& definition_
             int width = sprite_data["frame"]["w"].get<int>();
             int height = sprite_data["frame"]["h"].get<int>();
 
-            addSprite(filename, SpriteInfo{sf::IntRect({x, y}, {width, height})});
+            AddSpriteInfo(filename, SpriteInfo{sf::IntRect({x, y}, {width, height})});
         }
     } catch (nlohmann::json::exception& e) {
         std::cerr << "Error processing JSON in sprite definition file: " << definition_file_path << std::endl;
@@ -125,6 +125,15 @@ bool SpriteSheet::loadSpriteDefinitions(const std::filesystem::path& definition_
     std::cout << "Successfully loaded "
               << sprites_map_.size() << " sprites from " << definition_file_path << std::endl;
     return true;
+}
+
+std::vector<std::string> SpriteSheet::GetAllSpriteNames() const {
+    std::vector<std::string> sprite_names;
+    sprite_names.reserve(sprites_map_.size());
+    for (const auto& pair : sprites_map_) {
+        sprite_names.push_back(pair.first);
+    }
+    return sprite_names;
 }
 
 

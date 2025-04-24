@@ -5,41 +5,43 @@
 //
 // Declares the SpriteSheet class and SpriteInfo struct for a Konkr.io clone,
 // managing sprite positions and dimensions from a spritesheet for rendering.
-//
 
 #ifndef KONKR_RENDERING_SPRITE_SHEET_H
 #define KONKR_RENDERING_SPRITE_SHEET_H
 
 #include <string>
 #include <unordered_map>
+#include <vector>
 
 #include <SFML/Graphics.hpp>
 
 namespace konkr {
 
-struct SpriteInfo {
-    sf::IntRect rect;
-};
+    struct SpriteInfo {
+        sf::IntRect rect;
+    };
 
-class SpriteSheet {
-    public:
+    class SpriteSheet {
+        public:
 
-        bool loadFromFile(const std::filesystem::path& file_path);
-        void addSprite(const std::string& name, const SpriteInfo& sprite_info);
+            bool LoadFromFile(const std::filesystem::path& file_path);
+            void AddSpriteInfo(const std::string& name, const SpriteInfo& sprite_info);
 
-        std::optional<SpriteInfo> getSpriteInfo(const std::string& name) const;
-        std::optional<sf::Sprite> createSprite(const std::string& name) const;
+            std::optional<SpriteInfo> GetSpriteInfo(const std::string& name) const;
+            std::optional<sf::Sprite> CreateSprite(const std::string& name) const;
 
-        const sf::Texture& getTexture() const;
+            const sf::Texture& GetTexture() const;
 
-        bool loadSpriteDefinitions(const std::filesystem::path& definition_file_path);
+            bool LoadSpriteDefinitions(const std::filesystem::path& definition_file_path);
 
-    private:
-        sf::Texture texture_;
-        std::unordered_map<std::string, SpriteInfo> sprites_map_;
-        bool loaded_ = false;
-};
+            std::vector<std::string> GetAllSpriteNames() const;
+
+        private:
+            sf::Texture texture_;
+            std::unordered_map<std::string, SpriteInfo> sprites_map_;
+            bool loaded_ = false;
+    };
 
 } // namespace konkr
 
-#endif
+#endif // KONKR_RENDERING_SPRITE_SHEET_H
