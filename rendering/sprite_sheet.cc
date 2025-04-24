@@ -8,12 +8,17 @@
 //
 #include "rendering/sprite_sheet.h"
 
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+#include <optional>
 #include <stdexcept>
 #include <string>
-#include <optional>
 #include <utility>
+#include <vector>
 
 #include <SFML/Graphics.hpp>
+#include <nlohmann/json.hpp>
 
 namespace konkr {
 
@@ -35,6 +40,7 @@ std::optional<SpriteInfo> SpriteSheet::getSpriteInfo(const std::string& name) co
     if (it != sprites_map_.end()) {
         return it->second;
     }
+    std::cerr << "Sprite '" << name << "' not found in loaded sprite definitions." << std::endl;
     return std::nullopt;
 }
 
@@ -55,6 +61,70 @@ const sf::Texture& SpriteSheet::getTexture() const {
         throw std::runtime_error("SpriteSheet::getTexture() called before loading the texture.");
     }
     return texture_;
+}
+
+bool SpriteSheet::loadSpriteDefinitions(const std::filesystem::path& definition_file_path) {
+    std::ifstream definition_stream(definition_file_path);
+    if (!definition_stream.is_open()) {
+        std::cerr << "Failed to open sprite definition file: " << definition_file_path << std::endl;
+        return false;
+    }
+
+    nlohmann::json json_data;
+    try {
+        json_data = nlohmann::json::parse(definition_stream);
+    } catch (nlohmann::json::parse_error& e) {
+        std::cerr << "Failed to parse JSON: " << e.what() << std::endl;
+        return false;
+    }
+
+    try {
+
+        if (!json_data.contains("textures") || !json_data["textures"].is_array() || json_data["textures"].empty()) {
+            std::cerr << "Invalid JSON format: 'textures' array is missing or empty." << std::endl;
+            return false;
+        }
+
+        const nlohmann::json& textures_data = json_data["textures"][0];
+
+        if (!textures_data.contains("frames") || !textures_data["frames"].is_array()) {
+            std::cerr << "Invalid JSON format: 'frames' array is missing." << std::endl;
+            return false;
+        }
+
+        for (const auto& sprite_data : textures_data["frames"]) {
+            if (!sprite_data.is_object() ||
+                !sprite_data.contains("filename") || !sprite_data["filename"].is_string() ||
+                !sprite_data.contains("frame") || !sprite_data["frame"].is_object() ||
+                !sprite_data["frame"].contains("x") || !sprite_data["frame"]["x"].is_number_integer() ||
+                !sprite_data["frame"].contains("y") || !sprite_data["frame"]["y"].is_number_integer() ||
+                !sprite_data["frame"].contains("w") || !sprite_data["frame"]["w"].is_number_integer() ||
+                !sprite_data["frame"].contains("h") || !sprite_data["frame"]["h"].is_number_integer())
+            {
+                std::string filename = (sprite_data.is_object() && sprite_data.contains("filename")) && sprite_data["filename"].is_string() 
+                                        ? sprite_data["filename"].get<std::string>() : "unknown";
+                
+                std::cerr << "Invalid sprite data format for sprite: " << filename << std::endl;
+                // if there's a mistake, we continue, let's see if we can load the rest
+                continue;
+            }
+
+            std::string filename = sprite_data["filename"].get<std::string>();
+            int x = sprite_data["frame"]["x"].get<int>();
+            int y = sprite_data["frame"]["y"].get<int>();
+            int width = sprite_data["frame"]["w"].get<int>();
+            int height = sprite_data["frame"]["h"].get<int>();
+
+            addSprite(filename, SpriteInfo{sf::IntRect({x, y}, {width, height})});
+        }
+    } catch (nlohmann::json::exception& e) {
+        std::cerr << "Error processing JSON in sprite definition file: " << definition_file_path << std::endl;
+        return false;
+    }
+
+    std::cout << "Successfully loaded "
+              << sprites_map_.size() << " sprites from " << definition_file_path << std::endl;
+    return true;
 }
 
 

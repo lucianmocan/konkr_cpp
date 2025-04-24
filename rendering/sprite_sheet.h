@@ -32,6 +32,8 @@ class SpriteSheet {
 
         const sf::Texture& getTexture() const;
 
+        bool loadSpriteDefinitions(const std::filesystem::path& definition_file_path);
+
     private:
         sf::Texture texture_;
         std::unordered_map<std::string, SpriteInfo> sprites_map_;
