@@ -1,0 +1,3543 @@
+{
+    "textures": [
+        {
+            "image": "atlas.png",
+            "format": "RGBA8888",
+            "size": {
+                "w": 1126,
+                "h": 1022
+            },
+            "scale": 1,
+            "frames": [
+                {
+                    "filename": "glass-ui/card-horizontal-glint",
+                    "frame": {
+                        "x": 1,
+                        "y": 1,
+                        "w": 380,
+                        "h": 2
+                    }
+                },
+                {
+                    "filename": "logos/ship",
+                    "frame": {
+                        "x": 1,
+                        "y": 5,
+                        "w": 208,
+                        "h": 127
+                    }
+                },
+                {
+                    "filename": "iso-tiles/highlight/inner",
+                    "frame": {
+                        "x": 1,
+                        "y": 134,
+                        "w": 148,
+                        "h": 148
+                    }
+                },
+                {
+                    "filename": "iso-tiles/highlight/outer",
+                    "frame": {
+                        "x": 1,
+                        "y": 284,
+                        "w": 148,
+                        "h": 148
+                    }
+                },
+                {
+                    "filename": "iso-tiles/green/inner",
+                    "frame": {
+                        "x": 1,
+                        "y": 434,
+                        "w": 144,
+                        "h": 144
+                    }
+                },
+                {
+                    "filename": "iso-tiles/green/outer-sides",
+                    "frame": {
+                        "x": 1,
+                        "y": 580,
+                        "w": 144,
+                        "h": 144
+                    }
+                },
+                {
+                    "filename": "iso-tiles/ground/inner",
+                    "frame": {
+                        "x": 1,
+                        "y": 726,
+                        "w": 144,
+                        "h": 144
+                    }
+                },
+                {
+                    "filename": "iso-tiles/ground/outer",
+                    "frame": {
+                        "x": 1,
+                        "y": 872,
+                        "w": 144,
+                        "h": 144
+                    }
+                },
+                {
+                    "filename": "iso-tiles/landmass/inner",
+                    "frame": {
+                        "x": 211,
+                        "y": 5,
+                        "w": 144,
+                        "h": 144
+                    }
+                },
+                {
+                    "filename": "glass-ui/line-with-arrow-up",
+                    "frame": {
+                        "x": 383,
+                        "y": 1,
+                        "w": 256,
+                        "h": 16
+                    }
+                },
+                {
+                    "filename": "iso-tiles/landmass/outer",
+                    "frame": {
+                        "x": 357,
+                        "y": 19,
+                        "w": 144,
+                        "h": 144
+                    }
+                },
+                {
+                    "filename": "iso-tiles/swamp/inner",
+                    "frame": {
+                        "x": 503,
+                        "y": 19,
+                        "w": 144,
+                        "h": 144
+                    }
+                },
+                {
+                    "filename": "iso-tiles/swamp/outer-sides",
+                    "frame": {
+                        "x": 649,
+                        "y": 1,
+                        "w": 144,
+                        "h": 144
+                    }
+                },
+                {
+                    "filename": "ui/ribbon/pergamen",
+                    "frame": {
+                        "x": 795,
+                        "y": 1,
+                        "w": 192,
+                        "h": 64
+                    }
+                },
+                {
+                    "filename": "ui/primary-buttons/static-glow",
+                    "frame": {
+                        "x": 795,
+                        "y": 67,
+                        "w": 172,
+                        "h": 80
+                    }
+                },
+                {
+                    "filename": "iso-tiles/green/outer-top-bottom",
+                    "frame": {
+                        "x": 151,
+                        "y": 134,
+                        "w": 48,
+                        "h": 144
+                    }
+                },
+                {
+                    "filename": "iso-tiles/forest-gloomy/inner-bottom",
+                    "frame": {
+                        "x": 201,
+                        "y": 151,
+                        "w": 148,
+                        "h": 88
+                    }
+                },
+                {
+                    "filename": "logos/game-title",
+                    "frame": {
+                        "x": 351,
+                        "y": 165,
+                        "w": 172,
+                        "h": 64
+                    }
+                },
+                {
+                    "filename": "iso-tiles/swamp/outer-top-bottom",
+                    "frame": {
+                        "x": 151,
+                        "y": 280,
+                        "w": 48,
+                        "h": 144
+                    }
+                },
+                {
+                    "filename": "iso-tiles/forest-gloomy/inner-top",
+                    "frame": {
+                        "x": 201,
+                        "y": 241,
+                        "w": 148,
+                        "h": 88
+                    }
+                },
+                {
+                    "filename": "iso-tiles/forest-gloomy/outer-bottom",
+                    "frame": {
+                        "x": 351,
+                        "y": 231,
+                        "w": 148,
+                        "h": 88
+                    }
+                },
+                {
+                    "filename": "iso-tiles/forest-gloomy/outer-top",
+                    "frame": {
+                        "x": 201,
+                        "y": 331,
+                        "w": 148,
+                        "h": 88
+                    }
+                },
+                {
+                    "filename": "iso-tiles/forest/inner-bottom",
+                    "frame": {
+                        "x": 351,
+                        "y": 321,
+                        "w": 148,
+                        "h": 88
+                    }
+                },
+                {
+                    "filename": "iso-tiles/forest/inner-top",
+                    "frame": {
+                        "x": 525,
+                        "y": 165,
+                        "w": 148,
+                        "h": 88
+                    }
+                },
+                {
+                    "filename": "iso-tiles/forest/outer-bottom",
+                    "frame": {
+                        "x": 501,
+                        "y": 255,
+                        "w": 148,
+                        "h": 88
+                    }
+                },
+                {
+                    "filename": "iso-tiles/forest/outer-top",
+                    "frame": {
+                        "x": 501,
+                        "y": 345,
+                        "w": 148,
+                        "h": 88
+                    }
+                },
+                {
+                    "filename": "rosetta",
+                    "frame": {
+                        "x": 675,
+                        "y": 147,
+                        "w": 118,
+                        "h": 114
+                    }
+                },
+                {
+                    "filename": "ui/box/floating-panel",
+                    "frame": {
+                        "x": 795,
+                        "y": 149,
+                        "w": 96,
+                        "h": 118
+                    }
+                },
+                {
+                    "filename": "glass-ui/floating-card-box",
+                    "frame": {
+                        "x": 893,
+                        "y": 149,
+                        "w": 60,
+                        "h": 141
+                    }
+                },
+                {
+                    "filename": "ui/level-buttons/face-hover",
+                    "frame": {
+                        "x": 651,
+                        "y": 263,
+                        "w": 100,
+                        "h": 100
+                    }
+                },
+                {
+                    "filename": "ui/level-buttons/face",
+                    "frame": {
+                        "x": 651,
+                        "y": 365,
+                        "w": 100,
+                        "h": 100
+                    }
+                },
+                {
+                    "filename": "ui/level-buttons/shadow",
+                    "frame": {
+                        "x": 989,
+                        "y": 1,
+                        "w": 100,
+                        "h": 100
+                    }
+                },
+                {
+                    "filename": "glass-ui/header-card-gradient",
+                    "frame": {
+                        "x": 147,
+                        "y": 434,
+                        "w": 1,
+                        "h": 160
+                    }
+                },
+                {
+                    "filename": "rosetta-light",
+                    "frame": {
+                        "x": 753,
+                        "y": 269,
+                        "w": 96,
+                        "h": 98
+                    }
+                },
+                {
+                    "filename": "hex-move-indicator-hover",
+                    "frame": {
+                        "x": 753,
+                        "y": 369,
+                        "w": 96,
+                        "h": 96
+                    }
+                },
+                {
+                    "filename": "wave",
+                    "frame": {
+                        "x": 851,
+                        "y": 269,
+                        "w": 24,
+                        "h": 128
+                    }
+                },
+                {
+                    "filename": "iso-tiles/palisade/A001",
+                    "frame": {
+                        "x": 877,
+                        "y": 292,
+                        "w": 96,
+                        "h": 96
+                    }
+                },
+                {
+                    "filename": "ui/primary-buttons/end-turn-down",
+                    "frame": {
+                        "x": 351,
+                        "y": 411,
+                        "w": 142,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "ui/primary-buttons/end-turn-glow-down",
+                    "frame": {
+                        "x": 495,
+                        "y": 435,
+                        "w": 142,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "ui/primary-buttons/end-turn-glow",
+                    "frame": {
+                        "x": 639,
+                        "y": 467,
+                        "w": 142,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "ui/primary-buttons/end-turn",
+                    "frame": {
+                        "x": 201,
+                        "y": 421,
+                        "w": 142,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "ui/primary-buttons/next-down",
+                    "frame": {
+                        "x": 969,
+                        "y": 103,
+                        "w": 142,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "iso-tiles/palisade/A010",
+                    "frame": {
+                        "x": 955,
+                        "y": 153,
+                        "w": 96,
+                        "h": 96
+                    }
+                },
+                {
+                    "filename": "ui/compact/btn-left-down",
+                    "frame": {
+                        "x": 1053,
+                        "y": 153,
+                        "w": 72,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "ui/compact/btn-left",
+                    "frame": {
+                        "x": 1053,
+                        "y": 227,
+                        "w": 72,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "pawns/gold-mine",
+                    "frame": {
+                        "x": 975,
+                        "y": 251,
+                        "w": 76,
+                        "h": 86
+                    }
+                },
+                {
+                    "filename": "ui/compact/btn-next-down",
+                    "frame": {
+                        "x": 1053,
+                        "y": 301,
+                        "w": 72,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "ui/tutorial-arrow",
+                    "frame": {
+                        "x": 975,
+                        "y": 339,
+                        "w": 76,
+                        "h": 82
+                    }
+                },
+                {
+                    "filename": "ui/compact/btn-next",
+                    "frame": {
+                        "x": 1053,
+                        "y": 375,
+                        "w": 72,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "ui/primary-buttons/next",
+                    "frame": {
+                        "x": 345,
+                        "y": 461,
+                        "w": 142,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "ui/primary-buttons/overlay-glow",
+                    "frame": {
+                        "x": 489,
+                        "y": 485,
+                        "w": 142,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "ui/primary-buttons/skip-down",
+                    "frame": {
+                        "x": 633,
+                        "y": 517,
+                        "w": 142,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "iso-tiles/palisade/A011",
+                    "frame": {
+                        "x": 150,
+                        "y": 471,
+                        "w": 96,
+                        "h": 96
+                    }
+                },
+                {
+                    "filename": "pawns/refuge",
+                    "frame": {
+                        "x": 248,
+                        "y": 471,
+                        "w": 93,
+                        "h": 91
+                    }
+                },
+                {
+                    "filename": "ui/primary-buttons/skip",
+                    "frame": {
+                        "x": 343,
+                        "y": 511,
+                        "w": 142,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "ui/primary-buttons/undo-disabled",
+                    "frame": {
+                        "x": 487,
+                        "y": 535,
+                        "w": 142,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "ui/primary-buttons/undo-down",
+                    "frame": {
+                        "x": 343,
+                        "y": 561,
+                        "w": 142,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "ui/primary-buttons/undo",
+                    "frame": {
+                        "x": 487,
+                        "y": 585,
+                        "w": 142,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "iso-tiles/palisade/A100",
+                    "frame": {
+                        "x": 631,
+                        "y": 567,
+                        "w": 96,
+                        "h": 96
+                    }
+                },
+                {
+                    "filename": "iso-tiles/palisade/A101",
+                    "frame": {
+                        "x": 729,
+                        "y": 567,
+                        "w": 96,
+                        "h": 96
+                    }
+                },
+                {
+                    "filename": "iso-tiles/palisade/A110",
+                    "frame": {
+                        "x": 877,
+                        "y": 390,
+                        "w": 96,
+                        "h": 96
+                    }
+                },
+                {
+                    "filename": "ui/ribbon/cloth",
+                    "frame": {
+                        "x": 851,
+                        "y": 399,
+                        "w": 24,
+                        "h": 64
+                    }
+                },
+                {
+                    "filename": "ui/background-arrow",
+                    "frame": {
+                        "x": 975,
+                        "y": 423,
+                        "w": 72,
+                        "h": 64
+                    }
+                },
+                {
+                    "filename": "pawn-backlight",
+                    "frame": {
+                        "x": 147,
+                        "y": 596,
+                        "w": 2,
+                        "h": 128
+                    }
+                },
+                {
+                    "filename": "iso-tiles/palisade/V001",
+                    "frame": {
+                        "x": 151,
+                        "y": 569,
+                        "w": 96,
+                        "h": 96
+                    }
+                },
+                {
+                    "filename": "iso-tiles/palisade/V010",
+                    "frame": {
+                        "x": 151,
+                        "y": 667,
+                        "w": 96,
+                        "h": 96
+                    }
+                },
+                {
+                    "filename": "iso-tiles/palisade/V011",
+                    "frame": {
+                        "x": 147,
+                        "y": 765,
+                        "w": 96,
+                        "h": 96
+                    }
+                },
+                {
+                    "filename": "iso-tiles/palisade/V100",
+                    "frame": {
+                        "x": 147,
+                        "y": 863,
+                        "w": 96,
+                        "h": 96
+                    }
+                },
+                {
+                    "filename": "ui/fast-forward",
+                    "frame": {
+                        "x": 147,
+                        "y": 961,
+                        "w": 90,
+                        "h": 60
+                    }
+                },
+                {
+                    "filename": "logos/game-icon",
+                    "frame": {
+                        "x": 249,
+                        "y": 564,
+                        "w": 67,
+                        "h": 84
+                    }
+                },
+                {
+                    "filename": "iso-tiles/palisade/V101",
+                    "frame": {
+                        "x": 249,
+                        "y": 650,
+                        "w": 96,
+                        "h": 96
+                    }
+                },
+                {
+                    "filename": "iso-tiles/palisade/V110",
+                    "frame": {
+                        "x": 347,
+                        "y": 611,
+                        "w": 96,
+                        "h": 96
+                    }
+                },
+                {
+                    "filename": "pawns/town-4",
+                    "frame": {
+                        "x": 239,
+                        "y": 961,
+                        "w": 66,
+                        "h": 60
+                    }
+                },
+                {
+                    "filename": "pawns/unique-hero",
+                    "frame": {
+                        "x": 1091,
+                        "y": 1,
+                        "w": 34,
+                        "h": 46
+                    }
+                },
+                {
+                    "filename": "pawns/hero",
+                    "frame": {
+                        "x": 1091,
+                        "y": 49,
+                        "w": 34,
+                        "h": 44
+                    }
+                },
+                {
+                    "filename": "coinstack-hd",
+                    "frame": {
+                        "x": 445,
+                        "y": 611,
+                        "w": 20,
+                        "h": 110
+                    }
+                },
+                {
+                    "filename": "pawns/spawner",
+                    "frame": {
+                        "x": 467,
+                        "y": 635,
+                        "w": 62,
+                        "h": 88
+                    }
+                },
+                {
+                    "filename": "ui/compact/btn-right-down",
+                    "frame": {
+                        "x": 531,
+                        "y": 635,
+                        "w": 72,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "ui/ribbon/unit-tray",
+                    "frame": {
+                        "x": 605,
+                        "y": 635,
+                        "w": 24,
+                        "h": 64
+                    }
+                },
+                {
+                    "filename": "ui/guideline-up",
+                    "frame": {
+                        "x": 631,
+                        "y": 665,
+                        "w": 125,
+                        "h": 12
+                    }
+                },
+                {
+                    "filename": "pawns/swamp",
+                    "frame": {
+                        "x": 783,
+                        "y": 467,
+                        "w": 68,
+                        "h": 50
+                    }
+                },
+                {
+                    "filename": "ui/ribbon/small-pergamen",
+                    "frame": {
+                        "x": 777,
+                        "y": 519,
+                        "w": 72,
+                        "h": 46
+                    }
+                },
+                {
+                    "filename": "coinstack",
+                    "frame": {
+                        "x": 827,
+                        "y": 567,
+                        "w": 20,
+                        "h": 110
+                    }
+                },
+                {
+                    "filename": "ui/zombify-label",
+                    "frame": {
+                        "x": 347,
+                        "y": 709,
+                        "w": 77,
+                        "h": 39
+                    }
+                },
+                {
+                    "filename": "ui/compact/btn-right",
+                    "frame": {
+                        "x": 1049,
+                        "y": 449,
+                        "w": 72,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "ui/ribbon/window-header",
+                    "frame": {
+                        "x": 1113,
+                        "y": 95,
+                        "w": 12,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "ui/mini-buttons/wide-down",
+                    "frame": {
+                        "x": 631,
+                        "y": 679,
+                        "w": 81,
+                        "h": 24
+                    }
+                },
+                {
+                    "filename": "ui/mini-buttons/wide",
+                    "frame": {
+                        "x": 249,
+                        "y": 748,
+                        "w": 81,
+                        "h": 24
+                    }
+                },
+                {
+                    "filename": "ui/compact/btn-skip-down",
+                    "frame": {
+                        "x": 245,
+                        "y": 774,
+                        "w": 72,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "ui/compact/btn-skip",
+                    "frame": {
+                        "x": 245,
+                        "y": 848,
+                        "w": 72,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "ui/faction-btn-ai",
+                    "frame": {
+                        "x": 245,
+                        "y": 922,
+                        "w": 34,
+                        "h": 37
+                    }
+                },
+                {
+                    "filename": "iso-tiles/forest-gloomy/full",
+                    "frame": {
+                        "x": 319,
+                        "y": 774,
+                        "w": 52,
+                        "h": 88
+                    }
+                },
+                {
+                    "filename": "iso-tiles/forest/full",
+                    "frame": {
+                        "x": 373,
+                        "y": 750,
+                        "w": 52,
+                        "h": 88
+                    }
+                },
+                {
+                    "filename": "hex-move-indicator",
+                    "frame": {
+                        "x": 319,
+                        "y": 864,
+                        "w": 64,
+                        "h": 64
+                    }
+                },
+                {
+                    "filename": "ui/compact/btn-turn-down",
+                    "frame": {
+                        "x": 307,
+                        "y": 930,
+                        "w": 72,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "ui/avatar",
+                    "frame": {
+                        "x": 151,
+                        "y": 426,
+                        "w": 43,
+                        "h": 43
+                    }
+                },
+                {
+                    "filename": "tile-symbols/plus",
+                    "frame": {
+                        "x": 501,
+                        "y": 231,
+                        "w": 22,
+                        "h": 22
+                    }
+                },
+                {
+                    "filename": "ui/big-glass-arrow",
+                    "frame": {
+                        "x": 385,
+                        "y": 840,
+                        "w": 42,
+                        "h": 74
+                    }
+                },
+                {
+                    "filename": "ui/ribbon/medium-button-down",
+                    "frame": {
+                        "x": 281,
+                        "y": 922,
+                        "w": 24,
+                        "h": 36
+                    }
+                },
+                {
+                    "filename": "pawns/town-4-shadow",
+                    "frame": {
+                        "x": 531,
+                        "y": 709,
+                        "w": 74,
+                        "h": 28
+                    }
+                },
+                {
+                    "filename": "ui/level-features/necromancer",
+                    "frame": {
+                        "x": 467,
+                        "y": 611,
+                        "w": 18,
+                        "h": 22
+                    }
+                },
+                {
+                    "filename": "pawn-move-pedestal",
+                    "frame": {
+                        "x": 307,
+                        "y": 1004,
+                        "w": 32,
+                        "h": 17
+                    }
+                },
+                {
+                    "filename": "ui/compact/btn-turn-glow-down",
+                    "frame": {
+                        "x": 427,
+                        "y": 725,
+                        "w": 72,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "ui/compact/btn-turn-glow",
+                    "frame": {
+                        "x": 429,
+                        "y": 799,
+                        "w": 72,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "ui/compact/btn-turn",
+                    "frame": {
+                        "x": 429,
+                        "y": 873,
+                        "w": 72,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "pawns/unique-hero-rosaline",
+                    "frame": {
+                        "x": 385,
+                        "y": 916,
+                        "w": 42,
+                        "h": 46
+                    }
+                },
+                {
+                    "filename": "ui/compact/btn-undo-disabled",
+                    "frame": {
+                        "x": 429,
+                        "y": 947,
+                        "w": 72,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "ui/icons/battle",
+                    "frame": {
+                        "x": 381,
+                        "y": 964,
+                        "w": 46,
+                        "h": 44
+                    }
+                },
+                {
+                    "filename": "pawns/bandit",
+                    "frame": {
+                        "x": 501,
+                        "y": 725,
+                        "w": 28,
+                        "h": 38
+                    }
+                },
+                {
+                    "filename": "ui/compact/btn-undo-down",
+                    "frame": {
+                        "x": 531,
+                        "y": 739,
+                        "w": 72,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "ui/compact/btn-undo",
+                    "frame": {
+                        "x": 503,
+                        "y": 813,
+                        "w": 72,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "pawns/town-ruins-rebuilding",
+                    "frame": {
+                        "x": 503,
+                        "y": 887,
+                        "w": 60,
+                        "h": 70
+                    }
+                },
+                {
+                    "filename": "pawns/town-ruins",
+                    "frame": {
+                        "x": 503,
+                        "y": 959,
+                        "w": 60,
+                        "h": 50
+                    }
+                },
+                {
+                    "filename": "iso-tiles/debug/a",
+                    "frame": {
+                        "x": 577,
+                        "y": 813,
+                        "w": 48,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "iso-tiles/debug/v",
+                    "frame": {
+                        "x": 565,
+                        "y": 887,
+                        "w": 48,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "pawns/town-3",
+                    "frame": {
+                        "x": 565,
+                        "y": 961,
+                        "w": 48,
+                        "h": 60
+                    }
+                },
+                {
+                    "filename": "iso-tiles/green/full",
+                    "frame": {
+                        "x": 605,
+                        "y": 739,
+                        "w": 48,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "iso-tiles/ground/full",
+                    "frame": {
+                        "x": 605,
+                        "y": 739,
+                        "w": 48,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "iso-tiles/landmass/full",
+                    "frame": {
+                        "x": 627,
+                        "y": 813,
+                        "w": 48,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "iso-tiles/swamp/full",
+                    "frame": {
+                        "x": 615,
+                        "y": 887,
+                        "w": 48,
+                        "h": 72
+                    }
+                },
+                {
+                    "filename": "ui/ribbon/button-group",
+                    "frame": {
+                        "x": 615,
+                        "y": 961,
+                        "w": 48,
+                        "h": 54
+                    }
+                },
+                {
+                    "filename": "ui/level-icons/no-trophy",
+                    "frame": {
+                        "x": 501,
+                        "y": 765,
+                        "w": 28,
+                        "h": 28
+                    }
+                },
+                {
+                    "filename": "ui/level-icons/rip",
+                    "frame": {
+                        "x": 318,
+                        "y": 564,
+                        "w": 23,
+                        "h": 26
+                    }
+                },
+                {
+                    "filename": "pawns/castle",
+                    "frame": {
+                        "x": 665,
+                        "y": 887,
+                        "w": 36,
+                        "h": 64
+                    }
+                },
+                {
+                    "filename": "pawns/dread-knight",
+                    "frame": {
+                        "x": 665,
+                        "y": 953,
+                        "w": 36,
+                        "h": 56
+                    }
+                },
+                {
+                    "filename": "pawns/mana-vortex",
+                    "frame": {
+                        "x": 758,
+                        "y": 665,
+                        "w": 62,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "expedition-icons/conquest",
+                    "frame": {
+                        "x": 655,
+                        "y": 705,
+                        "w": 52,
+                        "h": 52
+                    }
+                },
+                {
+                    "filename": "expedition-icons/x-community-maps",
+                    "frame": {
+                        "x": 655,
+                        "y": 759,
+                        "w": 52,
+                        "h": 52
+                    }
+                },
+                {
+                    "filename": "expedition-icons/x-dead-islands",
+                    "frame": {
+                        "x": 677,
+                        "y": 813,
+                        "w": 52,
+                        "h": 52
+                    }
+                },
+                {
+                    "filename": "pawns/chest-shadow",
+                    "frame": {
+                        "x": 677,
+                        "y": 867,
+                        "w": 38,
+                        "h": 18
+                    }
+                },
+                {
+                    "filename": "pawns/rabbit",
+                    "frame": {
+                        "x": 607,
+                        "y": 705,
+                        "w": 32,
+                        "h": 32
+                    }
+                },
+                {
+                    "filename": "ui/mini-buttons/standalone-down",
+                    "frame": {
+                        "x": 714,
+                        "y": 679,
+                        "w": 41,
+                        "h": 24
+                    }
+                },
+                {
+                    "filename": "ui/detail-window/gold-medal",
+                    "frame": {
+                        "x": 709,
+                        "y": 705,
+                        "w": 43,
+                        "h": 52
+                    }
+                },
+                {
+                    "filename": "expedition-icons/x-experimental",
+                    "frame": {
+                        "x": 709,
+                        "y": 759,
+                        "w": 52,
+                        "h": 52
+                    }
+                },
+                {
+                    "filename": "expedition-icons/x-first-steps",
+                    "frame": {
+                        "x": 731,
+                        "y": 813,
+                        "w": 52,
+                        "h": 52
+                    }
+                },
+                {
+                    "filename": "attitude-emoji/peasant-hat",
+                    "frame": {
+                        "x": 754,
+                        "y": 715,
+                        "w": 44,
+                        "h": 40
+                    }
+                },
+                {
+                    "filename": "expedition-icons/x-islands-of-pain",
+                    "frame": {
+                        "x": 763,
+                        "y": 757,
+                        "w": 52,
+                        "h": 52
+                    }
+                },
+                {
+                    "filename": "expedition-icons/x-old-world",
+                    "frame": {
+                        "x": 785,
+                        "y": 811,
+                        "w": 52,
+                        "h": 52
+                    }
+                },
+                {
+                    "filename": "pawns/zombie",
+                    "frame": {
+                        "x": 800,
+                        "y": 715,
+                        "w": 20,
+                        "h": 40
+                    }
+                },
+                {
+                    "filename": "ui/detail-window/in-progress",
+                    "frame": {
+                        "x": 817,
+                        "y": 757,
+                        "w": 43,
+                        "h": 52
+                    }
+                },
+                {
+                    "filename": "pawns/town-3-shadow",
+                    "frame": {
+                        "x": 717,
+                        "y": 867,
+                        "w": 56,
+                        "h": 28
+                    }
+                },
+                {
+                    "filename": "ui/palette-slot-selected",
+                    "frame": {
+                        "x": 703,
+                        "y": 897,
+                        "w": 50,
+                        "h": 50
+                    }
+                },
+                {
+                    "filename": "ui/palette-slot",
+                    "frame": {
+                        "x": 703,
+                        "y": 949,
+                        "w": 50,
+                        "h": 50
+                    }
+                },
+                {
+                    "filename": "ui/ribbon/vertical-ribbon-purple",
+                    "frame": {
+                        "x": 703,
+                        "y": 1001,
+                        "w": 35,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "ui/detail-window/silver-medal",
+                    "frame": {
+                        "x": 839,
+                        "y": 811,
+                        "w": 43,
+                        "h": 52
+                    }
+                },
+                {
+                    "filename": "pawns/haunted-town",
+                    "frame": {
+                        "x": 822,
+                        "y": 679,
+                        "w": 30,
+                        "h": 50
+                    }
+                },
+                {
+                    "filename": "pawns/town-undead",
+                    "frame": {
+                        "x": 822,
+                        "y": 679,
+                        "w": 30,
+                        "h": 50
+                    }
+                },
+                {
+                    "filename": "ui/compact/icon-fast-forward",
+                    "frame": {
+                        "x": 822,
+                        "y": 731,
+                        "w": 40,
+                        "h": 24
+                    }
+                },
+                {
+                    "filename": "ui/ribbon/vertical-ribbon-white",
+                    "frame": {
+                        "x": 740,
+                        "y": 1001,
+                        "w": 35,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "pawns/town-2",
+                    "frame": {
+                        "x": 755,
+                        "y": 897,
+                        "w": 30,
+                        "h": 50
+                    }
+                },
+                {
+                    "filename": "ui/box/dialog-button-down",
+                    "frame": {
+                        "x": 755,
+                        "y": 949,
+                        "w": 48,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "pawns/present-shadow",
+                    "frame": {
+                        "x": 777,
+                        "y": 999,
+                        "w": 40,
+                        "h": 22
+                    }
+                },
+                {
+                    "filename": "glass-ui/arrow-button-shadow",
+                    "frame": {
+                        "x": 787,
+                        "y": 865,
+                        "w": 49,
+                        "h": 47
+                    }
+                },
+                {
+                    "filename": "glass-ui/arrow-button",
+                    "frame": {
+                        "x": 838,
+                        "y": 865,
+                        "w": 49,
+                        "h": 47
+                    }
+                },
+                {
+                    "filename": "ui/ribbon/small-button-down",
+                    "frame": {
+                        "x": 787,
+                        "y": 914,
+                        "w": 48,
+                        "h": 30
+                    }
+                },
+                {
+                    "filename": "ui/compact/icon-undo",
+                    "frame": {
+                        "x": 837,
+                        "y": 914,
+                        "w": 51,
+                        "h": 45
+                    }
+                },
+                {
+                    "filename": "editor/delete-tile-icon",
+                    "frame": {
+                        "x": 805,
+                        "y": 946,
+                        "w": 30,
+                        "h": 30
+                    }
+                },
+                {
+                    "filename": "ui/icons/warning",
+                    "frame": {
+                        "x": 837,
+                        "y": 961,
+                        "w": 50,
+                        "h": 45
+                    }
+                },
+                {
+                    "filename": "pawns/torch-blue",
+                    "frame": {
+                        "x": 639,
+                        "y": 435,
+                        "w": 10,
+                        "h": 26
+                    }
+                },
+                {
+                    "filename": "ui/icons/star",
+                    "frame": {
+                        "x": 853,
+                        "y": 465,
+                        "w": 22,
+                        "h": 21
+                    }
+                },
+                {
+                    "filename": "ui/box/dialog-button",
+                    "frame": {
+                        "x": 853,
+                        "y": 488,
+                        "w": 48,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "ui/box/glass-button-hover",
+                    "frame": {
+                        "x": 903,
+                        "y": 488,
+                        "w": 48,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "ui/box/glass-button-slim-hover",
+                    "frame": {
+                        "x": 851,
+                        "y": 538,
+                        "w": 48,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "ui/box/glass-button-slim",
+                    "frame": {
+                        "x": 901,
+                        "y": 538,
+                        "w": 48,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "ui/box/glass-button",
+                    "frame": {
+                        "x": 849,
+                        "y": 588,
+                        "w": 48,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "ui/box/plate",
+                    "frame": {
+                        "x": 899,
+                        "y": 588,
+                        "w": 48,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "ui/detail-window/ribbon-flap",
+                    "frame": {
+                        "x": 849,
+                        "y": 638,
+                        "w": 45,
+                        "h": 39
+                    }
+                },
+                {
+                    "filename": "ui/box/rounded-plate",
+                    "frame": {
+                        "x": 854,
+                        "y": 679,
+                        "w": 48,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "ui/ribbon/small-button",
+                    "frame": {
+                        "x": 896,
+                        "y": 638,
+                        "w": 48,
+                        "h": 30
+                    }
+                },
+                {
+                    "filename": "ui/box/window",
+                    "frame": {
+                        "x": 904,
+                        "y": 670,
+                        "w": 48,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "ui/window-header-strap",
+                    "frame": {
+                        "x": 953,
+                        "y": 489,
+                        "w": 48,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "ui/new-level-sticker",
+                    "frame": {
+                        "x": 1003,
+                        "y": 489,
+                        "w": 44,
+                        "h": 44
+                    }
+                },
+                {
+                    "filename": "pawns/pikeman",
+                    "frame": {
+                        "x": 951,
+                        "y": 539,
+                        "w": 40,
+                        "h": 44
+                    }
+                },
+                {
+                    "filename": "chest",
+                    "frame": {
+                        "x": 864,
+                        "y": 729,
+                        "w": 38,
+                        "h": 34
+                    }
+                },
+                {
+                    "filename": "pawns/knight",
+                    "frame": {
+                        "x": 862,
+                        "y": 765,
+                        "w": 32,
+                        "h": 44
+                    }
+                },
+                {
+                    "filename": "ui/icons/please",
+                    "frame": {
+                        "x": 904,
+                        "y": 720,
+                        "w": 40,
+                        "h": 40
+                    }
+                },
+                {
+                    "filename": "ui/icons/hand",
+                    "frame": {
+                        "x": 969,
+                        "y": 67,
+                        "w": 18,
+                        "h": 21
+                    }
+                },
+                {
+                    "filename": "ui/mini-icons/upkeep",
+                    "frame": {
+                        "x": 969,
+                        "y": 90,
+                        "w": 18,
+                        "h": 11
+                    }
+                },
+                {
+                    "filename": "flag-pole",
+                    "frame": {
+                        "x": 318,
+                        "y": 592,
+                        "w": 16,
+                        "h": 44
+                    }
+                },
+                {
+                    "filename": "hex-markers/circle",
+                    "frame": {
+                        "x": 955,
+                        "y": 251,
+                        "w": 18,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "ui/mini-icons/lightbulb",
+                    "frame": {
+                        "x": 955,
+                        "y": 273,
+                        "w": 18,
+                        "h": 17
+                    }
+                },
+                {
+                    "filename": "ui/detail-window/turns-mini-label",
+                    "frame": {
+                        "x": 651,
+                        "y": 255,
+                        "w": 22,
+                        "h": 6
+                    }
+                },
+                {
+                    "filename": "ui/icons/twitter",
+                    "frame": {
+                        "x": 341,
+                        "y": 1004,
+                        "w": 20,
+                        "h": 17
+                    }
+                },
+                {
+                    "filename": "pawns/torch-red",
+                    "frame": {
+                        "x": 775,
+                        "y": 867,
+                        "w": 10,
+                        "h": 24
+                    }
+                },
+                {
+                    "filename": "ui/icons/discord",
+                    "frame": {
+                        "x": 649,
+                        "y": 147,
+                        "w": 20,
+                        "h": 16
+                    }
+                },
+                {
+                    "filename": "ui/level-features/always-retreat",
+                    "frame": {
+                        "x": 805,
+                        "y": 978,
+                        "w": 25,
+                        "h": 19
+                    }
+                },
+                {
+                    "filename": "ui/ribbon/main-button-disabled",
+                    "frame": {
+                        "x": 884,
+                        "y": 811,
+                        "w": 24,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "ui/ribbon/main-button-down",
+                    "frame": {
+                        "x": 889,
+                        "y": 861,
+                        "w": 24,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "ui/ribbon/ui-design",
+                    "frame": {
+                        "x": 889,
+                        "y": 861,
+                        "w": 24,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "ui/ribbon/main-button",
+                    "frame": {
+                        "x": 890,
+                        "y": 911,
+                        "w": 24,
+                        "h": 48
+                    }
+                },
+                {
+                    "filename": "pawns/ladder-zombie",
+                    "frame": {
+                        "x": 889,
+                        "y": 961,
+                        "w": 26,
+                        "h": 42
+                    }
+                },
+                {
+                    "filename": "attitude-emoji/crown",
+                    "frame": {
+                        "x": 889,
+                        "y": 1005,
+                        "w": 36,
+                        "h": 16
+                    }
+                },
+                {
+                    "filename": "pawns/mana",
+                    "frame": {
+                        "x": 332,
+                        "y": 748,
+                        "w": 13,
+                        "h": 24
+                    }
+                },
+                {
+                    "filename": "editor/delete-buildings-icon",
+                    "frame": {
+                        "x": 347,
+                        "y": 750,
+                        "w": 24,
+                        "h": 21
+                    }
+                },
+                {
+                    "filename": "ui/level-features/difficulty-hard",
+                    "frame": {
+                        "x": 877,
+                        "y": 269,
+                        "w": 14,
+                        "h": 19
+                    }
+                },
+                {
+                    "filename": "ui/mini-buttons/ribbon",
+                    "frame": {
+                        "x": 196,
+                        "y": 426,
+                        "w": 3,
+                        "h": 24
+                    }
+                },
+                {
+                    "filename": "ui/level-features/zombies",
+                    "frame": {
+                        "x": 373,
+                        "y": 840,
+                        "w": 10,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "ui/mini-buttons/standalone",
+                    "frame": {
+                        "x": 1049,
+                        "y": 523,
+                        "w": 41,
+                        "h": 24
+                    }
+                },
+                {
+                    "filename": "attitude-emoji/undead-bg",
+                    "frame": {
+                        "x": 1092,
+                        "y": 523,
+                        "w": 32,
+                        "h": 36
+                    }
+                },
+                {
+                    "filename": "pawn-shadow",
+                    "frame": {
+                        "x": 665,
+                        "y": 1011,
+                        "w": 36,
+                        "h": 8
+                    }
+                },
+                {
+                    "filename": "ui/hourglass",
+                    "frame": {
+                        "x": 819,
+                        "y": 999,
+                        "w": 13,
+                        "h": 22
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/eye",
+                    "frame": {
+                        "x": 834,
+                        "y": 1008,
+                        "w": 18,
+                        "h": 13
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/download",
+                    "frame": {
+                        "x": 426,
+                        "y": 709,
+                        "w": 16,
+                        "h": 14
+                    }
+                },
+                {
+                    "filename": "hex-markers/defense-1",
+                    "frame": {
+                        "x": 641,
+                        "y": 705,
+                        "w": 12,
+                        "h": 16
+                    }
+                },
+                {
+                    "filename": "pawns/villager",
+                    "frame": {
+                        "x": 993,
+                        "y": 539,
+                        "w": 32,
+                        "h": 38
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/sort-by-mode",
+                    "frame": {
+                        "x": 1027,
+                        "y": 535,
+                        "w": 20,
+                        "h": 30
+                    }
+                },
+                {
+                    "filename": "pawns/town-2-shadow",
+                    "frame": {
+                        "x": 1049,
+                        "y": 549,
+                        "w": 38,
+                        "h": 28
+                    }
+                },
+                {
+                    "filename": "pawns/town-undead-shadow",
+                    "frame": {
+                        "x": 1049,
+                        "y": 549,
+                        "w": 38,
+                        "h": 28
+                    }
+                },
+                {
+                    "filename": "attitude-emoji/human-bg",
+                    "frame": {
+                        "x": 1089,
+                        "y": 561,
+                        "w": 36,
+                        "h": 36
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/fullscreen-exit",
+                    "frame": {
+                        "x": 503,
+                        "y": 795,
+                        "w": 16,
+                        "h": 16
+                    }
+                },
+                {
+                    "filename": "ui/level-icons/locked",
+                    "frame": {
+                        "x": 363,
+                        "y": 1004,
+                        "w": 13,
+                        "h": 17
+                    }
+                },
+                {
+                    "filename": "ui/primary-button-icons/step-back",
+                    "frame": {
+                        "x": 378,
+                        "y": 1010,
+                        "w": 22,
+                        "h": 11
+                    }
+                },
+                {
+                    "filename": "ui/primary-button-icons/step-forward",
+                    "frame": {
+                        "x": 402,
+                        "y": 1010,
+                        "w": 22,
+                        "h": 11
+                    }
+                },
+                {
+                    "filename": "ui/level-icons/bronze",
+                    "frame": {
+                        "x": 946,
+                        "y": 720,
+                        "w": 27,
+                        "h": 38
+                    }
+                },
+                {
+                    "filename": "ui/level-icons/gold",
+                    "frame": {
+                        "x": 896,
+                        "y": 765,
+                        "w": 27,
+                        "h": 38
+                    }
+                },
+                {
+                    "filename": "ui/level-icons/silver",
+                    "frame": {
+                        "x": 925,
+                        "y": 762,
+                        "w": 27,
+                        "h": 38
+                    }
+                },
+                {
+                    "filename": "ui/faction-btn-local",
+                    "frame": {
+                        "x": 954,
+                        "y": 760,
+                        "w": 34,
+                        "h": 37
+                    }
+                },
+                {
+                    "filename": "ui/mini-icons/arrow-right",
+                    "frame": {
+                        "x": 318,
+                        "y": 638,
+                        "w": 16,
+                        "h": 10
+                    }
+                },
+                {
+                    "filename": "ui/compact/icon-home",
+                    "frame": {
+                        "x": 910,
+                        "y": 805,
+                        "w": 36,
+                        "h": 36
+                    }
+                },
+                {
+                    "filename": "ui/compact/icon-swords",
+                    "frame": {
+                        "x": 915,
+                        "y": 843,
+                        "w": 36,
+                        "h": 34
+                    }
+                },
+                {
+                    "filename": "ui/level-icons/no-progress",
+                    "frame": {
+                        "x": 915,
+                        "y": 879,
+                        "w": 32,
+                        "h": 30
+                    }
+                },
+                {
+                    "filename": "ui/icons/dead",
+                    "frame": {
+                        "x": 916,
+                        "y": 911,
+                        "w": 34,
+                        "h": 34
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/help",
+                    "frame": {
+                        "x": 917,
+                        "y": 947,
+                        "w": 32,
+                        "h": 32
+                    }
+                },
+                {
+                    "filename": "ui/arrow-btn-left-down",
+                    "frame": {
+                        "x": 917,
+                        "y": 981,
+                        "w": 32,
+                        "h": 21
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/bug-report",
+                    "frame": {
+                        "x": 927,
+                        "y": 1004,
+                        "w": 17,
+                        "h": 17
+                    }
+                },
+                {
+                    "filename": "attitude-emoji/0",
+                    "frame": {
+                        "x": 1027,
+                        "y": 567,
+                        "w": 20,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "pawns/present",
+                    "frame": {
+                        "x": 993,
+                        "y": 579,
+                        "w": 32,
+                        "h": 28
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/restart",
+                    "frame": {
+                        "x": 357,
+                        "y": 5,
+                        "w": 14,
+                        "h": 12
+                    }
+                },
+                {
+                    "filename": "pawns/town-1-shadow",
+                    "frame": {
+                        "x": 1049,
+                        "y": 579,
+                        "w": 32,
+                        "h": 24
+                    }
+                },
+                {
+                    "filename": "attitude-emoji/1",
+                    "frame": {
+                        "x": 1027,
+                        "y": 589,
+                        "w": 20,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "ui/arrow-icon",
+                    "frame": {
+                        "x": 641,
+                        "y": 723,
+                        "w": 12,
+                        "h": 13
+                    }
+                },
+                {
+                    "filename": "editor/tile-icon",
+                    "frame": {
+                        "x": 946,
+                        "y": 638,
+                        "w": 30,
+                        "h": 30
+                    }
+                },
+                {
+                    "filename": "ui/ribbon/medium-button",
+                    "frame": {
+                        "x": 954,
+                        "y": 670,
+                        "w": 24,
+                        "h": 36
+                    }
+                },
+                {
+                    "filename": "ui/icons/discord-large",
+                    "frame": {
+                        "x": 949,
+                        "y": 611,
+                        "w": 32,
+                        "h": 25
+                    }
+                },
+                {
+                    "filename": "ui/level-features/new",
+                    "frame": {
+                        "x": 951,
+                        "y": 585,
+                        "w": 28,
+                        "h": 24
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/sound-off",
+                    "frame": {
+                        "x": 983,
+                        "y": 609,
+                        "w": 32,
+                        "h": 32
+                    }
+                },
+                {
+                    "filename": "glass-ui/flat-box-button-hover",
+                    "frame": {
+                        "x": 1017,
+                        "y": 611,
+                        "w": 30,
+                        "h": 30
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/sound-on",
+                    "frame": {
+                        "x": 1049,
+                        "y": 605,
+                        "w": 32,
+                        "h": 32
+                    }
+                },
+                {
+                    "filename": "ui/icons/book",
+                    "frame": {
+                        "x": 1083,
+                        "y": 599,
+                        "w": 32,
+                        "h": 32
+                    }
+                },
+                {
+                    "filename": "ui/arrow-btn-left",
+                    "frame": {
+                        "x": 978,
+                        "y": 643,
+                        "w": 32,
+                        "h": 21
+                    }
+                },
+                {
+                    "filename": "pawns/camp",
+                    "frame": {
+                        "x": 980,
+                        "y": 666,
+                        "w": 28,
+                        "h": 34
+                    }
+                },
+                {
+                    "filename": "ui/arrow-btn-right-down",
+                    "frame": {
+                        "x": 1012,
+                        "y": 643,
+                        "w": 32,
+                        "h": 21
+                    }
+                },
+                {
+                    "filename": "ui/icons/campaign",
+                    "frame": {
+                        "x": 1010,
+                        "y": 666,
+                        "w": 32,
+                        "h": 32
+                    }
+                },
+                {
+                    "filename": "pawns/torch-empty",
+                    "frame": {
+                        "x": 981,
+                        "y": 585,
+                        "w": 10,
+                        "h": 16
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/edit",
+                    "frame": {
+                        "x": 854,
+                        "y": 1008,
+                        "w": 12,
+                        "h": 13
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/help-circle",
+                    "frame": {
+                        "x": 946,
+                        "y": 1004,
+                        "w": 17,
+                        "h": 17
+                    }
+                },
+                {
+                    "filename": "hex-decals/grass",
+                    "frame": {
+                        "x": 1091,
+                        "y": 95,
+                        "w": 14,
+                        "h": 6
+                    }
+                },
+                {
+                    "filename": "ui/arrow-btn-right",
+                    "frame": {
+                        "x": 1083,
+                        "y": 633,
+                        "w": 32,
+                        "h": 21
+                    }
+                },
+                {
+                    "filename": "ui/icons/conquest",
+                    "frame": {
+                        "x": 1049,
+                        "y": 639,
+                        "w": 32,
+                        "h": 32
+                    }
+                },
+                {
+                    "filename": "ui/icons/lich",
+                    "frame": {
+                        "x": 1044,
+                        "y": 673,
+                        "w": 32,
+                        "h": 32
+                    }
+                },
+                {
+                    "filename": "ui/slider/rider",
+                    "frame": {
+                        "x": 1083,
+                        "y": 656,
+                        "w": 32,
+                        "h": 21
+                    }
+                },
+                {
+                    "filename": "ui/level-list-filters/all",
+                    "frame": {
+                        "x": 1078,
+                        "y": 679,
+                        "w": 31,
+                        "h": 31
+                    }
+                },
+                {
+                    "filename": "ui/level-features/difficulty-normal",
+                    "frame": {
+                        "x": 1111,
+                        "y": 679,
+                        "w": 14,
+                        "h": 19
+                    }
+                },
+                {
+                    "filename": "sign-ok",
+                    "frame": {
+                        "x": 1111,
+                        "y": 700,
+                        "w": 14,
+                        "h": 16
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/question-mark",
+                    "frame": {
+                        "x": 201,
+                        "y": 134,
+                        "w": 8,
+                        "h": 13
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/rewind",
+                    "frame": {
+                        "x": 954,
+                        "y": 708,
+                        "w": 12,
+                        "h": 10
+                    }
+                },
+                {
+                    "filename": "glass-ui/flat-box-button",
+                    "frame": {
+                        "x": 949,
+                        "y": 879,
+                        "w": 30,
+                        "h": 30
+                    }
+                },
+                {
+                    "filename": "pawns/town-1",
+                    "frame": {
+                        "x": 952,
+                        "y": 911,
+                        "w": 24,
+                        "h": 34
+                    }
+                },
+                {
+                    "filename": "pawns/chest",
+                    "frame": {
+                        "x": 951,
+                        "y": 947,
+                        "w": 30,
+                        "h": 30
+                    }
+                },
+                {
+                    "filename": "ui/level-features/unique-hero-rosaline",
+                    "frame": {
+                        "x": 951,
+                        "y": 979,
+                        "w": 21,
+                        "h": 23
+                    }
+                },
+                {
+                    "filename": "ui/completion-tapestry/shining-gem",
+                    "frame": {
+                        "x": 965,
+                        "y": 1004,
+                        "w": 17,
+                        "h": 17
+                    }
+                },
+                {
+                    "filename": "ui/level-features/unique-hero",
+                    "frame": {
+                        "x": 974,
+                        "y": 979,
+                        "w": 17,
+                        "h": 23
+                    }
+                },
+                {
+                    "filename": "tile-symbols/alert",
+                    "frame": {
+                        "x": 948,
+                        "y": 802,
+                        "w": 16,
+                        "h": 32
+                    }
+                },
+                {
+                    "filename": "ui/box/inner-plate",
+                    "frame": {
+                        "x": 966,
+                        "y": 799,
+                        "w": 30,
+                        "h": 30
+                    }
+                },
+                {
+                    "filename": "tile-symbols/warning",
+                    "frame": {
+                        "x": 953,
+                        "y": 836,
+                        "w": 16,
+                        "h": 32
+                    }
+                },
+                {
+                    "filename": "ui/box/rounded-rect-area",
+                    "frame": {
+                        "x": 971,
+                        "y": 831,
+                        "w": 30,
+                        "h": 30
+                    }
+                },
+                {
+                    "filename": "ui/level-features/buy-gifts",
+                    "frame": {
+                        "x": 971,
+                        "y": 863,
+                        "w": 24,
+                        "h": 14
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/sort-by-name",
+                    "frame": {
+                        "x": 981,
+                        "y": 879,
+                        "w": 20,
+                        "h": 30
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/sort-by-number",
+                    "frame": {
+                        "x": 978,
+                        "y": 911,
+                        "w": 20,
+                        "h": 30
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/sort-by-turns",
+                    "frame": {
+                        "x": 983,
+                        "y": 943,
+                        "w": 20,
+                        "h": 30
+                    }
+                },
+                {
+                    "filename": "attitude-emoji/undead",
+                    "frame": {
+                        "x": 993,
+                        "y": 975,
+                        "w": 20,
+                        "h": 28
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/link",
+                    "frame": {
+                        "x": 984,
+                        "y": 1005,
+                        "w": 16,
+                        "h": 16
+                    }
+                },
+                {
+                    "filename": "ui/mini-close-button-hover",
+                    "frame": {
+                        "x": 1002,
+                        "y": 1005,
+                        "w": 16,
+                        "h": 16
+                    }
+                },
+                {
+                    "filename": "ui/mini-icons/super-fast-forward",
+                    "frame": {
+                        "x": 953,
+                        "y": 870,
+                        "w": 12,
+                        "h": 7
+                    }
+                },
+                {
+                    "filename": "ui/level-icons/in-progress",
+                    "frame": {
+                        "x": 980,
+                        "y": 702,
+                        "w": 28,
+                        "h": 26
+                    }
+                },
+                {
+                    "filename": "ui/mini-buttons/left-down",
+                    "frame": {
+                        "x": 1010,
+                        "y": 700,
+                        "w": 28,
+                        "h": 24
+                    }
+                },
+                {
+                    "filename": "ui/mini-buttons/left",
+                    "frame": {
+                        "x": 975,
+                        "y": 730,
+                        "w": 28,
+                        "h": 24
+                    }
+                },
+                {
+                    "filename": "ui/mini-buttons/right-down",
+                    "frame": {
+                        "x": 1040,
+                        "y": 707,
+                        "w": 28,
+                        "h": 24
+                    }
+                },
+                {
+                    "filename": "ui/mini-buttons/right",
+                    "frame": {
+                        "x": 1070,
+                        "y": 712,
+                        "w": 28,
+                        "h": 24
+                    }
+                },
+                {
+                    "filename": "ui/compact/icon-forward",
+                    "frame": {
+                        "x": 990,
+                        "y": 756,
+                        "w": 21,
+                        "h": 25
+                    }
+                },
+                {
+                    "filename": "coin-hd",
+                    "frame": {
+                        "x": 990,
+                        "y": 783,
+                        "w": 20,
+                        "h": 14
+                    }
+                },
+                {
+                    "filename": "attitude-emoji/shock-0",
+                    "frame": {
+                        "x": 998,
+                        "y": 799,
+                        "w": 24,
+                        "h": 24
+                    }
+                },
+                {
+                    "filename": "attitude-emoji/shock-1",
+                    "frame": {
+                        "x": 1003,
+                        "y": 825,
+                        "w": 24,
+                        "h": 24
+                    }
+                },
+                {
+                    "filename": "attitude-emoji/shock-2",
+                    "frame": {
+                        "x": 1005,
+                        "y": 730,
+                        "w": 24,
+                        "h": 24
+                    }
+                },
+                {
+                    "filename": "tile-symbols/confused",
+                    "frame": {
+                        "x": 1013,
+                        "y": 756,
+                        "w": 24,
+                        "h": 24
+                    }
+                },
+                {
+                    "filename": "ui/icons/cloud-failed",
+                    "frame": {
+                        "x": 1031,
+                        "y": 733,
+                        "w": 21,
+                        "h": 21
+                    }
+                },
+                {
+                    "filename": "ui/box/tutorial-frame",
+                    "frame": {
+                        "x": 1039,
+                        "y": 756,
+                        "w": 24,
+                        "h": 24
+                    }
+                },
+                {
+                    "filename": "ui/icons/heart",
+                    "frame": {
+                        "x": 1003,
+                        "y": 851,
+                        "w": 26,
+                        "h": 24
+                    }
+                },
+                {
+                    "filename": "ui/mini-buttons/mid-down",
+                    "frame": {
+                        "x": 1003,
+                        "y": 877,
+                        "w": 27,
+                        "h": 24
+                    }
+                },
+                {
+                    "filename": "ui/mini-buttons/mid",
+                    "frame": {
+                        "x": 1024,
+                        "y": 782,
+                        "w": 27,
+                        "h": 24
+                    }
+                },
+                {
+                    "filename": "editor/tree",
+                    "frame": {
+                        "x": 1012,
+                        "y": 783,
+                        "w": 10,
+                        "h": 14
+                    }
+                },
+                {
+                    "filename": "ui/icons/mail",
+                    "frame": {
+                        "x": 1024,
+                        "y": 808,
+                        "w": 21,
+                        "h": 15
+                    }
+                },
+                {
+                    "filename": "ui/compact/icon-back",
+                    "frame": {
+                        "x": 1029,
+                        "y": 825,
+                        "w": 21,
+                        "h": 24
+                    }
+                },
+                {
+                    "filename": "ui/compact/icon-left",
+                    "frame": {
+                        "x": 1029,
+                        "y": 825,
+                        "w": 21,
+                        "h": 24
+                    }
+                },
+                {
+                    "filename": "ui/icons/cloud-ok",
+                    "frame": {
+                        "x": 1031,
+                        "y": 851,
+                        "w": 21,
+                        "h": 21
+                    }
+                },
+                {
+                    "filename": "ui/icons/cloud-syncing",
+                    "frame": {
+                        "x": 1032,
+                        "y": 874,
+                        "w": 21,
+                        "h": 21
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/palette",
+                    "frame": {
+                        "x": 1054,
+                        "y": 733,
+                        "w": 14,
+                        "h": 14
+                    }
+                },
+                {
+                    "filename": "lock",
+                    "frame": {
+                        "x": 1053,
+                        "y": 782,
+                        "w": 17,
+                        "h": 22
+                    }
+                },
+                {
+                    "filename": "ui/ribbon/slider",
+                    "frame": {
+                        "x": 503,
+                        "y": 1011,
+                        "w": 24,
+                        "h": 8
+                    }
+                },
+                {
+                    "filename": "debug-arrow",
+                    "frame": {
+                        "x": 868,
+                        "y": 1008,
+                        "w": 19,
+                        "h": 5
+                    }
+                },
+                {
+                    "filename": "hex-decals/grass2",
+                    "frame": {
+                        "x": 868,
+                        "y": 1015,
+                        "w": 14,
+                        "h": 6
+                    }
+                },
+                {
+                    "filename": "tile-symbols/arrow",
+                    "frame": {
+                        "x": 1070,
+                        "y": 738,
+                        "w": 22,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "ui/level-features/kings-landing",
+                    "frame": {
+                        "x": 1065,
+                        "y": 760,
+                        "w": 21,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "ui/level-features/capture-towns",
+                    "frame": {
+                        "x": 1072,
+                        "y": 782,
+                        "w": 17,
+                        "h": 22
+                    }
+                },
+                {
+                    "filename": "ui/icons/alert",
+                    "frame": {
+                        "x": 1117,
+                        "y": 599,
+                        "w": 7,
+                        "h": 23
+                    }
+                },
+                {
+                    "filename": "ui/level-icons/trophy-shadow",
+                    "frame": {
+                        "x": 529,
+                        "y": 1011,
+                        "w": 22,
+                        "h": 8
+                    }
+                },
+                {
+                    "filename": "ui/mini-icons/back",
+                    "frame": {
+                        "x": 896,
+                        "y": 670,
+                        "w": 6,
+                        "h": 7
+                    }
+                },
+                {
+                    "filename": "ui/mini-icons/heart-colored",
+                    "frame": {
+                        "x": 968,
+                        "y": 708,
+                        "w": 10,
+                        "h": 9
+                    }
+                },
+                {
+                    "filename": "ui/mini-icons/heart",
+                    "frame": {
+                        "x": 553,
+                        "y": 1011,
+                        "w": 10,
+                        "h": 9
+                    }
+                },
+                {
+                    "filename": "ui/primary-button-icons/next-stop",
+                    "frame": {
+                        "x": 1100,
+                        "y": 718,
+                        "w": 22,
+                        "h": 19
+                    }
+                },
+                {
+                    "filename": "ui/primary-button-icons/prev-stop",
+                    "frame": {
+                        "x": 1094,
+                        "y": 739,
+                        "w": 22,
+                        "h": 19
+                    }
+                },
+                {
+                    "filename": "attitude-emoji/10",
+                    "frame": {
+                        "x": 1088,
+                        "y": 760,
+                        "w": 20,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/logout",
+                    "frame": {
+                        "x": 1110,
+                        "y": 760,
+                        "w": 15,
+                        "h": 15
+                    }
+                },
+                {
+                    "filename": "ui/icons/ok",
+                    "frame": {
+                        "x": 1091,
+                        "y": 782,
+                        "w": 21,
+                        "h": 21
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/trash",
+                    "frame": {
+                        "x": 1114,
+                        "y": 777,
+                        "w": 11,
+                        "h": 14
+                    }
+                },
+                {
+                    "filename": "ui/mini-icons/download",
+                    "frame": {
+                        "x": 521,
+                        "y": 795,
+                        "w": 8,
+                        "h": 9
+                    }
+                },
+                {
+                    "filename": "ui/ribbon/color-bar",
+                    "frame": {
+                        "x": 336,
+                        "y": 611,
+                        "w": 9,
+                        "h": 12
+                    }
+                },
+                {
+                    "filename": "attitude-emoji/11",
+                    "frame": {
+                        "x": 1003,
+                        "y": 903,
+                        "w": 20,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "ui/mini-close-button",
+                    "frame": {
+                        "x": 1000,
+                        "y": 925,
+                        "w": 16,
+                        "h": 16
+                    }
+                },
+                {
+                    "filename": "attitude-emoji/12",
+                    "frame": {
+                        "x": 1005,
+                        "y": 943,
+                        "w": 20,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "hex-markers/defense-2",
+                    "frame": {
+                        "x": 1018,
+                        "y": 925,
+                        "w": 12,
+                        "h": 16
+                    }
+                },
+                {
+                    "filename": "attitude-emoji/13",
+                    "frame": {
+                        "x": 1025,
+                        "y": 903,
+                        "w": 20,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "attitude-emoji/14",
+                    "frame": {
+                        "x": 1032,
+                        "y": 925,
+                        "w": 20,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "attitude-emoji/2",
+                    "frame": {
+                        "x": 1027,
+                        "y": 947,
+                        "w": 20,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "iso-tiles/mini-coast/full",
+                    "frame": {
+                        "x": 641,
+                        "y": 1,
+                        "w": 6,
+                        "h": 9
+                    }
+                },
+                {
+                    "filename": "ui/mini-icons/fast-forward",
+                    "frame": {
+                        "x": 336,
+                        "y": 625,
+                        "w": 9,
+                        "h": 7
+                    }
+                },
+                {
+                    "filename": "ui/budget-icons/deficit",
+                    "frame": {
+                        "x": 1047,
+                        "y": 808,
+                        "w": 16,
+                        "h": 15
+                    }
+                },
+                {
+                    "filename": "attitude-emoji/20",
+                    "frame": {
+                        "x": 1065,
+                        "y": 806,
+                        "w": 20,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "attitude-emoji/21",
+                    "frame": {
+                        "x": 1052,
+                        "y": 828,
+                        "w": 20,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "attitude-emoji/22",
+                    "frame": {
+                        "x": 1054,
+                        "y": 850,
+                        "w": 20,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "attitude-emoji/23",
+                    "frame": {
+                        "x": 1055,
+                        "y": 872,
+                        "w": 20,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "attitude-emoji/24",
+                    "frame": {
+                        "x": 1074,
+                        "y": 828,
+                        "w": 20,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "attitude-emoji/3",
+                    "frame": {
+                        "x": 1076,
+                        "y": 850,
+                        "w": 20,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "attitude-emoji/4",
+                    "frame": {
+                        "x": 1077,
+                        "y": 872,
+                        "w": 20,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "editor/delete-pawns-icon",
+                    "frame": {
+                        "x": 1087,
+                        "y": 806,
+                        "w": 19,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "ui/budget-icons/treasury",
+                    "frame": {
+                        "x": 1096,
+                        "y": 828,
+                        "w": 20,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/leave",
+                    "frame": {
+                        "x": 1098,
+                        "y": 850,
+                        "w": 20,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/sort-alphabetical",
+                    "frame": {
+                        "x": 1099,
+                        "y": 872,
+                        "w": 20,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "ui/mini-icons/skip-to-end",
+                    "frame": {
+                        "x": 373,
+                        "y": 5,
+                        "w": 8,
+                        "h": 7
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/sort-numerical",
+                    "frame": {
+                        "x": 1049,
+                        "y": 947,
+                        "w": 20,
+                        "h": 20
+                    }
+                },
+                {
+                    "filename": "ui/mini-icons/skip-to-start",
+                    "frame": {
+                        "x": 1117,
+                        "y": 624,
+                        "w": 8,
+                        "h": 7
+                    }
+                },
+                {
+                    "filename": "ui/mini-icons/down",
+                    "frame": {
+                        "x": 1113,
+                        "y": 145,
+                        "w": 7,
+                        "h": 6
+                    }
+                },
+                {
+                    "filename": "ui/mini-icons/up",
+                    "frame": {
+                        "x": 307,
+                        "y": 922,
+                        "w": 7,
+                        "h": 6
+                    }
+                },
+                {
+                    "filename": "coin",
+                    "frame": {
+                        "x": 1055,
+                        "y": 894,
+                        "w": 20,
+                        "h": 14
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/settings",
+                    "frame": {
+                        "x": 1077,
+                        "y": 894,
+                        "w": 19,
+                        "h": 19
+                    }
+                },
+                {
+                    "filename": "ui/icons/new-window",
+                    "frame": {
+                        "x": 1098,
+                        "y": 894,
+                        "w": 19,
+                        "h": 19
+                    }
+                },
+                {
+                    "filename": "ui/wood-icons/arrow-left",
+                    "frame": {
+                        "x": 1108,
+                        "y": 805,
+                        "w": 16,
+                        "h": 18
+                    }
+                },
+                {
+                    "filename": "iso-tiles/mini-coast-highlight/inner",
+                    "frame": {
+                        "x": 1054,
+                        "y": 910,
+                        "w": 18,
+                        "h": 18
+                    }
+                },
+                {
+                    "filename": "ui/budget-icons/surplus",
+                    "frame": {
+                        "x": 1054,
+                        "y": 930,
+                        "w": 16,
+                        "h": 15
+                    }
+                },
+                {
+                    "filename": "iso-tiles/mini-coast-highlight/outer",
+                    "frame": {
+                        "x": 1074,
+                        "y": 915,
+                        "w": 18,
+                        "h": 18
+                    }
+                },
+                {
+                    "filename": "iso-tiles/mini-coast/inner",
+                    "frame": {
+                        "x": 1094,
+                        "y": 915,
+                        "w": 18,
+                        "h": 18
+                    }
+                },
+                {
+                    "filename": "iso-tiles/mini-coast/outer",
+                    "frame": {
+                        "x": 1072,
+                        "y": 935,
+                        "w": 18,
+                        "h": 18
+                    }
+                },
+                {
+                    "filename": "iso-tiles/mini-forest/inner",
+                    "frame": {
+                        "x": 1092,
+                        "y": 935,
+                        "w": 18,
+                        "h": 18
+                    }
+                },
+                {
+                    "filename": "iso-tiles/mini-forest/outer",
+                    "frame": {
+                        "x": 1071,
+                        "y": 955,
+                        "w": 18,
+                        "h": 18
+                    }
+                },
+                {
+                    "filename": "iso-tiles/mini-ground/inner",
+                    "frame": {
+                        "x": 1091,
+                        "y": 955,
+                        "w": 18,
+                        "h": 18
+                    }
+                },
+                {
+                    "filename": "iso-tiles/mini-forest/full",
+                    "frame": {
+                        "x": 1119,
+                        "y": 894,
+                        "w": 6,
+                        "h": 9
+                    }
+                },
+                {
+                    "filename": "iso-tiles/mini-ground/full",
+                    "frame": {
+                        "x": 1119,
+                        "y": 905,
+                        "w": 6,
+                        "h": 9
+                    }
+                },
+                {
+                    "filename": "iso-tiles/mini-landmass/full",
+                    "frame": {
+                        "x": 1047,
+                        "y": 897,
+                        "w": 6,
+                        "h": 9
+                    }
+                },
+                {
+                    "filename": "ui/completion-tapestry/disabled-gem",
+                    "frame": {
+                        "x": 1118,
+                        "y": 739,
+                        "w": 7,
+                        "h": 7
+                    }
+                },
+                {
+                    "filename": "ui/completion-tapestry/empty-gem",
+                    "frame": {
+                        "x": 1118,
+                        "y": 748,
+                        "w": 7,
+                        "h": 7
+                    }
+                },
+                {
+                    "filename": "island-preview/town",
+                    "frame": {
+                        "x": 336,
+                        "y": 592,
+                        "w": 5,
+                        "h": 6
+                    }
+                },
+                {
+                    "filename": "ui/completion-tapestry/gold-gem",
+                    "frame": {
+                        "x": 1118,
+                        "y": 825,
+                        "w": 7,
+                        "h": 7
+                    }
+                },
+                {
+                    "filename": "ui/completion-tapestry/silver-gem",
+                    "frame": {
+                        "x": 1118,
+                        "y": 834,
+                        "w": 7,
+                        "h": 7
+                    }
+                },
+                {
+                    "filename": "iso-tiles/mini-ground/outer",
+                    "frame": {
+                        "x": 1015,
+                        "y": 969,
+                        "w": 18,
+                        "h": 18
+                    }
+                },
+                {
+                    "filename": "iso-tiles/mini-landmass/inner",
+                    "frame": {
+                        "x": 1035,
+                        "y": 969,
+                        "w": 18,
+                        "h": 18
+                    }
+                },
+                {
+                    "filename": "ui/level-features/spawn-gifts",
+                    "frame": {
+                        "x": 1015,
+                        "y": 989,
+                        "w": 16,
+                        "h": 14
+                    }
+                },
+                {
+                    "filename": "hex-markers/defense-3",
+                    "frame": {
+                        "x": 1020,
+                        "y": 1005,
+                        "w": 12,
+                        "h": 16
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/chart",
+                    "frame": {
+                        "x": 1033,
+                        "y": 989,
+                        "w": 15,
+                        "h": 14
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/menu",
+                    "frame": {
+                        "x": 1034,
+                        "y": 1005,
+                        "w": 15,
+                        "h": 15
+                    }
+                },
+                {
+                    "filename": "ui/box/tooltip",
+                    "frame": {
+                        "x": 1055,
+                        "y": 969,
+                        "w": 12,
+                        "h": 12
+                    }
+                },
+                {
+                    "filename": "iso-tiles/mini-landmass/outer",
+                    "frame": {
+                        "x": 1069,
+                        "y": 975,
+                        "w": 18,
+                        "h": 18
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/fullscreen-enter",
+                    "frame": {
+                        "x": 1089,
+                        "y": 975,
+                        "w": 18,
+                        "h": 18
+                    }
+                },
+                {
+                    "filename": "ui/wood-icons/arrow-right",
+                    "frame": {
+                        "x": 1109,
+                        "y": 975,
+                        "w": 16,
+                        "h": 18
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/exit",
+                    "frame": {
+                        "x": 1055,
+                        "y": 983,
+                        "w": 12,
+                        "h": 12
+                    }
+                },
+                {
+                    "filename": "ui/close-button",
+                    "frame": {
+                        "x": 1051,
+                        "y": 997,
+                        "w": 18,
+                        "h": 18
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/search",
+                    "frame": {
+                        "x": 1071,
+                        "y": 995,
+                        "w": 15,
+                        "h": 15
+                    }
+                },
+                {
+                    "filename": "ui/icons/chevron-down",
+                    "frame": {
+                        "x": 1071,
+                        "y": 1012,
+                        "w": 16,
+                        "h": 9
+                    }
+                },
+                {
+                    "filename": "ui/mini-icons/income",
+                    "frame": {
+                        "x": 1088,
+                        "y": 995,
+                        "w": 15,
+                        "h": 15
+                    }
+                },
+                {
+                    "filename": "ui/mini-icons/heart-broken",
+                    "frame": {
+                        "x": 1089,
+                        "y": 1012,
+                        "w": 12,
+                        "h": 9
+                    }
+                },
+                {
+                    "filename": "ui/mini-icons/coins-flat",
+                    "frame": {
+                        "x": 1105,
+                        "y": 995,
+                        "w": 12,
+                        "h": 12
+                    }
+                },
+                {
+                    "filename": "ui/mini-icons/might",
+                    "frame": {
+                        "x": 1105,
+                        "y": 1009,
+                        "w": 12,
+                        "h": 12
+                    }
+                },
+                {
+                    "filename": "ui/mini-icons/next-turn",
+                    "frame": {
+                        "x": 1119,
+                        "y": 995,
+                        "w": 6,
+                        "h": 7
+                    }
+                },
+                {
+                    "filename": "ui/mini-icons/pause",
+                    "frame": {
+                        "x": 1119,
+                        "y": 1004,
+                        "w": 6,
+                        "h": 7
+                    }
+                },
+                {
+                    "filename": "ui/mini-icons/play",
+                    "frame": {
+                        "x": 1119,
+                        "y": 1013,
+                        "w": 6,
+                        "h": 7
+                    }
+                },
+                {
+                    "filename": "ui/mini-icons/step-forward",
+                    "frame": {
+                        "x": 703,
+                        "y": 887,
+                        "w": 10,
+                        "h": 7
+                    }
+                },
+                {
+                    "filename": "ui/budget-icons/neutral",
+                    "frame": {
+                        "x": 1114,
+                        "y": 916,
+                        "w": 10,
+                        "h": 11
+                    }
+                },
+                {
+                    "filename": "ui/mini-icons/coins",
+                    "frame": {
+                        "x": 1114,
+                        "y": 916,
+                        "w": 10,
+                        "h": 11
+                    }
+                },
+                {
+                    "filename": "ocean/hl1",
+                    "frame": {
+                        "x": 787,
+                        "y": 946,
+                        "w": 6,
+                        "h": 1
+                    }
+                },
+                {
+                    "filename": "ui/button-icons/play",
+                    "frame": {
+                        "x": 1114,
+                        "y": 929,
+                        "w": 10,
+                        "h": 11
+                    }
+                },
+                {
+                    "filename": "ocean/hl2",
+                    "frame": {
+                        "x": 904,
+                        "y": 762,
+                        "w": 5,
+                        "h": 1
+                    }
+                },
+                {
+                    "filename": "ui/mini-icons/prev-turn",
+                    "frame": {
+                        "x": 336,
+                        "y": 634,
+                        "w": 6,
+                        "h": 7
+                    }
+                },
+                {
+                    "filename": "ocean/hl3",
+                    "frame": {
+                        "x": 925,
+                        "y": 802,
+                        "w": 4,
+                        "h": 1
+                    }
+                }
+            ]
+        }
+    ]
+}
