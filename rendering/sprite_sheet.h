@@ -12,35 +12,37 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
+#include <optional>
+#include <filesystem>
 
 #include <SFML/Graphics.hpp>
 
 namespace konkr {
 
-    struct SpriteInfo {
-        sf::IntRect rect;
-    };
+struct SpriteInfo {
+    sf::IntRect rect;
+};
 
-    class SpriteSheet {
-        public:
+class SpriteSheet {
+    public:
 
-            bool LoadFromFile(const std::filesystem::path& file_path);
-            void AddSpriteInfo(const std::string& name, const SpriteInfo& sprite_info);
+        bool LoadFromFile(const std::filesystem::path& file_path);
+        void AddSpriteInfo(const std::string& name, const SpriteInfo& sprite_info);
 
-            std::optional<SpriteInfo> GetSpriteInfo(const std::string& name) const;
-            std::optional<sf::Sprite> CreateSprite(const std::string& name) const;
+        std::optional<SpriteInfo> GetSpriteInfo(const std::string& name) const;
+        std::optional<sf::Sprite> CreateSprite(const std::string& name) const;
 
-            const sf::Texture& GetTexture() const;
+        const sf::Texture& GetTexture() const;
 
-            bool LoadSpriteDefinitions(const std::filesystem::path& definition_file_path);
+        bool LoadSpriteDefinitions(const std::filesystem::path& definition_file_path);
 
-            std::vector<std::string> GetAllSpriteNames() const;
+        std::vector<std::string> GetAllSpriteNames() const;
 
-        private:
-            sf::Texture texture_;
-            std::unordered_map<std::string, SpriteInfo> sprites_map_;
-            bool loaded_ = false;
-    };
+    private:
+        sf::Texture texture_;
+        std::unordered_map<std::string, SpriteInfo> sprites_map_;
+        bool loaded_ = false;
+};
 
 } // namespace konkr
 
