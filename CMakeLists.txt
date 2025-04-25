@@ -17,6 +17,12 @@ if(CLANG_FORMAT_EXE)
         COMMAND ${CLANG_FORMAT_EXE} -i -style=Google ${ALL_SOURCE_FILES}
         COMMENT "Running clang-format on all source files"
     )
+    add_custom_target(
+        clang_format_check
+        COMMAND ${CLANG_FORMAT_EXE} -n -Werror -style=Google ${ALL_SOURCE_FILES}
+        COMMENT "Checking clang-format on all source files"
+        COMMAND_EXPAND_LISTS
+    )
 else()
     message(WARNING "clang-format not found! Code formatting will be skipped.")
 endif()

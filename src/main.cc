@@ -37,8 +37,6 @@ int main() {
   auto window = sf::RenderWindow(sf::VideoMode({1920u, 1080u}), "konkr");
   window.setFramerateLimit(144);
 
-
-
   // Main game loop
   while (window.isOpen()) {
     while (const std::optional event = window.pollEvent()) {
