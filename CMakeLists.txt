@@ -1,6 +1,27 @@
 cmake_minimum_required(VERSION 3.5)
 project(konkr LANGUAGES CXX)
 
+
+file(GLOB_RECURSE ALL_SOURCE_FILES
+    "${CMAKE_SOURCE_DIR}/src/*.h"
+    "${CMAKE_SOURCE_DIR}/src/*.hpp"
+    "${CMAKE_SOURCE_DIR}/src/*.cc"
+    "${CMAKE_SOURCE_DIR}/src/*.cpp"
+)
+
+find_program(CLANG_FORMAT_EXE NAMES clang-format)
+
+if(CLANG_FORMAT_EXE)
+    add_custom_target(
+        clang_format
+        COMMAND ${CLANG_FORMAT_EXE} -i -style=Google ${ALL_SOURCE_FILES}
+        COMMENT "Running clang-format on all source files"
+    )
+else()
+    message(WARNING "clang-format not found! Code formatting will be skipped.")
+endif()
+
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -21,9 +42,9 @@ FetchContent_Declare(json
     GIT_TAG v3.11.2) # Or latest version
 FetchContent_MakeAvailable(json)
 
-add_subdirectory(rendering)
+add_subdirectory(src/rendering)
 
-add_executable(main main.cc)
+add_executable(main src/main.cc)
 target_compile_features(main PRIVATE cxx_std_23)
 
 target_link_libraries(main
@@ -60,11 +81,12 @@ if(DOXYGEN_FOUND)
 "DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = \"konkr\"
 PROJECT_BRIEF          = \"A hexagonal C++ grid-based game clone of Konkr.io\"
-INPUT                  = ${CMAKE_SOURCE_DIR}
+INPUT                  = ${CMAKE_SOURCE_DIR}/src
 RECURSIVE              = YES
 OUTPUT_DIRECTORY       = ${CMAKE_BINARY_DIR}/docs
 EXTRACT_ALL            = YES
 GENERATE_HTML          = YES
+JAVADOC_AUTOBRIEF      = YES
 ALIASES               += \"Args=\\\\param\"
 ALIASES               += \"Returns=\\\\return\"
 HAVE_DOT               = YES

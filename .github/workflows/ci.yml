@@ -15,8 +15,6 @@ jobs:
       fail-fast: false
       matrix:
         platform:
-        - { name: Windows VS2019, os: windows-2019  }
-        - { name: Windows VS2022, os: windows-2022  }
         - { name: Linux GCC,      os: ubuntu-latest }
         - { name: Linux Clang,    os: ubuntu-latest, flags: -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
         - { name: macOS,          os: macos-latest  }
@@ -27,10 +25,18 @@ jobs:
     steps:
     - name: Install Linux Dependencies
       if: runner.os == 'Linux'
-      run: sudo apt-get update && sudo apt-get install libxrandr-dev libxcursor-dev libxi-dev libudev-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev libfreetype-dev
+      run: sudo apt-get update && sudo apt-get install clang-format libxrandr-dev libxcursor-dev libxi-dev libudev-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev libfreetype-dev
+
+    - name: Install macOS Dependencies
+      if: runner.os == 'macOS'
+      run: brew install clang-format
 
     - name: Checkout
       uses: actions/checkout@v4
+
+    - name: Check clang-format
+      run: |
+        find ./src -type f \( -name '*.h' -o -name '*.hpp' -o -name '*.cc' -o -name '*.cpp' \) -exec clang-format -style=Google -n -Werror {} +
 
     - name: Configure
       run: cmake -B build ${{matrix.platform.flags}} ${{matrix.config.flags}}
