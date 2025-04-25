@@ -6,8 +6,8 @@
 #include <string>    // Include for std::string
 #include <vector>
 
-#include "rendering/sprite_sheet.h"
 #include "rendering/level.h"
+#include "rendering/sprite_sheet.h"
 
 int main() {
   konkr::SpriteSheet sprite_sheet;
@@ -37,26 +37,14 @@ int main() {
   auto window = sf::RenderWindow(sf::VideoMode({1920u, 1080u}), "konkr");
   window.setFramerateLimit(144);
 
-  // Load level from file
-  const std::string level_file_path = "assets/levels/tutorial/unwelcome_guest.level";
-  auto level = konkr::Level::LoadFromFile(level_file_path);
-  if (!level) {
-    std::cerr << "Failed to load level from file: " << level_file_path
-              << std::endl;
-    return -1;
-  }
-  std::cout << "Successfully loaded level: " << level->name() << std::endl;
-  std::cout << "Level map:" << std::endl;
-  level->DisplayMapAscii();
+
 
   // Main game loop
   while (window.isOpen()) {
-    // Event handling (simplified)
     while (const std::optional event = window.pollEvent()) {
       if (event->is<sf::Event::Closed>()) {
         window.close();
       }
-      // Add other event handling if needed (e.g., keyboard input to close)
       if (event->is<sf::Event::KeyPressed>()) {
         if (event->getIf<sf::Event::KeyPressed>()->code ==
             sf::Keyboard::Key::Escape) {
@@ -65,11 +53,10 @@ int main() {
       }
     }
 
-    // Drawing
-    window.clear(sf::Color::White);  // Clear the window with white background
+    window.clear(sf::Color::White);
 
     window.display();  // Update the window
   }
 
-  return 0;  // Indicate successful execution
+  return 0;
 }
