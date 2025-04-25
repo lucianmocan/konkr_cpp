@@ -4,7 +4,8 @@
 //
 // level.h
 //
-// Declares the Level class
+// Declares the Level class, which represents a game level
+// and allows loading and displaying its contents.
 //
 
 #ifndef KONKR_RENDERING_LEVEL_H
@@ -17,6 +18,9 @@
 
 namespace konkr {
 
+// A game Level has a name, category, and a map. 
+// It provides methods to load levels from files, retrieve level
+// information, and display the map in ASCII format. 
 class Level {
  public:
   // Creates Level objects for all levels found in the specified directory.
@@ -37,11 +41,11 @@ class Level {
   // Loads the level from the file_path_ if not already loaded
   bool Load();
 
-  const std::string& name() const { return name_; }
-  const std::string& category() const { return category_; }
-  const std::filesystem::path& file_path() const { return file_path_; }
-  const std::vector<std::string>& map() const { return map_; }
-  bool isLoaded() const { return loaded_; }
+  inline const std::string& name() const { return name_; }
+  inline const std::string& category() const { return category_; }
+  inline const std::filesystem::path& file_path() const { return file_path_; }
+  inline const std::vector<std::string>& map() const { return map_; }
+  inline bool isLoaded() const { return loaded_; }
 
   void DisplayMapAscii() const;
 
