@@ -3,8 +3,7 @@
 //
 // sprite_sheet.h
 //
-// Declares the SpriteSheet class and SpriteInfo struct for a Konkr.io clone,
-// managing sprite positions and dimensions from a spritesheet for rendering.
+//! TODO add general file comment description
 
 #ifndef KONKR_RENDERING_SPRITE_SHEET_H
 #define KONKR_RENDERING_SPRITE_SHEET_H
