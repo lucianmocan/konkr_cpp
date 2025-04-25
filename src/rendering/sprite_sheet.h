@@ -26,7 +26,7 @@ struct SpriteInfo {
 };
 
 // Manages loading and storing the sprite definitions (name and frame) from the
-// JSON file. and the texture from the PNG file. It also provides methods to
+// JSON file and the texture from the PNG file. It also provides methods to
 // create sprites and retrieve sprite information.
 class SpriteSheet {
  public:
@@ -34,15 +34,12 @@ class SpriteSheet {
   bool LoadFromFile(const std::filesystem::path& file_path);
 
   // Adds a sprite's name and its corresponding rectangle to the sprites_map_
-
   void AddSpriteInfo(const std::string& name, const SpriteInfo& sprite_info);
 
   // Retrieves the sprite's rectangle based on its name
-
   std::optional<SpriteInfo> GetSpriteInfo(const std::string& name) const;
 
   // Creates a sprite using the texture and the rectangle from the sprites_map_
-
   std::optional<sf::Sprite> CreateSprite(const std::string& name) const;
 
   // Returns the texture used for the sprites.
