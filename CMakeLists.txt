@@ -69,39 +69,3 @@ if(EXISTS ${ASSETS_SOURCE_DIR})
 else()
     message(WARNING "Assets source directory not found: ${ASSETS_SOURCE_DIR}")
 endif()
-
-find_package(Doxygen OPTIONAL_COMPONENTS dot)
-
-if(DOXYGEN_FOUND)
-
-    set(DOXYGEN_OUT ${CMAKE_BINARY_DIR}/Doxyfile)
-
-    message(STATUS "Creating a default Doxyfile.in at ${DOXYGEN_OUT}")
-    file(WRITE ${DOXYGEN_OUT}
-"DOXYFILE_ENCODING      = UTF-8
-PROJECT_NAME           = \"konkr\"
-PROJECT_BRIEF          = \"A hexagonal C++ grid-based game clone of Konkr.io\"
-INPUT                  = ${CMAKE_SOURCE_DIR}/src
-RECURSIVE              = YES
-OUTPUT_DIRECTORY       = ${CMAKE_BINARY_DIR}/docs
-EXTRACT_ALL            = YES
-GENERATE_HTML          = YES
-JAVADOC_AUTOBRIEF      = YES
-ALIASES               += \"Args=\\\\param\"
-ALIASES               += \"Returns=\\\\return\"
-HAVE_DOT               = YES
-# Exclude external libraries (SFML and nlohmann::json)
-EXCLUDE_PATTERNS       = */_deps/*
-")
-
-    add_custom_target(docs
-        COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        COMMENT "Generating API documentation with Doxygen"
-        VERBATIM
-    )
-
-    message(STATUS "Doxygen found. Run 'make docs' (or 'cmake --build . --target docs') to generate documentation.")
-else()
-    message(WARNING "Doxygen not found. Documentation generation is disabled. Install Doxygen to enable the 'docs' target.")
-endif()
