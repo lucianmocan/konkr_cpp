@@ -1,5 +1,6 @@
 add_library(rendering STATIC
     sprite_sheet.cc
+    level.cc
 )
 
 target_include_directories(rendering PUBLIC

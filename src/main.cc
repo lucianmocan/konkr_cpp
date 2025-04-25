@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "rendering/sprite_sheet.h"
+#include "rendering/level.h"
 
 int main() {
   konkr::SpriteSheet sprite_sheet;
@@ -36,48 +37,17 @@ int main() {
   auto window = sf::RenderWindow(sf::VideoMode({1920u, 1080u}), "konkr");
   window.setFramerateLimit(144);
 
-  // Get all sprite names
-  std::vector<std::string> sprite_names = sprite_sheet.GetAllSpriteNames();
-  std::vector<sf::Sprite> sprites_to_draw;
-  sprites_to_draw.reserve(sprite_names.size());
-
-  // Create and position sprites
-  float current_x = 10.0f;
-  float current_y = 10.0f;
-  float max_row_height = 0.0f;
-  const float padding = 10.0f;
-
-  for (const std::string& name : sprite_names) {
-    if (name.contains("pawns")) {
-      std::optional<sf::Sprite> sprite_opt = sprite_sheet.CreateSprite(name);
-      if (sprite_opt) {
-        sf::Sprite sprite = *sprite_opt;  // Dereference the optional
-        sf::FloatRect bounds = sprite.getLocalBounds();
-
-        // Check if sprite fits on the current row
-        if (current_x + bounds.size.x > window.getSize().x - padding) {
-          current_x = padding;
-          current_y += max_row_height + padding;
-          max_row_height = 0.0f;
-        }
-
-        sprite.setPosition({current_x, current_y});
-        sprites_to_draw.push_back(sprite);
-
-        // Update position for next sprite
-        current_x += bounds.size.x + padding;
-        if (bounds.size.y > max_row_height) {
-          max_row_height = bounds.size.y;
-        }
-        std::cout << "Created sprite: " << name << " at position (" << current_x
-                  << ", " << current_y << ")" << std::endl;
-      } else {
-        std::cerr << "Failed to create sprite: " << name << std::endl;
-      }
-    } else {
-      continue;
-    }
+  // Load level from file
+  const std::string level_file_path = "assets/levels/tutorial/unwelcome_guest.level";
+  auto level = konkr::Level::LoadFromFile(level_file_path);
+  if (!level) {
+    std::cerr << "Failed to load level from file: " << level_file_path
+              << std::endl;
+    return -1;
   }
+  std::cout << "Successfully loaded level: " << level->name() << std::endl;
+  std::cout << "Level map:" << std::endl;
+  level->DisplayMapAscii();
 
   // Main game loop
   while (window.isOpen()) {
@@ -97,11 +67,6 @@ int main() {
 
     // Drawing
     window.clear(sf::Color::White);  // Clear the window with white background
-
-    // Draw all the created sprites
-    for (const auto& sprite : sprites_to_draw) {
-      window.draw(sprite);
-    }
 
     window.display();  // Update the window
   }
