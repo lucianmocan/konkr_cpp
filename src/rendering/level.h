@@ -32,7 +32,7 @@ class Level {
   Level(std::string name, std::string category, std::filesystem::path file_path)
       : name_(std::move(name)),
         category_(std::move(category)),
-        file_path_(std::move(file_path)) {};
+        file_path_(std::move(file_path)) {}
 
   // Loads the level from the file_path_ if not already loaded
   bool Load();
