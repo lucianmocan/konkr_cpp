@@ -4,6 +4,8 @@
 
 #include "rendering/level_renderer.h"
 
+#include <cmath>
+
 #include "world/tile.h"
 
 namespace konkr {
