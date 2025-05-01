@@ -56,6 +56,7 @@ bool Level::Load() {
     return false;
   }
 
+  CreateTiles();
   loaded_ = true;
   return true;
 }
@@ -63,6 +64,37 @@ bool Level::Load() {
 void Level::DisplayMapAscii() const {
   for (const auto& line : map_) {
     std::cout << line << std::endl;
+  }
+}
+
+void Level::CreateTiles() {
+  tiles_.clear();
+  tiles_.reserve(map_.size());
+
+  for (const std::string& line : map_) {
+      std::vector<std::optional<Tile>> row;
+      bool indent = !line.empty() && line[0] == '|';
+      size_t col_start = indent ? 1 : 0;
+      size_t col = col_start;
+
+      while (col < line.size()) {
+          std::optional<Tile> tile_opt;
+          char c = line[col];
+          if (c == '~' || c == '#') {
+              tile_opt = Tile::FromAscii(c);
+              ++col;
+          } else {
+              if (col + 1 < line.size() && std::isdigit(line[col + 1])) {
+                  int player_id = line[col + 1] - '0';
+                  tile_opt = Tile::FromAscii(c, player_id);
+                  col += 2;
+              } else {
+                  ++col;
+              }
+          }
+          row.push_back(tile_opt);
+      }
+      tiles_.push_back(std::move(row));
   }
 }
 

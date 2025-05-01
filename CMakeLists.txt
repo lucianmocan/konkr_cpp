@@ -49,6 +49,7 @@ FetchContent_Declare(json
 FetchContent_MakeAvailable(json)
 
 add_subdirectory(src/rendering)
+add_subdirectory(src/world)
 
 add_executable(main src/main.cc)
 target_compile_features(main PRIVATE cxx_std_23)

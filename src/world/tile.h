@@ -11,6 +11,7 @@
 
 #include <optional>
 #include <array>
+#include <SFML/Graphics/RenderTarget.hpp>
 
 
 namespace konkr {
@@ -78,6 +79,8 @@ class Tile {
             return type_;
         }
 
+        void Render(sf::RenderTarget& target, sf::Vector2f position, float radius) const;
+
 
 
     private:
@@ -89,7 +92,7 @@ class Tile {
 };
 
 
-}
+} // namespace konkr
 
 
 #endif  // KONKR_WORLD_TILE_H

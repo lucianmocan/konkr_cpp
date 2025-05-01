@@ -16,6 +16,8 @@
 #include <string>
 #include <vector>
 
+#include "world/tile.h"
+
 namespace konkr {
 
 // A game Level has a name, category, and a map. 
@@ -49,11 +51,17 @@ class Level {
 
   void DisplayMapAscii() const;
 
+  void CreateTiles();
+  inline const std::vector<std::vector<std::optional<Tile>>>& tiles() const {
+    return tiles_;
+  }
+
  private:
   std::string name_;
   std::string category_;
   std::filesystem::path file_path_;
   std::vector<std::string> map_;
+  std::vector<std::vector<std::optional<Tile>>> tiles_;
   bool loaded_ = false;
 };
 

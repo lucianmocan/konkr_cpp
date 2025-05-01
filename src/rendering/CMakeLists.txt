@@ -1,6 +1,8 @@
 add_library(rendering STATIC
     sprite_sheet.cc
     level.cc
+    level_renderer.cc
+    color_palette.h
 )
 
 target_include_directories(rendering PUBLIC
@@ -9,9 +11,9 @@ target_include_directories(rendering PUBLIC
 )
 
 target_link_libraries(rendering
-    PUBLIC
-        SFML::Graphics # Public because sprite_sheet.h includes SFML headers
     PRIVATE
+        world
+        SFML::Graphics # Public because sprite_sheet.h includes SFML headers
         nlohmann_json::nlohmann_json # Private because only sprite_sheet.cc uses json
 )
 
