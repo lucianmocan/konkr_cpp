@@ -20,9 +20,9 @@
 
 namespace konkr {
 
-// A game Level has a name, category, and a map. 
+// A game Level has a name, category, and a map.
 // It provides methods to load levels from files, retrieve level
-// information, and display the map in ASCII format. 
+// information, and display the map in ASCII format.
 class Level {
  public:
   // Creates Level objects for all levels found in the specified directory.

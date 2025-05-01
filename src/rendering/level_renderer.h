@@ -10,19 +10,17 @@
 #define KONKR_RENDERING_LEVEL_RENDERER_H
 
 #include <SFML/Graphics/RenderTarget.hpp>
+
 #include "rendering/level.h"
 
-namespace konkr
-{
-    
-class LevelRenderer
-{
-public: 
-    void Render(sf::RenderTarget& target, const Level& level, float hex_radius) const;
-    
+namespace konkr {
+
+class LevelRenderer {
+ public:
+  void Render(sf::RenderTarget& target, const Level& level,
+              float hex_radius) const;
 };
 
+}  // namespace konkr
 
-} // namespace konkr
-
-#endif // KONKR_RENDERING_LEVEL_RENDERER_H
+#endif  // KONKR_RENDERING_LEVEL_RENDERER_H
