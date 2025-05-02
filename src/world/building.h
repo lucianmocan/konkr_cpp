@@ -2,20 +2,22 @@
 // Licensed under the MIT License. See LICENSE file in the project root for
 // details.
 //
-// castle.h
+// townhall.h
 //
 // TODO: add .h description
 
-#ifndef KONKR_WORLD_CASTLE_H
-#define KONKR_WORLD_CASTLE_H
+#ifndef KONKR_WORLD_BUILDING_H
+#define KONKR_WORLD_BUILDING_H
 
-#include "world/building.h"
+#include "world/entity.h"
 
 namespace konkr {
-class Castle : public Building {
+class Building : public Entity {
  public:
-  using Building::Building;
+  using Entity::Entity;
+
+  void AddWalls();
 };
 }  // namespace konkr
 
-#endif  // KONKR_WORLD_CASTLE_H
+#endif  // KONKR_WORLD_BUILDING_H

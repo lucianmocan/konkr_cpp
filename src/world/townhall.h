@@ -9,12 +9,13 @@
 #ifndef KONKR_WORLD_TOWNHALL_H
 #define KONKR_WORLD_TOWNHALL_H
 
+#include "world/building.h"
 #include "world/entity.h"
 
 namespace konkr {
-class Townhall : public Entity {
+class Townhall : public Building {
  public:
-  using Entity::Entity;
+  using Building::Building;
 
   void IncreaseLevel() override;
   void DecreaseLevel() override;
