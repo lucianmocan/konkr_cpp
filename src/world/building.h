@@ -15,8 +15,6 @@ namespace konkr {
 class Building : public Entity {
  public:
   using Entity::Entity;
-
-  void AddWalls();
 };
 }  // namespace konkr
 
