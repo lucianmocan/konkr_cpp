@@ -46,6 +46,14 @@ int main() {
     return -1;
   }
 
+  if (sprite_sheet.LoadEntitySpriteMappings(
+          "assets/entity_sprites.json")) {
+    std::cout << "Successfully loaded entity sprite mappings." << std::endl;
+  } else {
+    std::cerr << "Failed to load entity sprite mappings." << std::endl;
+    return -1;
+  }
+
   // We can now load the first level
   konkr::Level level = levels.front();
 
@@ -72,9 +80,11 @@ int main() {
         }
       }
     }
-    // sf::Color OceanBlue(50, 120, 200);
+
+    sf::Color OceanBlue(50, 120, 200);
     window.clear(konkr::ColorPalette::OceanBlue);
-    renderer.Render(window, level, 32.0f);
+
+    renderer.Render(window, level, 50.0f, sprite_sheet);
 
     window.display();  // Update the window
   }
