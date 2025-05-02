@@ -151,60 +151,62 @@ std::vector<std::string> SpriteSheet::GetAllSpriteNames() const {
 
 bool SpriteSheet::LoadEntitySpriteMappings(
     const std::filesystem::path& mapping_file_path) {
-      std::ifstream mapping_stream(mapping_file_path);
-    if (!mapping_stream.is_open()) {
-      std::cerr << "Failed to open entity sprite mapping file: "
-                << mapping_file_path << std::endl;
-      return false;
-    }
-
-    nlohmann::json json_data;
-
-    try {
-      mapping_stream >> json_data;
-    } catch (nlohmann::json::parse_error& e) {
-      std::cerr << "Failed to parse JSON: " << e.what() << std::endl;
-      return false;
-    }
-    
-    entity_sprite_vectors_.clear();
-    for (auto it = json_data.begin(); it != json_data.end(); ++it) {
-      if (it.value().is_array()) {
-        std::vector<std::string> sprite_names;
-        for (const auto& sprite_name: it.value()) {
-          if (sprite_name.is_string()) {
-            sprite_names.push_back(sprite_name.get<std::string>());
-          } else {
-            std::cerr << "Invalid sprite name format in entity mapping: "
-                      << sprite_name.dump() << std::endl;
-          }
-        }
-        entity_sprite_vectors_[it.key()] = std::move(sprite_names);
-      }
-    }
-
-    return true;
+  std::ifstream mapping_stream(mapping_file_path);
+  if (!mapping_stream.is_open()) {
+    std::cerr << "Failed to open entity sprite mapping file: "
+              << mapping_file_path << std::endl;
+    return false;
   }
+
+  nlohmann::json json_data;
+
+  try {
+    mapping_stream >> json_data;
+  } catch (nlohmann::json::parse_error& e) {
+    std::cerr << "Failed to parse JSON: " << e.what() << std::endl;
+    return false;
+  }
+
+  entity_sprite_vectors_.clear();
+  for (auto it = json_data.begin(); it != json_data.end(); ++it) {
+    if (it.value().is_array()) {
+      std::vector<std::string> sprite_names;
+      for (const auto& sprite_name : it.value()) {
+        if (sprite_name.is_string()) {
+          sprite_names.push_back(sprite_name.get<std::string>());
+        } else {
+          std::cerr << "Invalid sprite name format in entity mapping: "
+                    << sprite_name.dump() << std::endl;
+        }
+      }
+      entity_sprite_vectors_[it.key()] = std::move(sprite_names);
+    }
+  }
+
+  return true;
+}
 
 std::optional<std::string> SpriteSheet::GetSpriteNameForEntity(
     const Entity::EntityType& entity_type, int level) const {
-      const std::string entity_type_str =
-          Entity::entity_type_to_string(entity_type);
-      auto it = entity_sprite_vectors_.find(entity_type_str);
-      if (it != entity_sprite_vectors_.end() && level >= 0 && level < static_cast<int>(it->second.size())) {
-        return it->second[level];
-      }
-      return std::nullopt;
-    }
-
-  int SpriteSheet::GetEntitySpriteArraySize(const Entity::EntityType& entity_type) const {
-    const std::string entity_type_str =
-        Entity::entity_type_to_string(entity_type);
-    auto it = entity_sprite_vectors_.find(entity_type_str);
-    if (it != entity_sprite_vectors_.end()) {
-      return static_cast<int>(it->second.size());
-    }
-    return 0;
+  const std::string entity_type_str =
+      Entity::entity_type_to_string(entity_type);
+  auto it = entity_sprite_vectors_.find(entity_type_str);
+  if (it != entity_sprite_vectors_.end() && level >= 0 &&
+      level < static_cast<int>(it->second.size())) {
+    return it->second[level];
   }
+  return std::nullopt;
+}
+
+int SpriteSheet::GetEntitySpriteArraySize(
+    const Entity::EntityType& entity_type) const {
+  const std::string entity_type_str =
+      Entity::entity_type_to_string(entity_type);
+  auto it = entity_sprite_vectors_.find(entity_type_str);
+  if (it != entity_sprite_vectors_.end()) {
+    return static_cast<int>(it->second.size());
+  }
+  return 0;
+}
 
 }  // namespace konkr

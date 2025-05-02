@@ -12,15 +12,14 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 
 #include "rendering/level.h"
-
 #include "rendering/sprite_sheet.h"
 
 namespace konkr {
 
 class LevelRenderer {
  public:
-  void Render(sf::RenderTarget& target, const Level& level,
-              float hex_radius, const SpriteSheet& sprite_sheet) const;
+  void Render(sf::RenderTarget& target, const Level& level, float hex_radius,
+              const SpriteSheet& sprite_sheet) const;
 };
 
 }  // namespace konkr

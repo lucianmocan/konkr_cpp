@@ -32,11 +32,10 @@ struct SpriteInfo {
 // create sprites and retrieve sprite information.
 class SpriteSheet {
  public:
-
-  inline const std::unordered_map<std::string, std::vector<std::string>>& entity_sprite_vectors() const {
+  inline const std::unordered_map<std::string, std::vector<std::string>>&
+  entity_sprite_vectors() const {
     return entity_sprite_vectors_;
   }
-
 
   // Stores the texture in texture_
   bool LoadFromFile(const std::filesystem::path& file_path);
@@ -60,15 +59,15 @@ class SpriteSheet {
   bool LoadEntitySpriteMappings(const std::filesystem::path& mapping_file_path);
 
   std::optional<std::string> GetSpriteNameForEntity(
-    const Entity::EntityType& entity_type,
-    int level = 0) const;
+      const Entity::EntityType& entity_type, int level = 0) const;
 
   int GetEntitySpriteArraySize(const Entity::EntityType& entity_type) const;
 
  private:
   sf::Texture texture_;
   std::unordered_map<std::string, SpriteInfo> sprites_map_;
-  std::unordered_map<std::string, std::vector<std::string>> entity_sprite_vectors_;
+  std::unordered_map<std::string, std::vector<std::string>>
+      entity_sprite_vectors_;
   bool loaded_ = false;
 };
 

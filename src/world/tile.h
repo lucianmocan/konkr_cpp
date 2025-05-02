@@ -13,8 +13,8 @@
 #include <array>
 #include <optional>
 
-#include "world/entity.h"
 #include "rendering/sprite_sheet.h"
+#include "world/entity.h"
 
 namespace konkr {
 
@@ -71,12 +71,10 @@ class Tile {
 
   inline TileType type() const { return type_; }
 
-  inline void setEntity(Entity entity) {
-    entity_ = std::move(entity);
-  }
+  inline void setEntity(Entity entity) { entity_ = std::move(entity); }
 
-  void Render(sf::RenderTarget& target, sf::Vector2f position,
-              float radius, const SpriteSheet& sprite_sheet) const;
+  void Render(sf::RenderTarget& target, sf::Vector2f position, float radius,
+              const SpriteSheet& sprite_sheet) const;
 
  private:
   std::optional<Entity> entity_ = std::nullopt;

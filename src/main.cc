@@ -46,8 +46,7 @@ int main() {
     return -1;
   }
 
-  if (sprite_sheet.LoadEntitySpriteMappings(
-          "assets/entity_sprites.json")) {
+  if (sprite_sheet.LoadEntitySpriteMappings("assets/entity_sprites.json")) {
     std::cout << "Successfully loaded entity sprite mappings." << std::endl;
   } else {
     std::cerr << "Failed to load entity sprite mappings." << std::endl;

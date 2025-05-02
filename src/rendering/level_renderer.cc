@@ -6,12 +6,13 @@
 
 #include <cmath>
 
-#include "world/tile.h"
 #include "rendering/sprite_sheet.h"
+#include "world/tile.h"
 
 namespace konkr {
 void LevelRenderer::Render(sf::RenderTarget& target, const Level& level,
-                           float hex_radius, const SpriteSheet& sprite_sheet) const {
+                           float hex_radius,
+                           const SpriteSheet& sprite_sheet) const {
   const float hex_height = 2 * hex_radius;
   const float hex_width = std::sqrt(3.0f) * hex_radius;
   const float vert_spacing = hex_height * 0.75f;

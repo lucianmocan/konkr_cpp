@@ -17,13 +17,7 @@ std::string entity_format_display_name(const std::string& sprite_name);
 
 class Entity {
  public:
-  enum class EntityType {
-    Forest,
-    Townhall,
-    Castle, 
-    HumanUnit, 
-    Unknown
-  };
+  enum class EntityType { Forest, Townhall, Castle, HumanUnit, Unknown };
 
   static const std::string entity_type_to_string(EntityType type) {
     switch (type) {
@@ -55,13 +49,12 @@ class Entity {
     }
   }
 
-
   Entity(EntityType type, int level = 0)
-      : type_(type), 
+      : type_(type),
         level_(level),
         sprite_name_(entity_type_to_string(type)),
         name_(entity_format_display_name(entity_type_to_string(type))) {}
-  
+
   Entity(const char type, int level = 0)
       : type_(char_to_entity_type(type)),
         level_(level),
