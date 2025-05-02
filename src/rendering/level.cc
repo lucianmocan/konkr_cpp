@@ -85,7 +85,6 @@ void Level::CreateTiles() {
       if (c == '~' || c == '#') {
         tile_opt = Tile::FromAscii(c);
         if (c == '#') {
-
           tile_opt->setEntity(CreateEntity(Entity::EntityType::Forest));
         }
         ++col;

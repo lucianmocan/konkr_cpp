@@ -30,7 +30,6 @@ class Level {
   Level(Level&&) = default;
   Level& operator=(Level&&) = default;
 
-
   // Creates Level objects for all levels found in the specified directory.
   // The directory should contain subdirectories for each category, and each
   // level file should have a ".level" extension.

@@ -12,7 +12,6 @@
 namespace konkr {
 void LevelRenderer::Render(sf::RenderTarget& target, const Level& level,
                            float hex_radius) const {
-
   auto& sprite_sheet = SpriteSheet::GetInstance();
   const float hex_height = 2 * hex_radius;
   const float hex_width = std::sqrt(3.0f) * hex_radius;

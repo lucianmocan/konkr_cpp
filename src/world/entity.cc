@@ -6,12 +6,12 @@
 
 #include <algorithm>
 #include <filesystem>
-#include <string>
 #include <memory>
+#include <string>
 
+#include "world/castle.h"
 #include "world/human_unit.h"
 #include "world/townhall.h"
-#include "world/castle.h"
 
 namespace konkr {
 
@@ -24,20 +24,20 @@ std::string entity_format_display_name(const std::string& sprite_name) {
 }
 
 std::unique_ptr<Entity> CreateEntity(Entity::EntityType type, int level) {
-    switch (type) {
-        case Entity::EntityType::HumanUnit:
-            return std::make_unique<HumanUnit>(type, level);
-        case Entity::EntityType::Townhall:
-            return std::make_unique<Townhall>(type, level);
-        case Entity::EntityType::Castle:
-            return std::make_unique<Castle>(level);
-        default:
-            return std::make_unique<Entity>(type, level);
-    }
+  switch (type) {
+    case Entity::EntityType::HumanUnit:
+      return std::make_unique<HumanUnit>(type, level);
+    case Entity::EntityType::Townhall:
+      return std::make_unique<Townhall>(type, level);
+    case Entity::EntityType::Castle:
+      return std::make_unique<Castle>(level);
+    default:
+      return std::make_unique<Entity>(type, level);
+  }
 }
 
 std::unique_ptr<Entity> CreateEntity(char type, int level) {
-    return CreateEntity(Entity::char_to_entity_type(type), level);
+  return CreateEntity(Entity::char_to_entity_type(type), level);
 };
 
 }  // namespace konkr

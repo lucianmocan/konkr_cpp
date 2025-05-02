@@ -11,8 +11,8 @@
 
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <array>
-#include <optional>
 #include <memory>
+#include <optional>
 
 #include "rendering/sprite_sheet.h"
 #include "world/entity.h"
@@ -72,7 +72,9 @@ class Tile {
 
   inline TileType type() const { return type_; }
 
-  inline void setEntity(std::unique_ptr<Entity> entity) { entity_ = std::move(entity); }
+  inline void setEntity(std::unique_ptr<Entity> entity) {
+    entity_ = std::move(entity);
+  }
   inline const std::unique_ptr<Entity>& entity() const { return entity_; }
 
   void Render(sf::RenderTarget& target, sf::Vector2f position, float radius,

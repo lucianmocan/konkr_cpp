@@ -11,15 +11,11 @@
 
 #include "world/entity.h"
 
-namespace konkr
-{
- class Castle : public Entity {
-    public:
-        using Entity::Entity;
-    
-    
- }; 
-} // namespace konkr
-
+namespace konkr {
+class Castle : public Entity {
+ public:
+  using Entity::Entity;
+};
+}  // namespace konkr
 
 #endif  // KONKR_WORLD_CASTLE_H

@@ -9,21 +9,18 @@
 #ifndef KONKR_WORLD_HUMAN_UNIT_H
 #define KONKR_WORLD_HUMAN_UNIT_H
 
-
 #include "world/entity.h"
 
-namespace konkr
-{
- 
-class HumanUnit : public Entity {
-    public:
-        using Entity::Entity;
+namespace konkr {
 
-        void IncreaseLevel() override;
-        void DecreaseLevel() override;
+class HumanUnit : public Entity {
+ public:
+  using Entity::Entity;
+
+  void IncreaseLevel() override;
+  void DecreaseLevel() override;
 };
 
-} // namespace konkr
-
+}  // namespace konkr
 
 #endif  // KONKR_WORLD_HUMAN_UNIT_H

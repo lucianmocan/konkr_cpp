@@ -18,7 +18,8 @@ namespace konkr {
 
 class LevelRenderer {
  public:
-  void Render(sf::RenderTarget& target, const Level& level, float hex_radius) const;
+  void Render(sf::RenderTarget& target, const Level& level,
+              float hex_radius) const;
 };
 
 }  // namespace konkr

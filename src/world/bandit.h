@@ -11,15 +11,12 @@
 
 #include "world/entity.h"
 
-namespace konkr
-{
-    class Bandit : public Entity {
-        public:
-            using Entity::Entity;
+namespace konkr {
+class Bandit : public Entity {
+ public:
+  using Entity::Entity;
+};
 
-    };
-
-} // namespace konkr
-
+}  // namespace konkr
 
 #endif

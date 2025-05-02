@@ -85,11 +85,12 @@ int main() {
           for (auto& row : level.tiles()) {
             for (auto& tile_opt : row) {
               if (tile_opt && tile_opt->entity()) {
-                auto* human = dynamic_cast<konkr::HumanUnit*>(tile_opt->entity().get());
+                auto* human =
+                    dynamic_cast<konkr::HumanUnit*>(tile_opt->entity().get());
                 if (human) {
                   human->IncreaseLevel();
                   std::cout << "Upgraded a HumanUnit!" << std::endl;
-                  goto upgraded; // breaks out of both loops
+                  goto upgraded;  // breaks out of both loops
                 }
               }
             }
@@ -100,17 +101,18 @@ int main() {
           for (auto& row : level.tiles()) {
             for (auto& tile_opt : row) {
               if (tile_opt && tile_opt->entity()) {
-                auto* thall = dynamic_cast<konkr::Townhall*>(tile_opt->entity().get());
+                auto* thall =
+                    dynamic_cast<konkr::Townhall*>(tile_opt->entity().get());
                 if (thall) {
                   thall->IncreaseLevel();
                   std::cout << "Upgraded a Townhall!" << std::endl;
-                  goto upgraded; // breaks out of both loops
+                  goto upgraded;  // breaks out of both loops
                 }
               }
             }
           }
         }
-        upgraded:;
+      upgraded:;
       }
     }
 

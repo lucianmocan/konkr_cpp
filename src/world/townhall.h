@@ -11,18 +11,14 @@
 
 #include "world/entity.h"
 
-namespace konkr
-{
-  class Townhall : public Entity
-  {
-    public:
-        using Entity::Entity;
+namespace konkr {
+class Townhall : public Entity {
+ public:
+  using Entity::Entity;
 
-        void IncreaseLevel() override;
-        void DecreaseLevel() override;
+  void IncreaseLevel() override;
+  void DecreaseLevel() override;
+};
+}  // namespace konkr
 
-  };
-} // namespace konkr
-
-
-#endif // KONKR_WORLD_TOWNHALL_H
+#endif  // KONKR_WORLD_TOWNHALL_H

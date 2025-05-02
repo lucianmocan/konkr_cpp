@@ -45,7 +45,8 @@ void Tile::Render(sf::RenderTarget& target, sf::Vector2f position, float radius,
   if (entity_) {
     if (entity_->type() != Entity::EntityType::Unknown) {
       std::optional<std::string> sprite_name =
-          sprite_sheet.GetSpriteNameForEntity(entity_->type(), entity_->level());
+          sprite_sheet.GetSpriteNameForEntity(entity_->type(),
+                                              entity_->level());
       if (sprite_name) {
         auto info = sprite_sheet.GetSpriteInfo(*sprite_name);
         if (info) {
@@ -62,7 +63,8 @@ void Tile::Render(sf::RenderTarget& target, sf::Vector2f position, float radius,
         }
       } else {
         std::cerr << "Failed to get sprite name for entity: "
-                  << Entity::entity_type_to_string(entity_->type()) << std::endl;
+                  << Entity::entity_type_to_string(entity_->type())
+                  << std::endl;
       }
     }
   }

@@ -32,7 +32,6 @@ struct SpriteInfo {
 // create sprites and retrieve sprite information.
 class SpriteSheet {
  public:
-
   static SpriteSheet& GetInstance() {
     static SpriteSheet instance;
     return instance;
