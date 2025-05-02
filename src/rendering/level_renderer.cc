@@ -7,10 +7,11 @@
 #include <cmath>
 
 #include "world/tile.h"
+#include "rendering/sprite_sheet.h"
 
 namespace konkr {
 void LevelRenderer::Render(sf::RenderTarget& target, const Level& level,
-                           float hex_radius) const {
+                           float hex_radius, const SpriteSheet& sprite_sheet) const {
   const float hex_height = 2 * hex_radius;
   const float hex_width = std::sqrt(3.0f) * hex_radius;
   const float vert_spacing = hex_height * 0.75f;
@@ -49,7 +50,7 @@ void LevelRenderer::Render(sf::RenderTarget& target, const Level& level,
       float x = col * hex_width + (indent ? (hex_width / 2) : 0) + x_padding +
                 x_offset;
       float y = row * vert_spacing + y_padding + y_offset;
-      tile_opt->Render(target, sf::Vector2f(x, y), hex_radius);
+      tile_opt->Render(target, sf::Vector2f(x, y), hex_radius, sprite_sheet);
     }
   }
 }
