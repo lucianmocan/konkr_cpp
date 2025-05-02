@@ -57,10 +57,10 @@ int main() {
   }
 
   // We can now load the first level
-  konkr::Level level = std::move(levels.front());
+  auto level = std::make_shared<konkr::Level>(std::move(levels.front()));
 
-  if (!level.Load()) {
-    std::cerr << "Failed to load level: " << level.name() << std::endl;
+  if (!level->Load()) {
+    std::cerr << "Failed to load level: " << level->name() << std::endl;
     return -1;
   }
 
@@ -82,7 +82,7 @@ int main() {
         }
         if (key == sf::Keyboard::Key::U) {
           // Finds and upgrades the first HumanUnit in the level
-          for (auto& row : level.tiles()) {
+          for (auto& row : level->tiles()) {
             for (auto& tile_opt : row) {
               if (tile_opt && tile_opt->entity()) {
                 auto* human =
@@ -98,7 +98,7 @@ int main() {
         }
         if (key == sf::Keyboard::Key::T) {
           // Finds and upgrades the first Townhall in the level
-          for (auto& row : level.tiles()) {
+          for (auto& row : level->tiles()) {
             for (auto& tile_opt : row) {
               if (tile_opt && tile_opt->entity()) {
                 auto* thall =
