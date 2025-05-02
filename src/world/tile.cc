@@ -7,8 +7,10 @@
 #include <SFML/Graphics.hpp>
 #include <optional>
 #include <string>
+#include <iostream>
 
 #include "rendering/color_palette.h"
+#include "rendering/sprite_sheet.h"
 
 namespace konkr {
 
@@ -26,7 +28,7 @@ std::optional<Tile> Tile::FromAscii(char c, std::optional<int> player_id) {
 }
 
 void Tile::Render(sf::RenderTarget& target, sf::Vector2f position,
-                  float radius) const {
+                  float radius, const SpriteSheet& sprite_sheet) const {
   sf::CircleShape tile(radius, 6);
   tile.setOrigin({radius, radius});
   tile.setPosition(position);
@@ -39,6 +41,32 @@ void Tile::Render(sf::RenderTarget& target, sf::Vector2f position,
     tile.setFillColor(sf::Color(60, 120, 60));
   }
   target.draw(tile);
+
+  if (entity_) {
+    std::optional<std::string> sprite_name = sprite_sheet.GetSpriteNameForEntity(
+        entity_->type(), entity_->level());
+    if (sprite_name) {
+      auto info = sprite_sheet.GetSpriteInfo(*sprite_name);
+      if (info) {
+        sf::Sprite sprite(sprite_sheet.GetTexture());
+        sprite.setTextureRect(info->rect);
+        // Sets origin to center of the sprite
+        sprite.setOrigin(
+            {info->rect.size.x / 2.f,
+            info->rect.size.y / 2.f}
+        );
+        
+        sprite.setPosition(position);
+        target.draw(sprite);
+      } else {
+        std::cerr << "Failed to get sprite info for entity: " << *sprite_name
+                  << std::endl;
+      }
+    } else {
+      std::cerr << "Failed to get sprite name for entity: "
+                << Entity::entity_type_to_string(entity_->type()) << std::endl;
+    }
+  }
 }
 
 }  // namespace konkr

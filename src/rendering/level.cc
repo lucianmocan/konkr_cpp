@@ -10,6 +10,8 @@
 #include <iostream>
 #include <optional>
 
+#include "world/entity.h"
+
 namespace konkr {
 
 // Level names are in snake_case, we want to display them in a more
@@ -82,11 +84,15 @@ void Level::CreateTiles() {
       char c = line[col];
       if (c == '~' || c == '#') {
         tile_opt = Tile::FromAscii(c);
+        if (c == '#') {
+          tile_opt->setEntity(Entity(Entity::EntityType::Forest));
+        }
         ++col;
       } else {
         if (col + 1 < line.size() && std::isdigit(line[col + 1])) {
           int player_id = line[col + 1] - '0';
           tile_opt = Tile::FromAscii(c, player_id);
+          tile_opt->setEntity(Entity(c));
           col += 2;
         } else {
           ++col;
