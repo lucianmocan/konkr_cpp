@@ -162,7 +162,6 @@ bool SpriteSheet::LoadEntitySpriteMappings(
 
     try {
       mapping_stream >> json_data;
-      std::cout << "Json data: " << json_data.dump(4) << std::endl;
     } catch (nlohmann::json::parse_error& e) {
       std::cerr << "Failed to parse JSON: " << e.what() << std::endl;
       return false;

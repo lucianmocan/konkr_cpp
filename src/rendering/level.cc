@@ -92,7 +92,9 @@ void Level::CreateTiles() {
         if (col + 1 < line.size() && std::isdigit(line[col + 1])) {
           int player_id = line[col + 1] - '0';
           tile_opt = Tile::FromAscii(c, player_id);
-          tile_opt->setEntity(Entity(c));
+          if (c != 'S') {
+            tile_opt->setEntity(Entity(c));
+          }
           col += 2;
         } else {
           ++col;
