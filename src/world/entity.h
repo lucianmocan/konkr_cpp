@@ -10,6 +10,7 @@
 #define KONKR_WORLD_ENTITY_H
 
 #include <string>
+#include <memory>
 
 namespace konkr {
 
@@ -17,7 +18,10 @@ std::string entity_format_display_name(const std::string& sprite_name);
 
 class Entity {
  public:
-  enum class EntityType { Forest, Townhall, Castle, HumanUnit, Unknown };
+  enum class EntityType { Forest, Townhall, Castle, HumanUnit, Bandit, Unknown };
+
+  virtual ~Entity() = default;
+
 
   static const std::string entity_type_to_string(EntityType type) {
     switch (type) {
@@ -29,6 +33,8 @@ class Entity {
         return "Castle";
       case EntityType::HumanUnit:
         return "HumanUnit";
+      case EntityType::Bandit:
+        return "Bandit";
       default:
         return "Unknown";
     }
@@ -44,6 +50,8 @@ class Entity {
         return EntityType::Castle;
       case 'V':
         return EntityType::HumanUnit;
+      case 'B':
+        return EntityType::Bandit;
       default:
         return EntityType::Unknown;
     }
@@ -70,6 +78,10 @@ class Entity {
   std::string sprite_name_;
   std::string name_;
 };
+
+std::unique_ptr<Entity> CreateEntity(Entity::EntityType type, int level = 0);
+std::unique_ptr<Entity> CreateEntity(char type_char, int level = 0);
+
 
 }  // namespace konkr
 

@@ -85,7 +85,8 @@ void Level::CreateTiles() {
       if (c == '~' || c == '#') {
         tile_opt = Tile::FromAscii(c);
         if (c == '#') {
-          tile_opt->setEntity(Entity(Entity::EntityType::Forest));
+
+          tile_opt->setEntity(CreateEntity(Entity::EntityType::Forest));
         }
         ++col;
       } else {
@@ -93,14 +94,14 @@ void Level::CreateTiles() {
           int player_id = line[col + 1] - '0';
           tile_opt = Tile::FromAscii(c, player_id);
           if (c != 'S') {
-            tile_opt->setEntity(Entity(c));
+            tile_opt->setEntity(CreateEntity(c));
           }
           col += 2;
         } else {
           ++col;
         }
       }
-      row.push_back(tile_opt);
+      row.push_back(std::move(tile_opt));
     }
     tiles_.push_back(std::move(row));
   }

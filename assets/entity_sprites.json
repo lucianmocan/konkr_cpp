@@ -1,5 +1,6 @@
 {
-    "HumanUnit": ["pawns/villager", "pawns/pikeman", "pawns/knight", "pawns/hero", "pawns/bandit"],
+    "HumanUnit": ["pawns/villager", "pawns/pikeman", "pawns/knight", "pawns/hero"],
+    "Bandit" : ["pawns/bandit"],
     "Townhall": ["pawns/town-1", "pawns/town-2", "pawns/town-3", "pawns/town-4"],
     "Castle": ["pawns/castle"],
     "Forest": ["pawns/refuge"]
