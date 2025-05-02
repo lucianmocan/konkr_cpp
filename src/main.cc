@@ -10,6 +10,9 @@
 #include "rendering/level.h"
 #include "rendering/level_renderer.h"
 #include "rendering/sprite_sheet.h"
+#include "world/entity.h"
+#include "world/human_unit.h"
+#include "world/townhall.h"
 
 int main() {
   konkr::SpriteSheet& sprite_sheet = konkr::SpriteSheet::GetInstance();
@@ -54,7 +57,7 @@ int main() {
   }
 
   // We can now load the first level
-  konkr::Level level = levels.front();
+  konkr::Level level = std::move(levels.front());
 
   if (!level.Load()) {
     std::cerr << "Failed to load level: " << level.name() << std::endl;
@@ -73,10 +76,41 @@ int main() {
         window.close();
       }
       if (event->is<sf::Event::KeyPressed>()) {
-        if (event->getIf<sf::Event::KeyPressed>()->code ==
-            sf::Keyboard::Key::Escape) {
+        auto key = event->getIf<sf::Event::KeyPressed>()->code;
+        if (key == sf::Keyboard::Key::Escape) {
           window.close();
         }
+        if (key == sf::Keyboard::Key::U) {
+          // Finds and upgrades the first HumanUnit in the level
+          for (auto& row : level.tiles()) {
+            for (auto& tile_opt : row) {
+              if (tile_opt && tile_opt->entity()) {
+                auto* human = dynamic_cast<konkr::HumanUnit*>(tile_opt->entity().get());
+                if (human) {
+                  human->IncreaseLevel();
+                  std::cout << "Upgraded a HumanUnit!" << std::endl;
+                  goto upgraded; // breaks out of both loops
+                }
+              }
+            }
+          }
+        }
+        if (key == sf::Keyboard::Key::T) {
+          // Finds and upgrades the first Townhall in the level
+          for (auto& row : level.tiles()) {
+            for (auto& tile_opt : row) {
+              if (tile_opt && tile_opt->entity()) {
+                auto* thall = dynamic_cast<konkr::Townhall*>(tile_opt->entity().get());
+                if (thall) {
+                  thall->IncreaseLevel();
+                  std::cout << "Upgraded a Townhall!" << std::endl;
+                  goto upgraded; // breaks out of both loops
+                }
+              }
+            }
+          }
+        }
+        upgraded:;
       }
     }
 

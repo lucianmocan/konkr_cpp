@@ -71,6 +71,10 @@ class Entity {
 
   inline EntityType type() const { return type_; }
   inline int level() const { return level_; }
+  inline void setLevel(int level) { level_ = level; }
+
+  virtual void IncreaseLevel() {}
+  virtual void DecreaseLevel() {}
 
  private:
   EntityType type_;

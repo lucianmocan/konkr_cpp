@@ -1,6 +1,10 @@
 add_library(world STATIC
     entity.cc
     tile.cc
+    human_unit.cc
+    townhall.cc
+    castle.cc
+    bandit.cc
 )
 
 target_include_directories(world PUBLIC
