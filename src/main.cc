@@ -12,7 +12,7 @@
 #include "rendering/sprite_sheet.h"
 
 int main() {
-  konkr::SpriteSheet sprite_sheet;
+  konkr::SpriteSheet& sprite_sheet = konkr::SpriteSheet::GetInstance();
 
   const std::filesystem::path atlas_json_path = "assets/atlas.json";
   const std::filesystem::path atlas_png_path = "assets/atlas.png";
@@ -83,7 +83,7 @@ int main() {
     sf::Color OceanBlue(50, 120, 200);
     window.clear(konkr::ColorPalette::OceanBlue);
 
-    renderer.Render(window, level, 50.0f, sprite_sheet);
+    renderer.Render(window, level, 50.0f);
 
     window.display();  // Update the window
   }

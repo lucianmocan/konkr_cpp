@@ -32,6 +32,12 @@ struct SpriteInfo {
 // create sprites and retrieve sprite information.
 class SpriteSheet {
  public:
+
+  static SpriteSheet& GetInstance() {
+    static SpriteSheet instance;
+    return instance;
+  }
+
   inline const std::unordered_map<std::string, std::vector<std::string>>&
   entity_sprite_vectors() const {
     return entity_sprite_vectors_;
@@ -64,6 +70,10 @@ class SpriteSheet {
   int GetEntitySpriteArraySize(const Entity::EntityType& entity_type) const;
 
  private:
+  SpriteSheet() = default;
+  SpriteSheet(const SpriteSheet&) = delete;
+  SpriteSheet& operator=(const SpriteSheet&) = delete;
+
   sf::Texture texture_;
   std::unordered_map<std::string, SpriteInfo> sprites_map_;
   std::unordered_map<std::string, std::vector<std::string>>
