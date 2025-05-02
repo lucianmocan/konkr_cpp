@@ -5,12 +5,13 @@
 #include "rendering/level_renderer.h"
 
 #include <cmath>
+#include <memory>
 
 #include "rendering/sprite_sheet.h"
 #include "world/tile.h"
 
 namespace konkr {
-void LevelRenderer::Render(sf::RenderTarget& target, const Level& level,
+void LevelRenderer::Render(sf::RenderTarget& target, std::shared_ptr<const Level> level,
                            float hex_radius) const {
   auto& sprite_sheet = SpriteSheet::GetInstance();
   const float hex_height = 2 * hex_radius;
@@ -20,7 +21,7 @@ void LevelRenderer::Render(sf::RenderTarget& target, const Level& level,
   const float x_padding = 40.0f;
   const float y_padding = 40.0f;
 
-  const auto& tiles = level.tiles();
+  const auto& tiles = level->tiles();
   if (tiles.empty()) return;
 
   // We want to center the map in the window
@@ -28,7 +29,7 @@ void LevelRenderer::Render(sf::RenderTarget& target, const Level& level,
   const size_t num_rows = tiles.size();
   const size_t num_cols = tiles[0].size();
   const float map_width =
-      num_cols * hex_width + (hex_width / 2);  // Account for indentation
+      num_cols * hex_width + (hex_width / 2);
   const float map_height = num_rows * vert_spacing;
 
   // Then we get the window size
@@ -42,7 +43,7 @@ void LevelRenderer::Render(sf::RenderTarget& target, const Level& level,
 
   for (size_t row = 0; row < tiles.size(); ++row) {
     const auto& tile_row = tiles[row];
-    bool indent = !level.map()[row].empty() && level.map()[row][0] == '|';
+    bool indent = !level->map()[row].empty() && level->map()[row][0] == '|';
 
     for (size_t col = 0; col < tile_row.size(); ++col) {
       const auto& tile_opt = tile_row[col];

@@ -11,6 +11,8 @@
 
 #include <SFML/Graphics/RenderTarget.hpp>
 
+#include <memory>
+
 #include "rendering/level.h"
 #include "rendering/sprite_sheet.h"
 
@@ -18,7 +20,7 @@ namespace konkr {
 
 class LevelRenderer {
  public:
-  void Render(sf::RenderTarget& target, const Level& level,
+  void Render(sf::RenderTarget& target, std::shared_ptr<const Level> level,
               float hex_radius) const;
 };
 
