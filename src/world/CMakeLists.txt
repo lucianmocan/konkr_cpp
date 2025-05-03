@@ -5,6 +5,7 @@ add_library(world STATIC
     townhall.cc
     castle.cc
     bandit.cc
+    player.cc
 )
 
 target_include_directories(world PUBLIC

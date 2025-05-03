@@ -1,5 +1,4 @@
 add_library(game_logic STATIC
-    player.cc
     game.cc
 )
 

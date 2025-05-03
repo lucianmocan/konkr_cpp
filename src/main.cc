@@ -7,7 +7,6 @@
 #include <string>    // Include for std::string
 #include <vector>
 
-#include "game_logic/player.h"
 #include "rendering/color_palette.h"
 #include "rendering/level.h"
 #include "rendering/level_renderer.h"

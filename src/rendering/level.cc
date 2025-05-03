@@ -12,6 +12,7 @@
 #include <optional>
 
 #include "world/entity.h"
+#include "world/player.h"
 
 namespace konkr {
 
@@ -96,9 +97,12 @@ void Level::CreateTiles() {
           int player_id = line[col + 1] - '0';
           tile_opt = Tile::FromAscii(c, player_id);
           if (c != 'S') {
+            // if it's not sand we create an entity
             tile_opt->setEntity(CreateEntity(c));
           }
           if (c == 'T') {
+            // for each townhall, we create a player
+            // if the player doesn't exist
             if (std::none_of(players_.begin(), players_.end(),
                              [player_id](const Player& player) {
                                return player.id() == player_id;
