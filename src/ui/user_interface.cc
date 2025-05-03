@@ -10,6 +10,7 @@
 #include <TGUI/Widgets/Panel.hpp>
 
 #include "rendering/level.h"
+#include "rendering/graphics.h"
 
 namespace konkr {
 
