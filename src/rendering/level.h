@@ -63,9 +63,21 @@ class Level {
     return tiles_;
   }
 
-  inline std::shared_ptr<std::vector<Player>> active_players() {
+  inline std::shared_ptr<std::vector<Player>> activePlayers() {
     return std::make_shared<std::vector<Player>>(players_);
   }
+
+  inline size_t activePlayersNb() { return activePlayers()->size(); }
+
+  inline const std::shared_ptr<Player> getCurPlayer() {
+    return std::make_shared<Player>(players_[cur_player_idx_]);
+  }
+
+  void UpdateActivePlayers();
+
+  void NextTurn();
+
+  const bool CheckEnd();
 
  private:
   std::string name_;
@@ -74,6 +86,7 @@ class Level {
   std::vector<std::string> map_;
   std::vector<std::vector<std::optional<Tile>>> tiles_;
   std::vector<Player> players_;
+  size_t cur_player_idx_ = 0;
   bool loaded_ = false;
 };
 

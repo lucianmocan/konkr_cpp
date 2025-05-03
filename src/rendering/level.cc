@@ -121,4 +121,76 @@ void Level::CreateTiles() {
   }
 }
 
+void Level::UpdateActivePlayers() {
+  if (tiles_.empty()) return;
+
+  std::vector<std::optional<int>> active_players;
+
+  for (size_t row = 0; row < tiles_.size(); ++row) {
+    const auto& tile_row = tiles_[row];
+
+    for (size_t col = 0; col < tile_row.size(); ++col) {
+      const auto& tile_opt = tile_row[col];
+      if (!tile_opt) continue;
+
+      std::optional<int> tile_owner = ((Tile&)tile_opt).getOwner();
+      // If current "winner" isn't the only one left on the map, then the game
+      // isn't over:
+      if (tile_owner.has_value()) {
+        active_players.push_back(tile_owner);
+      }
+    }
+  }
+
+  for (std::vector<Player>::iterator p = players_.begin(); p != players_.end();
+       ++p) {
+    bool active = false;
+    for (auto pid : active_players) {
+      if (pid == (*p).id()) {
+        active = true;
+      }
+    }
+    if (!active) {
+      if (cur_player_idx_ >= (*p).id()) {
+        cur_player_idx_--;  //  Calibrating current player index according to
+                            //  the new number of players
+      }
+      players_.erase(p);
+    }
+  }
+}
+
+void Level::NextTurn() {
+  UpdateActivePlayers();
+  cur_player_idx_ = (cur_player_idx_ + 1) % activePlayersNb();
+}
+
+const bool Level::CheckEnd() {
+  std::optional<int> winner;
+  bool end = true;
+  if (tiles_.empty()) return end;
+
+  for (size_t row = 0; row < tiles_.size() && !end; ++row) {
+    const auto& tile_row = tiles_[row];
+
+    for (size_t col = 0; col < tile_row.size() && !end; ++col) {
+      const auto& tile_opt = tile_row[col];
+      if (!tile_opt) continue;
+
+      std::optional<int> tile_owner = ((Tile&)tile_opt).getOwner();
+      // If current "winner" isn't the only one left on the map, then the game
+      // isn't over:
+      if (tile_owner.has_value()) {
+        if (!winner.has_value()) {
+          winner = tile_owner;
+        } else if (winner != tile_owner) {
+          end = false;
+        }
+      }
+    }
+  }
+
+  return end;
+}
+
 }  // namespace konkr
