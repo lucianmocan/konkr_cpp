@@ -54,6 +54,7 @@ FetchContent_Declare(
   GIT_REPOSITORY https://github.com/texus/TGUI.git
   GIT_TAG        v1.8.0 # Or v1.9.0 if available and compatible
 )
+set(TGUI_BUILD_FRAMEWORK OFF)
 FetchContent_MakeAvailable(TGUI)
 
 add_subdirectory(src/rendering)
