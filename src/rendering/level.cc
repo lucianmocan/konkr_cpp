@@ -6,6 +6,7 @@
 
 #include <algorithm>
 #include <cctype>
+#include <memory>
 #include <fstream>
 #include <iostream>
 #include <optional>
@@ -23,18 +24,20 @@ std::string FormatLevelNameForDisplay(std::string name) {
   return name;
 }
 
-std::vector<Level> Level::GetAvailableLevels(
+std::vector<std::shared_ptr<Level>> Level::GetAvailableLevels(
     const std::filesystem::path& levels_directory) {
-  std::vector<Level> levels;
+  std::vector<std::shared_ptr<Level>> levels;
 
   for (const auto& entry :
        std::filesystem::recursive_directory_iterator(levels_directory)) {
     if (entry.is_regular_file() && entry.path().extension() == ".level") {
       std::string filename = entry.path().stem().string();
       std::string category = entry.path().parent_path().filename().string();
+      category[0] = std::toupper(category[0]);
       std::string formatted_name = FormatLevelNameForDisplay(filename);
 
-      levels.emplace_back(formatted_name, category, entry.path());
+      levels.push_back(std::make_shared<Level>(
+          std::move(formatted_name), std::move(category), entry.path()));
     }
   }
 

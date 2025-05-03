@@ -13,6 +13,7 @@
 
 #include <filesystem>
 #include <optional>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -37,7 +38,7 @@ class Level {
   // from the directory name.
   // It doesn't load the contents of the level files, just prepares the Level
   // objects.
-  static std::vector<Level> GetAvailableLevels(
+  static std::vector<std::shared_ptr<Level>> GetAvailableLevels(
       const std::filesystem::path& levels_directory);
 
   Level(std::string name, std::string category, std::filesystem::path file_path)

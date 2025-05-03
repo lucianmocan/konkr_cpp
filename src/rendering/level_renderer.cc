@@ -11,7 +11,8 @@
 #include "world/tile.h"
 
 namespace konkr {
-void LevelRenderer::Render(sf::RenderTarget& target, std::shared_ptr<const Level> level,
+void LevelRenderer::Render(sf::RenderTarget& target,
+                           std::shared_ptr<const Level> level,
                            float hex_radius) const {
   auto& sprite_sheet = SpriteSheet::GetInstance();
   const float hex_height = 2 * hex_radius;
@@ -28,8 +29,7 @@ void LevelRenderer::Render(sf::RenderTarget& target, std::shared_ptr<const Level
   // Calculate the map size
   const size_t num_rows = tiles.size();
   const size_t num_cols = tiles[0].size();
-  const float map_width =
-      num_cols * hex_width + (hex_width / 2);
+  const float map_width = num_cols * hex_width + (hex_width / 2);
   const float map_height = num_rows * vert_spacing;
 
   // Then we get the window size
