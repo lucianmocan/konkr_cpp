@@ -9,11 +9,11 @@
 #ifndef KONKR_WORLD_TILE_H
 #define KONKR_WORLD_TILE_H
 
-#include <SFML/Graphics/RenderTarget.hpp>
 #include <array>
 #include <memory>
 #include <optional>
 
+#include "rendering/graphics.h"
 #include "rendering/sprite_sheet.h"
 #include "world/entity.h"
 
@@ -77,7 +77,7 @@ class Tile {
   }
   inline const std::unique_ptr<Entity>& entity() const { return entity_; }
 
-  void Render(sf::RenderTarget& target, sf::Vector2f position, float radius,
+  void Render(RenderTarget& target, Vector2f position, float radius,
               const SpriteSheet& sprite_sheet) const;
 
  private:

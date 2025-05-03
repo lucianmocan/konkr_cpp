@@ -45,7 +45,7 @@ FetchContent_MakeAvailable(SFML)
 # nlohmann::json
 FetchContent_Declare(json
     GIT_REPOSITORY https://github.com/nlohmann/json.git
-    GIT_TAG v3.11.2) # Or latest version
+    GIT_TAG v3.12.0) # Or latest version
 FetchContent_MakeAvailable(json)
 
 set(TGUI_BACKEND SFML_GRAPHICS)

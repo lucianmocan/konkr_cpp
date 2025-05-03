@@ -9,9 +9,9 @@
 #ifndef KONKR_RENDERING_LEVEL_RENDERER_H
 #define KONKR_RENDERING_LEVEL_RENDERER_H
 
-#include <SFML/Graphics/RenderTarget.hpp>
 #include <memory>
 
+#include "rendering/graphics.h"
 #include "rendering/level.h"
 #include "rendering/sprite_sheet.h"
 
@@ -19,7 +19,7 @@ namespace konkr {
 
 class LevelRenderer {
  public:
-  void Render(sf::RenderTarget& target, std::shared_ptr<const Level> level,
+  void Render(RenderTarget& target, std::shared_ptr<const Level> level,
               float hex_radius) const;
 };
 

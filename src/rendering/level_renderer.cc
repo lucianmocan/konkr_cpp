@@ -7,11 +7,12 @@
 #include <cmath>
 #include <memory>
 
+#include "rendering/graphics.h"
 #include "rendering/sprite_sheet.h"
 #include "world/tile.h"
 
 namespace konkr {
-void LevelRenderer::Render(sf::RenderTarget& target,
+void LevelRenderer::Render(RenderTarget& target,
                            std::shared_ptr<const Level> level,
                            float hex_radius) const {
   auto& sprite_sheet = SpriteSheet::GetInstance();
@@ -33,7 +34,7 @@ void LevelRenderer::Render(sf::RenderTarget& target,
   const float map_height = num_rows * vert_spacing;
 
   // Then we get the window size
-  const sf::Vector2u window_size = target.getSize();
+  const Vector2u window_size = target.getSize();
   const float window_width = static_cast<float>(window_size.x);
   const float window_height = static_cast<float>(window_size.y);
 
@@ -52,7 +53,7 @@ void LevelRenderer::Render(sf::RenderTarget& target,
       float x = col * hex_width + (indent ? (hex_width / 2) : 0) + x_padding +
                 x_offset;
       float y = row * vert_spacing + y_padding + y_offset;
-      tile_opt->Render(target, sf::Vector2f(x, y), hex_radius, sprite_sheet);
+      tile_opt->Render(target, Vector2f(x, y), hex_radius, sprite_sheet);
     }
   }
 }

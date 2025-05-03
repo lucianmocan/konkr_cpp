@@ -4,7 +4,6 @@
 
 #include "rendering/sprite_sheet.h"
 
-#include <SFML/Graphics.hpp>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -15,12 +14,17 @@
 #include <utility>
 #include <vector>
 
+#include "rendering/graphics.h"
+
 namespace konkr {
 
 bool SpriteSheet::LoadFromFile(const std::filesystem::path& file_path) {
-  if (!texture_.loadFromFile(file_path.string())) {
+  auto loaded_texture = Graphics::LoadTexture(file_path.string());
+  if (!loaded_texture) {
     return false;
   }
+
+  texture_ = std::move(*loaded_texture);
   loaded_ = true;
   return true;
 }
@@ -41,21 +45,21 @@ std::optional<SpriteInfo> SpriteSheet::GetSpriteInfo(
   return std::nullopt;
 }
 
-std::optional<sf::Sprite> SpriteSheet::CreateSprite(
+std::unique_ptr<Sprite> SpriteSheet::CreateSprite(
     const std::string& name) const {
   if (!loaded_) {
-    return std::nullopt;
+    return nullptr;
   }
   // if the sprite is not found, then there's a mistake somewhere in the calling
   // function
   std::optional<SpriteInfo> sprite_info = GetSpriteInfo(name);
   if (!sprite_info) {
-    return std::nullopt;
+    return nullptr;
   }
-  return sf::Sprite(texture_, sprite_info->rect);
+  return Graphics::CreateSprite(texture_, sprite_info->rect);
 }
 
-const sf::Texture& SpriteSheet::GetTexture() const {
+const Texture& SpriteSheet::GetTexture() const {
   if (!loaded_) {
     throw std::runtime_error(
         "SpriteSheet::getTexture() called before loading the texture.");
@@ -127,7 +131,7 @@ bool SpriteSheet::LoadSpriteDefinitions(
       int width = sprite_data["frame"]["w"].get<int>();
       int height = sprite_data["frame"]["h"].get<int>();
 
-      AddSpriteInfo(filename, SpriteInfo{sf::IntRect({x, y}, {width, height})});
+      AddSpriteInfo(filename, SpriteInfo{IntRect({x, y}, {width, height})});
     }
   } catch (nlohmann::json::exception& e) {
     std::cerr << "Error processing JSON in sprite definition file: "

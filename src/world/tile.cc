@@ -4,12 +4,12 @@
 
 #include "world/tile.h"
 
-#include <SFML/Graphics.hpp>
 #include <iostream>
 #include <optional>
 #include <string>
 
 #include "rendering/color_palette.h"
+#include "rendering/graphics.h"
 #include "rendering/sprite_sheet.h"
 
 namespace konkr {
@@ -27,9 +27,9 @@ std::optional<Tile> Tile::FromAscii(char c, std::optional<int> player_id) {
   }
 }
 
-void Tile::Render(sf::RenderTarget& target, sf::Vector2f position, float radius,
+void Tile::Render(RenderTarget& target, Vector2f position, float radius,
                   const SpriteSheet& sprite_sheet) const {
-  sf::CircleShape tile(radius, 6);
+  CircleShape tile(radius, 6);
   tile.setOrigin({radius, radius});
   tile.setPosition(position);
 
@@ -38,7 +38,7 @@ void Tile::Render(sf::RenderTarget& target, sf::Vector2f position, float radius,
   } else if (type_ == TileType::Water) {
     tile.setFillColor(ColorPalette::OceanBlue);
   } else if (type_ == TileType::Forest) {
-    tile.setFillColor(sf::Color(60, 120, 60));
+    tile.setFillColor(Color(60, 120, 60));
   }
   target.draw(tile);
 
@@ -50,13 +50,15 @@ void Tile::Render(sf::RenderTarget& target, sf::Vector2f position, float radius,
       if (sprite_name) {
         auto info = sprite_sheet.GetSpriteInfo(*sprite_name);
         if (info) {
-          sf::Sprite sprite(sprite_sheet.GetTexture());
-          sprite.setTextureRect(info->rect);
+          auto sprite =
+              Graphics::CreateSprite(sprite_sheet.GetTexture(), info->rect);
           // Sets origin to center of the sprite
-          sprite.setOrigin({info->rect.size.x / 2.f, info->rect.size.y / 2.f});
-
-          sprite.setPosition(position);
-          target.draw(sprite);
+          if (sprite) {
+            sprite->setOrigin(
+                {info->rect.size.width / 2.f, info->rect.size.height / 2.f});
+            sprite->setPosition(position);
+            target.draw(*sprite);
+          }
         } else {
           std::cerr << "Failed to get sprite info for entity: " << *sprite_name
                     << std::endl;

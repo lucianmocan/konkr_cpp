@@ -9,20 +9,21 @@
 #ifndef KONKR_RENDERING_COLOR_PALETTE_H
 #define KONKR_RENDERING_COLOR_PALETTE_H
 
-#include <SFML/Graphics/Color.hpp>
 #include <cmath>
 #include <optional>
+
+#include "rendering/graphics.h"
 
 namespace konkr {
 
 struct ColorPalette {
-  static constexpr sf::Color OceanBlue = sf::Color(50, 120, 200);
+  inline static const Color OceanBlue = Color(50, 120, 200);
 
   // Generates a visually distinct color for each player using HSL hue rotation.
-  static sf::Color SandColorForPlayer(std::optional<int> player_id) {
+  static Color SandColorForPlayer(std::optional<int> player_id) {
     if (!player_id) {
       // default sand color
-      return sf::Color(235, 220, 150);
+      return Color(235, 220, 150);
     }
 
     // golden ratio to get random colors
@@ -65,9 +66,9 @@ struct ColorPalette {
       b = x;
     }
 
-    return sf::Color(static_cast<uint8_t>((r + m) * 255),
-                     static_cast<uint8_t>((g + m) * 255),
-                     static_cast<uint8_t>((b + m) * 255));
+    return Color(static_cast<uint8_t>((r + m) * 255),
+                 static_cast<uint8_t>((g + m) * 255),
+                 static_cast<uint8_t>((b + m) * 255));
   }
 };
 

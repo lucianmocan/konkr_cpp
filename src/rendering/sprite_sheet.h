@@ -11,20 +11,20 @@
 #ifndef KONKR_RENDERING_SPRITE_SHEET_H
 #define KONKR_RENDERING_SPRITE_SHEET_H
 
-#include <SFML/Graphics.hpp>
 #include <filesystem>
 #include <optional>
 #include <string>
 #include <unordered_map>
 #include <vector>
 
+#include "rendering/graphics.h"
 #include "world/entity.h"
 
 namespace konkr {
 
 // Wraps SFML's IntRect (position, size) to represent a sprite's rectangle.
 struct SpriteInfo {
-  sf::IntRect rect;
+  IntRect rect;
 };
 
 // Manages loading and storing the sprite definitions (name and frame) from the
@@ -52,10 +52,10 @@ class SpriteSheet {
   std::optional<SpriteInfo> GetSpriteInfo(const std::string& name) const;
 
   // Creates a sprite using the texture and the rectangle from the sprites_map_
-  std::optional<sf::Sprite> CreateSprite(const std::string& name) const;
+  std::unique_ptr<Sprite> CreateSprite(const std::string& name) const;
 
   // Returns the texture used for the sprites.
-  const sf::Texture& GetTexture() const;
+  const Texture& GetTexture() const;
 
   bool LoadSpriteDefinitions(const std::filesystem::path& definition_file_path);
 
@@ -73,7 +73,7 @@ class SpriteSheet {
   SpriteSheet(const SpriteSheet&) = delete;
   SpriteSheet& operator=(const SpriteSheet&) = delete;
 
-  sf::Texture texture_;
+  Texture texture_;
   std::unordered_map<std::string, SpriteInfo> sprites_map_;
   std::unordered_map<std::string, std::vector<std::string>>
       entity_sprite_vectors_;

@@ -3,6 +3,7 @@ add_library(rendering STATIC
     level.cc
     level_renderer.cc
     color_palette.h
+    graphics.cc
 )
 
 target_include_directories(rendering PUBLIC

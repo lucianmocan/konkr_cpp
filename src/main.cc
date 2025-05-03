@@ -48,71 +48,31 @@ int main() {
     return -1;
   }
 
-  auto window = sf::RenderWindow(sf::VideoMode({1920u, 1080u}), "konkr");
-  window.setFramerateLimit(144);
-  konkr::UserInterface ui(window);
+  konkr::RenderTarget render_target({1920u, 1080u}, "konkr");
+  render_target.getWindow().setFramerateLimit(144);
+  konkr::UserInterface ui(render_target.getWindow());
 
   konkr::LevelRenderer renderer;
 
   // Main game loop
-  while (window.isOpen()) {
-    while (const std::optional event = window.pollEvent()) {
+  while (render_target.getWindow().isOpen()) {
+    while (const std::optional event = render_target.getWindow().pollEvent()) {
       ui.HandleEvent(*event);
       if (event->is<sf::Event::Closed>()) {
-        window.close();
+        render_target.getWindow().close();
       }
-      // if (event->is<sf::Event::KeyPressed>()) {
-      //   auto key = event->getIf<sf::Event::KeyPressed>()->code;
-      //   if (key == sf::Keyboard::Key::Escape) {
-      //     window.close();
-      //   }
-      //   if (key == sf::Keyboard::Key::U) {
-      //     // Finds and upgrades the first HumanUnit in the level
-      //     for (auto& row : level->tiles()) {
-      //       for (auto& tile_opt : row) {
-      //         if (tile_opt && tile_opt->entity()) {
-      //           auto* human =
-      //               dynamic_cast<konkr::HumanUnit*>(tile_opt->entity().get());
-      //           if (human) {
-      //             human->IncreaseLevel();
-      //             std::cout << "Upgraded a HumanUnit!" << std::endl;
-      //             goto upgraded;  // breaks out of both loops
-      //           }
-      //         }
-      //       }
-      //     }
-      //   }
-      //   if (key == sf::Keyboard::Key::T) {
-      //     // Finds and upgrades the first Townhall in the level
-      //     for (auto& row : level->tiles()) {
-      //       for (auto& tile_opt : row) {
-      //         if (tile_opt && tile_opt->entity()) {
-      //           auto* thall =
-      //               dynamic_cast<konkr::Townhall*>(tile_opt->entity().get());
-      //           if (thall) {
-      //             thall->IncreaseLevel();
-      //             std::cout << "Upgraded a Townhall!" << std::endl;
-      //             goto upgraded;  // breaks out of both loops
-      //           }
-      //         }
-      //       }
-      //     }
-      //   }
-      // upgraded:;
-      // }
     }
 
-    sf::Color OceanBlue(50, 120, 200);
-    window.clear(konkr::ColorPalette::OceanBlue);
+    render_target.getWindow().clear(konkr::ColorPalette::OceanBlue);
 
     // Draw the level if in Game state
     if (ui.current_state() == konkr::UserInterfaceState::Game &&
         ui.is_level_selected()) {
-      renderer.Render(window, ui.selected_level(), 50.0f);
+      renderer.Render(render_target, ui.selected_level(), 50.0f);
     }
 
     ui.Draw();
-    window.display();  // Update the window
+    render_target.getWindow().display();  // Update the window
   }
 
   return 0;
