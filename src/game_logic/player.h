@@ -12,8 +12,18 @@
 #include <string>
 
 namespace konkr {
+
+// Generates a random warrior name using a combination of prefixes, stems, and
+// suffixes. The idea is to have a funny name (with some easter eggs).
+std::string GenerateWarriorName();
+
 class Player {
  public:
+  Player(int id) : id_(id) { name_ = GenerateWarriorName(); }
+
+  inline std::string name() const { return name_; }
+  inline int id() const { return id_; }
+
  private:
   int id_;
   std::string name_;

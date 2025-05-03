@@ -69,6 +69,7 @@ target_link_libraries(main
     PRIVATE
     rendering
     ui
+    game_logic
     SFML::Graphics
     nlohmann_json
     TGUI::TGUI

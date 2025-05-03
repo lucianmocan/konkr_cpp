@@ -17,6 +17,7 @@
 #include <string>
 #include <vector>
 
+#include "game_logic/player.h"
 #include "world/tile.h"
 
 namespace konkr {
@@ -62,12 +63,17 @@ class Level {
     return tiles_;
   }
 
+  inline std::shared_ptr<std::vector<Player>> active_players() {
+    return std::make_shared<std::vector<Player>>(players_);
+  }
+
  private:
   std::string name_;
   std::string category_;
   std::filesystem::path file_path_;
   std::vector<std::string> map_;
   std::vector<std::vector<std::optional<Tile>>> tiles_;
+  std::vector<Player> players_;
   bool loaded_ = false;
 };
 
