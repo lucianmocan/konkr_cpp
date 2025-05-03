@@ -1,6 +1,6 @@
 add_library(game_logic STATIC
     player.cc
-
+    game.cc
 )
 
 target_include_directories(game_logic PUBLIC
