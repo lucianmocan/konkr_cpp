@@ -59,7 +59,6 @@ FetchContent_MakeAvailable(TGUI)
 
 add_subdirectory(src/rendering)
 add_subdirectory(src/world)
-add_subdirectory(src/game_logic)
 add_subdirectory(src/ui)
 
 add_executable(main src/main.cc)
@@ -69,7 +68,6 @@ target_link_libraries(main
     PRIVATE
     rendering
     ui
-    game_logic
     SFML::Graphics
     nlohmann_json
     TGUI::TGUI
@@ -83,10 +81,10 @@ set(ASSETS_DESTINATION_DIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/assets)
 if(EXISTS ${ASSETS_SOURCE_DIR})
 
     add_custom_command(
-        TARGET main POST_BUILD 
+        TARGET main POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory ${ASSETS_SOURCE_DIR} ${ASSETS_DESTINATION_DIR}
         COMMENT "Copying assets directory to build output"
-        VERBATIM 
+        VERBATIM
     )
 else()
     message(WARNING "Assets source directory not found: ${ASSETS_SOURCE_DIR}")
