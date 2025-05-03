@@ -9,8 +9,8 @@
 #include <TGUI/Widgets/Label.hpp>
 #include <TGUI/Widgets/Panel.hpp>
 
-#include "rendering/level.h"
 #include "rendering/graphics.h"
+#include "rendering/level.h"
 
 namespace konkr {
 
