@@ -69,7 +69,9 @@ class Level {
 
   inline size_t activePlayersNb() { return activePlayers()->size(); }
 
-  inline const std::shared_ptr<Player> getCurPlayer() { return std::make_shared<Player>(players_[cur_player_idx_]); }
+  inline const std::shared_ptr<Player> getCurPlayer() {
+    return std::make_shared<Player>(players_[cur_player_idx_]);
+  }
 
   void UpdateActivePlayers();
 

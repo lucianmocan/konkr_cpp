@@ -133,7 +133,7 @@ void Level::UpdateActivePlayers() {
       const auto& tile_opt = tile_row[col];
       if (!tile_opt) continue;
 
-      std::optional<int> tile_owner = ((Tile&) tile_opt).getOwner();
+      std::optional<int> tile_owner = ((Tile&)tile_opt).getOwner();
       // If current "winner" isn't the only one left on the map, then the game
       // isn't over:
       if (tile_owner.has_value()) {
@@ -142,10 +142,8 @@ void Level::UpdateActivePlayers() {
     }
   }
 
-  for (std::vector<Player>::iterator p = players_.begin();
-        p != players_.end();
-        ++p
-      ) {
+  for (std::vector<Player>::iterator p = players_.begin(); p != players_.end();
+       ++p) {
     bool active = false;
     for (auto pid : active_players) {
       if (pid == (*p).id()) {
@@ -154,8 +152,8 @@ void Level::UpdateActivePlayers() {
     }
     if (!active) {
       if (cur_player_idx_ >= (*p).id()) {
-        cur_player_idx_--; // Calibrating current player index according to
-          // the new number of players
+        cur_player_idx_--;  //  Calibrating current player index according to
+                            //  the new number of players
       }
       players_.erase(p);
     }
@@ -164,7 +162,7 @@ void Level::UpdateActivePlayers() {
 
 void Level::NextTurn() {
   UpdateActivePlayers();
-  cur_player_idx_ = (cur_player_idx_+1) % activePlayersNb();
+  cur_player_idx_ = (cur_player_idx_ + 1) % activePlayersNb();
 }
 
 const bool Level::CheckEnd() {
@@ -179,7 +177,7 @@ const bool Level::CheckEnd() {
       const auto& tile_opt = tile_row[col];
       if (!tile_opt) continue;
 
-      std::optional<int> tile_owner = ((Tile&) tile_opt).getOwner();
+      std::optional<int> tile_owner = ((Tile&)tile_opt).getOwner();
       // If current "winner" isn't the only one left on the map, then the game
       // isn't over:
       if (tile_owner.has_value()) {
