@@ -15,8 +15,7 @@ target_include_directories(world PUBLIC
 
 target_link_libraries(world
     PRIVATE
-        rendering
-        SFML::Graphics # Public because sprite_sheet.h includes SFML headers
+        SFML::Graphics
 )
 
 target_compile_features(world PRIVATE cxx_std_23)
