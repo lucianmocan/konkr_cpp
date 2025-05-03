@@ -71,9 +71,9 @@ class Level {
 
   inline const std::shared_ptr<Player> getCurPlayer() { return std::make_shared<Player>(players_[cur_player_idx_]); }
 
-  inline void nextTurn() { cur_player_idx_ = (cur_player_idx_+1) % activePlayersNb(); };
+  void UpdateActivePlayers();
 
-  void NextLevel();
+  void NextTurn();
 
   const bool CheckEnd();
 
