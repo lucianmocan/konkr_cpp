@@ -9,7 +9,7 @@ target_include_directories(ui PUBLIC
 
 target_link_libraries(ui
     PRIVATE
-        world
+        rendering
         SFML::Graphics # Public because sprite_sheet.h includes SFML headers
         nlohmann_json::nlohmann_json # Private because only sprite_sheet.cc uses json
         TGUI::TGUI

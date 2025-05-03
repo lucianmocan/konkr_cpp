@@ -12,10 +12,10 @@
 #ifndef KONKR_RENDERING_USER_INTERFACE_H
 #define KONKR_RENDERING_USER_INTERFACE_H
 
-#include <SFML/Graphics.hpp>
 #include <TGUI/Backend/SFML-Graphics.hpp>
 #include <memory>
 
+#include "rendering/graphics.h"
 #include "rendering/level.h"
 
 namespace konkr {
@@ -32,9 +32,9 @@ class UserInterface {
  public:
   UserInterface() = delete;
 
-  UserInterface(sf::RenderWindow& window)
-      : window_(window),
-        gui_(window),
+  UserInterface(RenderTarget& render_target)
+      : render_target_(render_target),
+        gui_(render_target.getWindow()),
         current_state_(UserInterfaceState::HomePage) {
     gui_.setFont("assets/fonts/OCRA/OCRA.ttf");
     SetupHomePage();
@@ -72,7 +72,7 @@ class UserInterface {
   // Sets up the GUI for the game screen
   void SetupGame();
 
-  sf::RenderWindow& window_;
+  RenderTarget& render_target_;
   tgui::Gui gui_;
   UserInterfaceState current_state_;
   std::shared_ptr<Level> selected_level_ = nullptr;

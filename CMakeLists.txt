@@ -68,7 +68,7 @@ target_link_libraries(main
     PRIVATE
     rendering
     ui
-    SFML::Graphics
+    world
     nlohmann_json
     TGUI::TGUI
     )

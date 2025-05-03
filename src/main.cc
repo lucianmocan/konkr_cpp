@@ -50,7 +50,7 @@ int main() {
 
   konkr::RenderTarget render_target({1920u, 1080u}, "konkr");
   render_target.getWindow().setFramerateLimit(144);
-  konkr::UserInterface ui(render_target.getWindow());
+  konkr::UserInterface ui(render_target);
 
   konkr::LevelRenderer renderer;
 
