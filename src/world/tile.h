@@ -45,6 +45,8 @@ class Tile {
 
   inline void changeOwner(int player_id) { player_id_ = player_id; }
 
+  inline std::optional<int> getOwner() { return player_id_; }
+
   inline void orphan() { is_orphan_ = true; }
 
   inline void claim() { is_orphan_ = false; }
