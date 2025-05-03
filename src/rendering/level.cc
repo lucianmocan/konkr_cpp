@@ -6,9 +6,9 @@
 
 #include <algorithm>
 #include <cctype>
-#include <memory>
 #include <fstream>
 #include <iostream>
+#include <memory>
 #include <optional>
 
 #include "world/entity.h"

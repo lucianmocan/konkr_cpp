@@ -11,10 +11,10 @@
 #include "rendering/level.h"
 #include "rendering/level_renderer.h"
 #include "rendering/sprite_sheet.h"
+#include "ui/user_interface.h"
 #include "world/entity.h"
 #include "world/human_unit.h"
 #include "world/townhall.h"
-#include "ui/user_interface.h"
 
 int main() {
   konkr::SpriteSheet& sprite_sheet = konkr::SpriteSheet::GetInstance();
@@ -106,14 +106,14 @@ int main() {
     window.clear(konkr::ColorPalette::OceanBlue);
 
     // Draw the level if in Game state
-    if (ui.current_state() == konkr::UserInterfaceState::Game && ui.is_level_selected()) {
-        renderer.Render(window, ui.selected_level(), 50.0f);
+    if (ui.current_state() == konkr::UserInterfaceState::Game &&
+        ui.is_level_selected()) {
+      renderer.Render(window, ui.selected_level(), 50.0f);
     }
 
     ui.Draw();
     window.display();  // Update the window
   }
-  
 
   return 0;
 }
