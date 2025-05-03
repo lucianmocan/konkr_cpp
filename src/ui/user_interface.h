@@ -44,6 +44,10 @@ class UserInterface {
         SetupHomePage();
     }
 
+    inline UserInterfaceState current_state() const {
+        return current_state_;
+    }
+
     void HandleEvent(const sf::Event& event);
     void Draw();
 
@@ -51,8 +55,12 @@ class UserInterface {
     void SwitchState(UserInterfaceState new_state);
 
 
-    inline bool isLevelSelected() const {
+    inline bool is_level_selected() const {
         return selected_level_ != nullptr;
+    }
+
+    inline std::shared_ptr<Level> selected_level() const {
+        return selected_level_;
     }
 
     private:

@@ -117,11 +117,12 @@ void UserInterface::SetupLevelSelection() {
         }
 
         selectButton->onClick([this, level] {
-            std::cout << "is same level: " << (selected_level_ == level) << std::endl;
             if (selected_level_ == level) {
                 selected_level_ = nullptr; // Deselects if already selected
             } else {
                 selected_level_ = level;
+                if (selected_level_ && !selected_level_->is_loaded())
+                    selected_level_->Load();
             }
             SetupLevelSelection();
         });
@@ -139,9 +140,9 @@ void UserInterface::SetupLevelSelection() {
     auto startButton = tgui::Button::create("Play Level");
     startButton->setSize(200, 60);
     startButton->setPosition("(&.width - 200) / 2", "(&.height - 60) / 2 + 250");
-    startButton->setEnabled(isLevelSelected());
+    startButton->setEnabled(is_level_selected());
     startButton->onClick([this] {
-        if (isLevelSelected())
+        if (is_level_selected())
             SwitchState(UserInterfaceState::Game);
     });
     gui_.add(startButton);
@@ -167,7 +168,7 @@ void UserInterface::SetupLevelSelection() {
 
 void UserInterface::SetupGame() {
 
-    if (!selected_level_ || !selected_level_->Load()) {
+    if (!selected_level_) {
         auto errorLabel = tgui::Label::create("Failed to load level: " + (selected_level_ ? selected_level_->name() : "Unknown"));
         errorLabel->setPosition("(&.width - width) / 2", "(&.height - 60) / 2");
         errorLabel->setTextSize(24);

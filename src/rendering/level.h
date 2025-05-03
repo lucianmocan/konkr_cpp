@@ -53,7 +53,7 @@ class Level {
   inline const std::string& category() const { return category_; }
   inline const std::filesystem::path& file_path() const { return file_path_; }
   inline const std::vector<std::string>& map() const { return map_; }
-  inline bool isLoaded() const { return loaded_; }
+  inline bool is_loaded() const { return loaded_; }
 
   void DisplayMapAscii() const;
 
