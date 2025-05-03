@@ -117,4 +117,36 @@ void Level::CreateTiles() {
   }
 }
 
+void Level::NextLevel() {
+
+}
+
+const bool Level::CheckEnd() {
+  std::optional<int> winner;
+  bool end = true;
+  if (tiles_.empty()) return end;
+
+  for (size_t row = 0; row < tiles_.size() && !end; ++row) {
+    const auto& tile_row = tiles_[row];
+
+    for (size_t col = 0; col < tile_row.size() && !end; ++col) {
+      const auto& tile_opt = tile_row[col];
+      if (!tile_opt) continue;
+
+      std::optional<int> tile_owner = ((Tile&) tile_opt).getOwner();
+      // If current "winner" isn't the only one left on the map, then the game
+      // isn't over:
+      if (tile_owner.has_value()) {
+        if (!winner.has_value()) {
+          winner = tile_owner;
+        } else if (winner != tile_owner) {
+          end = false;
+        }
+      }
+    }
+  }
+
+  return end;
+}
+
 }  // namespace konkr
