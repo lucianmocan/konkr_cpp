@@ -50,7 +50,7 @@ void UserInterface::SetupHomePage() {
   auto exit_button = tgui::Button::create("Exit");
   exit_button->setSize(200, 60);
   exit_button->setPosition("(&.width - 200) / 2", "(&.height - 60) / 2 + 80");
-  exit_button->onClick([this] { window_.close(); });
+  exit_button->onClick([this] { render_target_.getWindow().close(); });
   gui_.add(exit_button);
 }
 
@@ -148,7 +148,7 @@ void UserInterface::SetupLevelSelection() {
   auto exitButton = tgui::Button::create("Exit");
   exitButton->setSize(200, 60);
   exitButton->setPosition("(&.width - 200) / 2", "(&.height - 60) / 2 + 390");
-  exitButton->onClick([this] { window_.close(); });
+  exitButton->onClick([this] { render_target_.getWindow().close(); });
   gui_.add(exitButton);
 }
 
@@ -207,7 +207,7 @@ void UserInterface::SetupGame() {
   exitButton->setSize(200, 60);
   exitButton->setPosition("(&.width) - 220",
                           "(&.height) - 80");  // bottom right corner
-  exitButton->onClick([this] { window_.close(); });
+  exitButton->onClick([this] { render_target_.getWindow().close(); });
   gui_.add(exitButton);
 }
 
