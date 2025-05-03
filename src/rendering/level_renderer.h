@@ -10,7 +10,6 @@
 #define KONKR_RENDERING_LEVEL_RENDERER_H
 
 #include <SFML/Graphics/RenderTarget.hpp>
-
 #include <memory>
 
 #include "rendering/level.h"

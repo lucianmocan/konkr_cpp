@@ -48,8 +48,19 @@ FetchContent_Declare(json
     GIT_TAG v3.11.2) # Or latest version
 FetchContent_MakeAvailable(json)
 
+set(TGUI_BACKEND SFML_GRAPHICS)
+FetchContent_Declare(
+  TGUI
+  GIT_REPOSITORY https://github.com/texus/TGUI.git
+  GIT_TAG        v1.8.0 # Or v1.9.0 if available and compatible
+)
+set(TGUI_BUILD_FRAMEWORK OFF)
+FetchContent_MakeAvailable(TGUI)
+
 add_subdirectory(src/rendering)
 add_subdirectory(src/world)
+add_subdirectory(src/game_logic)
+add_subdirectory(src/ui)
 
 add_executable(main src/main.cc)
 target_compile_features(main PRIVATE cxx_std_23)
@@ -57,8 +68,11 @@ target_compile_features(main PRIVATE cxx_std_23)
 target_link_libraries(main
     PRIVATE
     rendering
+    ui
     SFML::Graphics
-    nlohmann_json)
+    nlohmann_json
+    TGUI::TGUI
+    )
 
 target_include_directories(main PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 

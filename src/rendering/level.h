@@ -12,6 +12,7 @@
 #define KONKR_RENDERING_LEVEL_H
 
 #include <filesystem>
+#include <memory>
 #include <optional>
 #include <string>
 #include <vector>
@@ -37,7 +38,7 @@ class Level {
   // from the directory name.
   // It doesn't load the contents of the level files, just prepares the Level
   // objects.
-  static std::vector<Level> GetAvailableLevels(
+  static std::vector<std::shared_ptr<Level>> GetAvailableLevels(
       const std::filesystem::path& levels_directory);
 
   Level(std::string name, std::string category, std::filesystem::path file_path)
@@ -52,7 +53,7 @@ class Level {
   inline const std::string& category() const { return category_; }
   inline const std::filesystem::path& file_path() const { return file_path_; }
   inline const std::vector<std::string>& map() const { return map_; }
-  inline bool isLoaded() const { return loaded_; }
+  inline bool is_loaded() const { return loaded_; }
 
   void DisplayMapAscii() const;
 

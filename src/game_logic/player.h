@@ -9,10 +9,15 @@
 #ifndef KONKR_GAME_LOGIC_PLAYER_H
 #define KONKR_GAME_LOGIC_PLAYER_H
 
-namespace konkr
-{
-    
-} // namespace konkr
+#include <string>
 
+namespace konkr {
+class Player {
+ public:
+ private:
+  int id_;
+  std::string name_;
+};
+}  // namespace konkr
 
 #endif
