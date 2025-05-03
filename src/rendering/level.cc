@@ -100,9 +100,9 @@ void Level::CreateTiles() {
           }
           if (c == 'T') {
             if (std::none_of(players_.begin(), players_.end(),
-                               [player_id](const Player& player) {
-                                 return player.id() == player_id;
-                               })) {
+                             [player_id](const Player& player) {
+                               return player.id() == player_id;
+                             })) {
               players_.emplace_back(player_id);
             }
           }
