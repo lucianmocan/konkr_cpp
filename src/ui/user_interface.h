@@ -54,6 +54,8 @@ class UserInterface {
     return selected_level_;
   }
 
+  bool TileClicked(std::shared_ptr<CircleShape> tile, sf::Vector2f mousePos);
+
  private:
   // Sets up the GUI for the home page
   // This includes the play and exit buttons

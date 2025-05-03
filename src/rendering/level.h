@@ -27,6 +27,8 @@ namespace konkr {
 // information, and display the map in ASCII format.
 class Level {
  public:
+  using Tiles = std::vector<std::vector<std::optional<Tile>>>;
+
   Level(const Level&) = delete;
   Level& operator=(const Level&) = delete;
   Level(Level&&) = default;
@@ -84,7 +86,7 @@ class Level {
   std::string category_;
   std::filesystem::path file_path_;
   std::vector<std::string> map_;
-  std::vector<std::vector<std::optional<Tile>>> tiles_;
+  Tiles tiles_;
   std::vector<Player> players_;
   size_t cur_player_idx_ = 0;
   bool loaded_ = false;
