@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 // See LICENSE file in the project root for details.
 
-#include "game_logic/player.h"
+#include "world/player.h"
 
 #include <random>
 #include <string>

@@ -17,7 +17,7 @@
 #include <string>
 #include <vector>
 
-#include "game_logic/player.h"
+#include "world/player.h"
 #include "world/tile.h"
 
 namespace konkr {
