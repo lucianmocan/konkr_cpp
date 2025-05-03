@@ -8,14 +8,15 @@ namespace konkr {
 
 class Game {
   public:
-    Game(int nb_players, std::shared_ptr<Level> cur_level)
+    Game(std::optional<int> nb_players, std::shared_ptr<Level> cur_level)
         : nb_players_(nb_players),
           cur_level_(cur_level) {}
 
     bool CheckEnd();
+    std::optional<int> GetCurPlayer();
   private:
-    int nb_players_;
-    int cur_player_ = 0;
+    std::optional<int> nb_players_;
+    std::optional<int> cur_player_ = 0;
     std::shared_ptr<Level> cur_level_;
 };
 

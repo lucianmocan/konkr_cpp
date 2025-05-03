@@ -32,4 +32,6 @@ bool Game::CheckEnd() {
   return end;
 }
 
+inline std::optional<int> Game::GetCurPlayer() { return this->cur_player_; }
+
 }
