@@ -48,6 +48,7 @@ FetchContent_Declare(json
     GIT_TAG v3.11.2) # Or latest version
 FetchContent_MakeAvailable(json)
 
+set(TGUI_BACKEND SFML_GRAPHICS)
 FetchContent_Declare(
   TGUI
   GIT_REPOSITORY https://github.com/texus/TGUI.git
