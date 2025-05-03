@@ -190,7 +190,7 @@ void UserInterface::SetupGame() {
 
     auto infoPanel = tgui::Panel::create();
     infoPanel->setPosition(10, 10);
-    infoPanel->setSize(300, 60);
+    infoPanel->setSize(400, 60);
     infoPanel->getRenderer()->setBackgroundColor(tgui::Color::Transparent);
     infoPanel->getRenderer()->setBorders(0);
     
