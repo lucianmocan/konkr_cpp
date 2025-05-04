@@ -48,6 +48,7 @@ CircleShape::CircleShape(float radius, int pointCount) {
   circle_shape_.setPointCount(pointCount);
 }
 CircleShape::~CircleShape() = default;
+CircleShape::CircleShape(const CircleShape& c) = default;
 
 void CircleShape::setOrigin(Vector2f origin) {
   circle_shape_.setOrigin({origin.x, origin.y});

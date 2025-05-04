@@ -90,7 +90,7 @@ class Transform {
 class CircleShape {
  public:
   CircleShape(float radius, int pointCount);
-  CircleShape(CircleShape&& c);
+  CircleShape(const CircleShape& c);
   ~CircleShape();
 
   void setOrigin(Vector2f origin);

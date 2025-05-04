@@ -102,7 +102,7 @@ class Tile {
   std::vector<Vector2i> GetNeighboringTilesGridPosition() const;
 
   void Render(RenderTarget& target, Vector2f position, float radius,
-              const SpriteSheet& sprite_sheet) const;
+              const SpriteSheet& sprite_sheet);
 
  private:
   std::unique_ptr<Entity> entity_ = nullptr;
