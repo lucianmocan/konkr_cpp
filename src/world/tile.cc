@@ -41,10 +41,17 @@ std::vector<Vector2i> Tile::GetNeighboringTilesGridPosition() const {
   // x is the row, and y is the column
   neighbors.push_back({grid_position_.x, grid_position_.y - 1});
   neighbors.push_back({grid_position_.x, grid_position_.y + 1});
-  neighbors.push_back({grid_position_.x - 1, grid_position_.y});
-  neighbors.push_back({grid_position_.x - 1, grid_position_.y + 1});
-  neighbors.push_back({grid_position_.x + 1, grid_position_.y});
-  neighbors.push_back({grid_position_.x + 1, grid_position_.y + 1});
+  if (grid_position_.y % 2 != 0) {
+    neighbors.push_back({grid_position_.x - 1, grid_position_.y});
+    neighbors.push_back({grid_position_.x - 1, grid_position_.y + 1});
+    neighbors.push_back({grid_position_.x + 1, grid_position_.y});
+    neighbors.push_back({grid_position_.x + 1, grid_position_.y + 1});
+  } else {
+    neighbors.push_back({grid_position_.x - 1, grid_position_.y - 1});
+    neighbors.push_back({grid_position_.x - 1, grid_position_.y});
+    neighbors.push_back({grid_position_.x + 1, grid_position_.y - 1});
+    neighbors.push_back({grid_position_.x + 1, grid_position_.y});
+  }
 
   // Remove neighbors that are out of bounds
   for (auto it = neighbors.begin(); it != neighbors.end();) {
