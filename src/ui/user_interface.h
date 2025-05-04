@@ -54,6 +54,8 @@ class UserInterface {
     return selected_level_;
   }
 
+  void ColorReachableTiles(std::shared_ptr<Tile> tile);
+
   /**
     @brief Checks if the given tile is clicked.
     @param points Points of the tile to check.

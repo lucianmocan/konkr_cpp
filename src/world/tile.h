@@ -75,6 +75,10 @@ class Tile {
 
   inline bool is_orphan() const { return is_orphan_; }
 
+  inline bool is_reachable() {
+    return is_reachable_;
+  }
+
   inline void claim() { is_orphan_ = false; }
 
   inline void add_wall(WallPosition wall_position) {
@@ -104,6 +108,10 @@ class Tile {
     grid_position_ = grid_position;
   };
 
+  inline void set_reachability(bool reachable) {
+    is_reachable_ = reachable;
+  }
+
   inline const Vector2i& grid_position() const { return grid_position_; }
 
   inline void set_entity(std::unique_ptr<Entity> entity) {
@@ -123,6 +131,7 @@ class Tile {
   std::array<bool, 6> walls_ = {false};
   std::optional<int> player_id_;
   bool is_orphan_ = true;
+  bool is_reachable_ = false; // Reachable from the currently selected tile
   int level_ = -1;
   Vector2i grid_position_ = {0, 0};
 };

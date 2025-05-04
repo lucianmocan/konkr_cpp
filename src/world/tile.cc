@@ -127,6 +127,21 @@ void Tile::Render(RenderTarget& target, Vector2f position, float radius,
     target.draw(text);
   }
 
+
+  // --- Draw "R" if is_reachable_ ---
+  if (is_reachable()) {
+    const Font& font = LevelRenderer::get_font();
+    Text text(font, "R", 16);
+    text.set_fill_color(Color::Yellow);
+    text.set_outline_color(Color::Black);
+    text.set_outline_thickness(2);
+
+    FloatRect bounds = text.get_local_bounds();
+    text.set_origin({bounds.size.x / 2, bounds.size.y / 2});
+    text.set_position({position.x, position.y - radius / 2});
+    target.draw(text);
+  }
+
   bounds_ = std::make_unique<FloatRect>(
     Position(tile.get_global_bounds().pos.x, tile.get_global_bounds().pos.y),
     Size(tile.get_global_bounds().size.x, tile.get_global_bounds().size.y)
