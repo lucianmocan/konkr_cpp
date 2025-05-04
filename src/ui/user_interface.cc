@@ -14,6 +14,14 @@
 
 namespace konkr {
 
+void UserInterface::ColorReachableTiles(std::shared_ptr<Tile> tile) {
+  auto reachable = tile->GetNeighboringTilesGridPosition();
+  for (auto t : reachable) {
+    auto rtile = selected_level_->tiles().at(t.x).at(t.y);
+    rtile->set_reachability(true);
+  }
+}
+
 bool UserInterface::TileClicked(std::shared_ptr<FloatRect> bounds,
                                 Vector2f mouse_pos) {
   return bounds->contains(mouse_pos);
@@ -40,8 +48,14 @@ void UserInterface::TileMapEvent(const sf::Event& event) {
 
           if (TileClicked(tile_opt->get_bounds(),
                           Vector2f(world_pos.x, world_pos.y))) {
-            std::cerr << tile_opt->get_bounds()->pos.y << std::endl;
-            std::cerr << "Cliqué!" << std::endl;
+            if (tile_opt->is_reachable()) {
+              std::cerr << "Atteignable!" << std::endl;
+            } else if (tile_opt->get_owner() ==
+                           selected_level_->get_current_player()->id() &&
+                       tile_opt->entity() != nullptr) {
+              std::cerr << "À moi!" << std::endl;
+              ColorReachableTiles(tile_opt);
+            }
           }
         }
       }

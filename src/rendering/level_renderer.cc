@@ -5,14 +5,11 @@
 #include "rendering/level_renderer.h"
 
 #include <cmath>
-#include <filesystem>
-#include <iostream>
 #include <memory>
 #include <string>
 
 #include "rendering/graphics.h"
 #include "rendering/sprite_sheet.h"
-#include "world/tile.h"
 
 namespace konkr {
 

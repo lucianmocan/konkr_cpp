@@ -8,7 +8,6 @@
 #include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Text.hpp>
-#include <algorithm>
 
 namespace konkr {
 
