@@ -34,6 +34,9 @@ enum class WallPosition {
 // The other tiles are just for decoration.
 enum class TileType { Water, Forest, Sand };
 
+/**
+  @class A tile is an hexagon representing a location that can contain an entity or be empty.
+*/
 class Tile {
  public:
   static std::optional<Tile> FromAscii(
@@ -86,7 +89,7 @@ class Tile {
 
  private:
   std::unique_ptr<Entity> entity_ = nullptr;
-  std::optional<CircleShape> shape_;
+  std::optional<CircleShape> shape_; // Object being rendered on the window
   TileType type_;
   std::array<bool, 6> walls_ = {false};
   std::optional<int> player_id_;

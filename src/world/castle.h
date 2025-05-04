@@ -12,6 +12,9 @@
 #include "world/building.h"
 
 namespace konkr {
+/**
+  @class A castle protects an area in the map for the player who placed it.
+*/
 class Castle : public Building {
  public:
   using Building::Building;

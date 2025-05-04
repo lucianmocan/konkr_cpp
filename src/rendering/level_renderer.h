@@ -19,6 +19,12 @@ namespace konkr {
 
 class LevelRenderer {
  public:
+ /**
+    @brief Renders the level on the window.
+    @param target SFML RenderTarget.
+    @param level Level to render.
+    @param hex_radius Radius of the hexagon representing a tile.
+ */
   void Render(RenderTarget& target, std::shared_ptr<const Level> level,
               float hex_radius) const;
 };

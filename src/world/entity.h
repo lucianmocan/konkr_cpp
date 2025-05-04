@@ -16,6 +16,8 @@ namespace konkr {
 
 std::string entity_format_display_name(const std::string& sprite_name);
 
+/**
+  @class An entity is an object that can be put on a tile (either by a player or by the game itself, in the case of bandits). */
 class Entity {
  public:
   enum class EntityType {

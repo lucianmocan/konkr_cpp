@@ -13,6 +13,9 @@
 #include "world/entity.h"
 
 namespace konkr {
+/**
+  @class The townhall is the core of a player's realm.
+*/
 class Townhall : public Building {
  public:
   using Building::Building;

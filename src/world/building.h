@@ -12,6 +12,9 @@
 #include "world/entity.h"
 
 namespace konkr {
+/**
+  @class A building is an entity that can be put on the map (either by the player or by the game in the case of townhalls), but cannot be moved once placed.
+*/
 class Building : public Entity {
  public:
   using Entity::Entity;

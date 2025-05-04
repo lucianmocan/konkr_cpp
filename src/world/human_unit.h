@@ -13,6 +13,9 @@
 
 namespace konkr {
 
+/**
+  @class An entity that can be moved by a player.
+*/
 class HumanUnit : public Entity {
  public:
   using Entity::Entity;
