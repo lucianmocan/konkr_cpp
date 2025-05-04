@@ -54,6 +54,7 @@ class Tile {
   inline void change_owner(int player_id) { player_id_ = player_id; }
 
   inline std::optional<int> get_owner() { return player_id_; }
+  inline std::shared_ptr<CircleShape> get_shape() { return std::make_shared<CircleShape>(shape_); }
 
   inline void orphan() { is_orphan_ = true; }
 
@@ -100,6 +101,7 @@ class Tile {
 
  private:
   std::unique_ptr<Entity> entity_ = nullptr;
+  std::optional<CircleShape> shape_;
   TileType type_;
   std::array<bool, 6> walls_ = {false};
   std::optional<int> player_id_;
