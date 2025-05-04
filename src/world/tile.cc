@@ -6,8 +6,6 @@
 
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Text.hpp>
-#include <cmath>
-#include <filesystem>
 #include <iostream>
 #include <memory>
 #include <optional>

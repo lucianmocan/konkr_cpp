@@ -18,7 +18,6 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <memory>
 #include <string>
-#include <vector>
 
 namespace konkr {
 

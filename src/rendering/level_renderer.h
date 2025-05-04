@@ -13,7 +13,6 @@
 
 #include "rendering/graphics.h"
 #include "rendering/level.h"
-#include "rendering/sprite_sheet.h"
 
 namespace konkr {
 

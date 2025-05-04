@@ -11,6 +11,8 @@
 
 #include "world/building.h"
 #include "world/entity.h"
+#include <vector>
+#include <memory>
 
 namespace konkr {
 /**
