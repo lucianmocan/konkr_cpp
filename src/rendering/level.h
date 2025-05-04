@@ -87,8 +87,15 @@ class Level {
   std::vector<std::shared_ptr<Tile>> GetConnectedOwnedTiles(
       const std::shared_ptr<Tile>& start_tile);
 
+  std::vector<std::shared_ptr<Tile>> GetConnectedOwnedTiles(
+      const Vector2i start_tile);
+
   void UpdateActivePlayers();
 
+  void UpdateMoney();
+
+  // @brief Updates the level of the tiles based on the players' townhalls.
+  // also updates what tiles the players own
   void UpdateTilesLevel();
 
   /**

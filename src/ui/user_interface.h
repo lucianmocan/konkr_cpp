@@ -60,8 +60,7 @@ class UserInterface {
     @param mousePos Position of the mouse when clicked.
     @returns true if tile clicked, false otherwise.
   */
-  bool TileClicked(std::shared_ptr<FloatRect> bounds,
-    Vector2f mouse_pos);
+  bool TileClicked(std::shared_ptr<FloatRect> bounds, Vector2f mouse_pos);
 
   /**
     @brief Handles event occuring on the tile map.

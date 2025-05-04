@@ -38,7 +38,8 @@ void UserInterface::TileMapEvent(const sf::Event& event) {
           sf::Vector2f world_pos =
               render_target_.get_window().mapPixelToCoords(mouse_pos);
 
-          if (TileClicked(tile_opt->get_bounds(), Vector2f(world_pos.x, world_pos.y))) {
+          if (TileClicked(tile_opt->get_bounds(),
+                          Vector2f(world_pos.x, world_pos.y))) {
             std::cerr << tile_opt->get_bounds()->pos.y << std::endl;
             std::cerr << "Cliqué!" << std::endl;
           }
@@ -250,13 +251,24 @@ void UserInterface::SetupGame() {
   exitButton->onClick([this] { render_target_.get_window().close(); });
   gui_.add(exitButton);
 
-  // display current player
+  // next turn button
+  auto nextTurnButton = tgui::Button::create("Next Turn");
+  nextTurnButton->setSize(200, 60);
+  nextTurnButton->setPosition("(&.width) - 220", "(&.height) - 160");
+  nextTurnButton->onClick([this] {
+    if (selected_level_) {
+      selected_level_->NextTurn();
+      SetupGame();
+    }
+  });
+  gui_.add(nextTurnButton);
 
+  // display current player
   auto player = selected_level_->get_current_player();
 
   // Create a panel for the player info
   auto playerPanel = tgui::Panel::create();
-  playerPanel->setSize(400, 40);
+  playerPanel->setSize(400, 80);
   playerPanel->setPosition("(&.width) - 420", 10);
   playerPanel->getRenderer()->setBackgroundColor(tgui::Color(30, 30, 30, 200));
   playerPanel->getRenderer()->setBorders(1);
@@ -269,12 +281,26 @@ void UserInterface::SetupGame() {
   playerTextLabel->getRenderer()->setTextColor(tgui::Color::White);
   playerPanel->add(playerTextLabel);
 
-  // Player name label in yellow
   auto playerNameLabel = tgui::Label::create(player->name());
   playerNameLabel->setPosition(200, 8);
   playerNameLabel->setTextSize(16);
   playerNameLabel->getRenderer()->setTextColor(tgui::Color::Yellow);
   playerPanel->add(playerNameLabel);
+
+  if (!player->townhalls().empty()) {
+    auto thall = player->townhalls().front();
+    int money = thall->money();
+    int upkeep = thall->upkeep_cost();
+    int after_upkeep = money + upkeep;
+    std::string money_text = "Money: " + std::to_string(money) +
+                             " (after upkeep: " + std::to_string(after_upkeep) +
+                             ")";
+    auto moneyLabel = tgui::Label::create(money_text);
+    moneyLabel->setPosition(10, 40);
+    moneyLabel->setTextSize(14);
+    moneyLabel->getRenderer()->setTextColor(tgui::Color::White);
+    playerPanel->add(moneyLabel);
+  }
 
   gui_.add(playerPanel);
 }

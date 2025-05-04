@@ -13,6 +13,8 @@
 #include <memory>
 #include <string>
 
+#include "rendering/graphics.h"
+
 namespace konkr {
 
 std::string entity_format_display_name(const std::string& sprite_name);
@@ -86,6 +88,10 @@ class Entity {
         name_(entity_format_display_name(entity_type_to_string(type_))) {}
 
   inline EntityType type() const { return type_; }
+  inline bool is_townhall() { return type() == EntityType::Townhall; }
+
+  inline bool is_bandit() { return type() == EntityType::Bandit; }
+
   inline int level() const { return level_; }
   inline void setLevel(int level) { level_ = level; }
 
@@ -96,14 +102,23 @@ class Entity {
     return type_ == EntityType::Townhall || type_ == EntityType::Castle;
   }
 
+  inline bool is_human_unit() { return type_ == EntityType::HumanUnit; }
+
   virtual int upkeep_cost() const { return upkeep_cost_; }
+  inline void set_upkeep_cost(int upkeep_cost) { upkeep_cost_ = upkeep_cost; }
+
+  inline Vector2i grid_position() const { return grid_position_; }
+  inline void set_grid_position(Vector2i grid_position) {
+    grid_position_ = grid_position;
+  }
 
  private:
   EntityType type_;
   int level_ = 0;
-  int upkeep_cost_ = 0;
+  int upkeep_cost_ = 1;
   std::string sprite_name_;
   std::string name_;
+  Vector2i grid_position_ = {0, 0};
 };
 
 std::unique_ptr<Entity> CreateEntity(Entity::EntityType type, int level = 0);

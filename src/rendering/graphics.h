@@ -60,7 +60,8 @@ struct Rect {
     const auto min = [](T a, T b) { return (a < b) ? a : b; };
     const auto max = [](T a, T b) { return (a < b) ? b : a; };
 
-    // Rectangles with negative dimensions are allowed, so we must handle them correctly
+    // Rectangles with negative dimensions are allowed, so we must handle them
+    // correctly
 
     // Compute the real min and max of the rectangle on both axes
     const T minX = min(pos.x, static_cast<T>(pos.x + size.x));
@@ -68,7 +69,8 @@ struct Rect {
     const T minY = min(pos.y, static_cast<T>(pos.y + size.y));
     const T maxY = max(pos.y, static_cast<T>(pos.y + size.y));
 
-    return (point.x >= minX) && (point.x < maxX) && (point.y >= minY) && (point.y < maxY);
+    return (point.x >= minX) && (point.x < maxX) && (point.y >= minY) &&
+           (point.y < maxY);
   }
 };
 

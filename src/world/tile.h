@@ -118,7 +118,8 @@ class Tile {
 
  private:
   std::shared_ptr<Entity> entity_ = nullptr;
-  std::unique_ptr<FloatRect> bounds_ = nullptr; // Bounds of the object being rendered on the window
+  std::unique_ptr<FloatRect> bounds_ =
+      nullptr;  // Bounds of the object being rendered on the window
   TileType type_;
   std::array<bool, 6> walls_ = {false};
   std::optional<int> player_id_;

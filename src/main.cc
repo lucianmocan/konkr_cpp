@@ -73,25 +73,7 @@ int main() {
     }
 
     ui.Draw();
-    // {
-    //   const auto& sprite_defs = sprite_sheet.GetAllSpriteNames();
-    //   float x = 100.0f;
-    //   float y = 70.0f;
-    //   float spacing = 80.0f;
-
-    //   for (const auto& name : sprite_defs) {
-    //     if (name.find("palisade") != std::string::npos) {
-    //       auto sprite = sprite_sheet.CreateSprite(name);
-    //       if (sprite) {
-    //         sprite->setPosition({x, y});
-    //         render_target.draw(*sprite);
-    //       }
-    //       x+= spacing;
-    //     }
-    //   }
-    // }
-
-    render_target.get_window().display();  // Update the window
+    render_target.get_window().display();
   }
 
   return 0;

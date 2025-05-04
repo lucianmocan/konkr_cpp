@@ -26,7 +26,7 @@ class HumanUnit : public Entity {
   inline void set_upkeep_cost(int upkeep_cost) { upkeep_cost_ = upkeep_cost; }
 
  private:
-  int upkeep_cost_ = 2;
+  int upkeep_cost_ = -2;
 };
 
 }  // namespace konkr

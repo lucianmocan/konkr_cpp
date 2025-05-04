@@ -130,9 +130,8 @@ void Tile::Render(RenderTarget& target, Vector2f position, float radius,
   }
 
   bounds_ = std::make_unique<FloatRect>(
-    Position(tile.get_global_bounds().pos.x, tile.get_global_bounds().pos.y),
-    Size(tile.get_global_bounds().size.x, tile.get_global_bounds().size.y)
-  );
+      Position(tile.get_global_bounds().pos.x, tile.get_global_bounds().pos.y),
+      Size(tile.get_global_bounds().size.x, tile.get_global_bounds().size.y));
 }
 
 }  // namespace konkr

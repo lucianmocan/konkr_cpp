@@ -20,7 +20,7 @@ class Bandit : public Entity {
   using Entity::Entity;
 
  private:
-  int upkeep_cost = 1;
+  int upkeep_cost = -1;
 };
 
 }  // namespace konkr

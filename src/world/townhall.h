@@ -9,6 +9,9 @@
 #ifndef KONKR_WORLD_TOWNHALL_H
 #define KONKR_WORLD_TOWNHALL_H
 
+#include <memory>
+#include <vector>
+
 #include "world/building.h"
 #include "world/entity.h"
 
@@ -24,7 +27,7 @@ class Townhall : public Building {
   void DecreaseLevel() override;
 
   inline int money() const { return money_; }
-  inline void setMoney(int money) {
+  inline void set_money(int money) {
     money_ = money;
     if (money >= 10 * level()) {
       IncreaseLevel();
@@ -33,11 +36,8 @@ class Townhall : public Building {
     }
   }
 
-  inline int upkeep_cost() const override;
-
  private:
   int money_ = 10;
-  std::vector<std::shared_ptr<Entity>> units_;
 };
 }  // namespace konkr
 

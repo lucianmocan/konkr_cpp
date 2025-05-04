@@ -21,7 +21,7 @@ class Castle : public Building {
 
  private:
   int buy_cost = 20;
-  int upkeep_cost_ = 2;
+  int upkeep_cost_ = -2;
 };
 }  // namespace konkr
 

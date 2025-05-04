@@ -47,6 +47,7 @@ std::vector<std::shared_ptr<Level>> Level::GetAvailableLevels(
 }
 
 bool Level::Load() {
+  map_.clear();
   std::ifstream definition_stream(file_path_);
   if (!definition_stream.is_open()) {
     std::cerr << "Failed to open level file: " << file_path_ << std::endl;
@@ -100,12 +101,8 @@ void Level::CreateTiles() {
         if (col + 1 < line.size() && std::isdigit(line[col + 1])) {
           int player_id = line[col + 1] - '0';
           tile = Tile::FromAscii(c, player_id);
-          if (!Tile::is_sand(c)) {
-            std::cout << "Found not sand: " << c << " for player " << player_id
-                      << std::endl;
-            // if it's not sand we create an entity
-            tile->set_entity(CreateEntity(c));
-          }
+          // if it's not sand we create an entity
+          tile->set_entity(CreateEntity(c));
           if (Entity::is_building(c)) {
             tiles_buildings_.push_back(tile);
             if (Entity::is_townhall(c)) {
@@ -121,7 +118,7 @@ void Level::CreateTiles() {
               // get the player
               auto& player = players_.at(player_id);
               // add the townhall to the player
-              player.townhalls().push_back(
+              player.townhalls_mutable().push_back(
                   std::dynamic_pointer_cast<Townhall>(tile->entity()));
             }
           }
@@ -131,6 +128,9 @@ void Level::CreateTiles() {
         }
       }
       tile->set_grid_position({i, j++});
+      if (tile->entity()) {
+        tile->entity()->set_grid_position({i, j - 1});
+      }
       row.push_back(std::move(tile));
     }
     tiles_.push_back(std::move(row));
@@ -140,28 +140,29 @@ void Level::CreateTiles() {
 }
 
 void Level::UpdateTilesLevel() {
-  // if Tile is Townhall or Castle, or neighbor of a Townhall or Castle,
-  // then set level_ to 1
   // For each building (e.g., Townhall or Castle), claim connected tiles
   for (const auto& building : tiles_buildings_) {
     if (auto tile = building.lock()) {
       auto connected = GetConnectedOwnedTiles(tile);
       for (auto& t : connected) {
         t->claim();
+        // if the tile is a townhall, then update the upkeep cost
+        // using the upkeep of the new connected tile
+        if (tile->entity()->is_townhall()) {
+          tile->entity()->set_upkeep_cost(tile->entity()->upkeep_cost() +
+                                          t->entity()->upkeep_cost());
+        }
       }
     }
   }
 
+  // if Tile is Townhall or Castle, or neighbor of a Townhall or Castle,
+  // then set level_ to 1
   for (const auto& building : tiles_buildings_) {
     if (auto tile = building.lock()) {
       tile->set_level(1);
       auto neighbors = tile->GetNeighboringTilesGridPosition();
-      std::cout << "Building: " << tile->grid_position().x << ", "
-                << tile->grid_position().y << std::endl;
-      std::cout << "Neighbors: " << neighbors.size() << std::endl;
       for (const auto& neighbor : neighbors) {
-        std::cout << "Neighbor: " << neighbor.x << ", " << neighbor.y
-                  << std::endl;
         auto& neighbor_tile = tiles_[neighbor.x][neighbor.y];
         if (neighbor_tile && !Tile::is_decoration(neighbor_tile->type()) &&
             tile->get_owner() == neighbor_tile->get_owner()) {
@@ -170,6 +171,11 @@ void Level::UpdateTilesLevel() {
       }
     }
   }
+}
+
+std::vector<std::shared_ptr<Tile>> Level::GetConnectedOwnedTiles(
+    const Vector2i start_tile) {
+  return GetConnectedOwnedTiles(tiles_[start_tile.x][start_tile.y]);
 }
 
 std::vector<std::shared_ptr<Tile>> Level::GetConnectedOwnedTiles(
@@ -213,7 +219,27 @@ std::vector<std::shared_ptr<Tile>> Level::GetConnectedOwnedTiles(
   return connected_tiles;
 }
 
+void Level::UpdateMoney() {
+  auto player = get_current_player();
+  if (!player) return;
+
+  for (const auto& townhall : player->townhalls()) {
+    townhall->set_money(townhall->money() + townhall->upkeep_cost());
+    if (townhall->money() < 0) {
+      auto connected_tiles = GetConnectedOwnedTiles(townhall->grid_position());
+      for (const auto& tile : connected_tiles) {
+        if (tile->entity()->is_human_unit()) {
+          tile->set_entity(CreateEntity(Entity::EntityType::Bandit));
+        }
+      }
+    }
+  }
+}
+
 void Level::UpdateActivePlayers() {
+  UpdateTilesLevel();
+  UpdateMoney();
+
   if (tiles_.empty()) return;
 
   std::vector<std::optional<int>> active_players;
@@ -222,10 +248,10 @@ void Level::UpdateActivePlayers() {
     const auto& tile_row = tiles_[row];
 
     for (size_t col = 0; col < tile_row.size(); ++col) {
-      const auto& tile_opt = tile_row[col];
-      if (!tile_opt) continue;
+      const auto& tile = tile_row[col];
+      if (!tile) continue;
 
-      std::optional<int> tile_owner = ((Tile&)tile_opt).get_owner();
+      std::optional<int> tile_owner = tile->get_owner();
       // If current "winner" isn't the only one left on the map, then the game
       // isn't over:
       if (tile_owner.has_value()) {
@@ -256,6 +282,7 @@ void Level::UpdateActivePlayers() {
 void Level::NextTurn() {
   UpdateActivePlayers();
   cur_player_idx_ = (cur_player_idx_ + 1) % active_players_count();
+  std::cout << "Next turn: " << cur_player_idx_ << std::endl;
 }
 
 const bool Level::CheckEnd() {

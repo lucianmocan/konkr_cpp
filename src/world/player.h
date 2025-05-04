@@ -28,9 +28,15 @@ class Player {
 
   inline std::string name() const { return name_; }
   inline int id() const { return id_; }
-  inline std::vector<std::shared_ptr<Townhall>> townhalls() const {
+  inline const std::vector<std::shared_ptr<Townhall>>& townhalls() {
     return townhalls_;
   }
+
+  inline std::vector<std::shared_ptr<Townhall>>& townhalls_mutable() {
+    return townhalls_;
+  }
+
+  inline const int townhall_count() const { return townhalls_.size(); }
 
  private:
   int id_;
