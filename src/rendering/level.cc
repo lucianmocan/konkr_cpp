@@ -11,6 +11,7 @@
 #include <memory>
 #include <optional>
 #include <set>
+#include <queue>
 
 #include "world/entity.h"
 #include "world/player.h"
