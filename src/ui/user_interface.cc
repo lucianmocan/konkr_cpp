@@ -55,9 +55,9 @@ void UserInterface::TileMapEvent(const sf::Event& event) {
           sf::Vector2f worldPos =
               render_target_.get_window().mapPixelToCoords(mousePos);
 
-          // if (TileClicked(tile_opt->get_shape(), worldPos)) {
-          //   std::cerr << "Cliquééé" << std::endl;
-          // }
+          if (TileClicked(tile_opt->get_shape(), worldPos)) {
+            std::cerr << "Cliquééé" << std::endl;
+          }
         }
       }
     }

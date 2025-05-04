@@ -102,7 +102,7 @@ class Transform {
 class CircleShape {
  public:
   CircleShape(float radius, int pointCount);
-  CircleShape(CircleShape&& c);
+  CircleShape(const CircleShape& c);
   ~CircleShape();
 
   void set_origin(Vector2f origin);

@@ -60,18 +60,18 @@ std::vector<Vector2i> Tile::GetNeighboringTilesGridPosition() const {
 
 void Tile::Render(RenderTarget& target, Vector2f position, float radius,
                   const SpriteSheet& sprite_sheet) {
-  CircleShape circle(radius, 6);
-  circle.set_origin({radius, radius});
-  circle.set_position(position);
+  CircleShape tile(radius, 6);
+  tile.set_origin({radius, radius});
+  tile.set_position(position);
 
   if (type_ == TileType::Sand) {
-    circle.set_fill_color(ColorPalette::SandColorForPlayer(player_id_));
+    tile.set_fill_color(ColorPalette::SandColorForPlayer(player_id_));
   } else if (type_ == TileType::Water) {
-    circle.set_fill_color(ColorPalette::OceanBlue);
+    tile.set_fill_color(ColorPalette::OceanBlue);
   } else if (type_ == TileType::Forest) {
-    circle.set_fill_color(Color(60, 120, 60));
+    tile.set_fill_color(Color(60, 120, 60));
   }
-  target.draw(circle);
+  target.draw(tile);
 
   if (entity_) {
     if (entity_->type() != Entity::EntityType::Unknown) {
@@ -115,6 +115,8 @@ void Tile::Render(RenderTarget& target, Vector2f position, float radius,
     text.set_position({position.x, position.y - radius / 2});
     target.draw(text);
   }
+
+  shape_ = std::make_unique<CircleShape>(tile);
 }
 
 }  // namespace konkr

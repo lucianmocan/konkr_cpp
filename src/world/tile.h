@@ -62,13 +62,9 @@ class Tile {
   inline void change_owner(int player_id) { player_id_ = player_id; }
 
   inline std::optional<int> get_owner() { return player_id_; }
-  // inline std::shared_ptr<CircleShape> get_shape() {
-  //   return std::make_shared<CircleShape>(*shape_);
-  // }
-
-  // inline void set_shape(std::unique_ptr<CircleShape> shape) {
-  //   shape_ = std::move(shape);
-  // }
+  inline std::shared_ptr<CircleShape> get_shape() {
+    return std::make_shared<CircleShape>(*shape_);
+  }
 
   inline int level() const { return level_; }
 
