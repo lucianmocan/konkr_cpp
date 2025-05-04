@@ -10,6 +10,7 @@
 #include "rendering/color_palette.h"
 #include "rendering/level.h"
 #include "rendering/level_renderer.h"
+#include "rendering/graphics.h"
 #include "rendering/sprite_sheet.h"
 #include "ui/user_interface.h"
 #include "world/entity.h"
@@ -41,6 +42,8 @@ int main() {
     return -1;
   }
 
+
+
   if (sprite_sheet.LoadEntitySpriteMappings("assets/entity_sprites.json")) {
     std::cout << "Successfully loaded entity sprite mappings." << std::endl;
   } else {
@@ -49,21 +52,21 @@ int main() {
   }
 
   konkr::RenderTarget render_target({1920u, 1080u}, "konkr");
-  render_target.getWindow().setFramerateLimit(144);
+  render_target.get_window().setFramerateLimit(144);
   konkr::UserInterface ui(render_target);
 
   konkr::LevelRenderer renderer;
 
   // Main game loop
-  while (render_target.getWindow().isOpen()) {
-    while (const std::optional event = render_target.getWindow().pollEvent()) {
+  while (render_target.get_window().isOpen()) {
+    while (const std::optional event = render_target.get_window().pollEvent()) {
       ui.HandleEvent(*event);
       if (event->is<sf::Event::Closed>()) {
-        render_target.getWindow().close();
+        render_target.get_window().close();
       }
     }
 
-    render_target.getWindow().clear(konkr::ColorPalette::OceanBlue);
+    render_target.get_window().clear(konkr::ColorPalette::OceanBlue);
 
     // Draw the level if in Game state
     if (ui.current_state() == konkr::UserInterfaceState::Game &&
@@ -72,7 +75,25 @@ int main() {
     }
 
     ui.Draw();
-    render_target.getWindow().display();  // Update the window
+    // {
+    //   const auto& sprite_defs = sprite_sheet.GetAllSpriteNames();
+    //   float x = 100.0f;
+    //   float y = 70.0f;
+    //   float spacing = 80.0f;
+  
+    //   for (const auto& name : sprite_defs) {
+    //     if (name.find("palisade") != std::string::npos) {
+    //       auto sprite = sprite_sheet.CreateSprite(name);
+    //       if (sprite) {
+    //         sprite->setPosition({x, y});
+    //         render_target.draw(*sprite);
+    //       }
+    //       x+= spacing;
+    //     }
+    //   }
+    // }
+
+    render_target.get_window().display();  // Update the window
   }
 
   return 0;

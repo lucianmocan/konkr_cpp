@@ -6,12 +6,16 @@
 
 #include <iostream>
 #include <memory>
+#include <filesystem>
 #include <optional>
 #include <string>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/Font.hpp>
 
 #include "rendering/color_palette.h"
 #include "rendering/graphics.h"
 #include "rendering/sprite_sheet.h"
+#include "rendering/level_renderer.h"
 
 namespace konkr {
 
@@ -57,15 +61,15 @@ std::vector<Vector2i> Tile::GetNeighboringTilesGridPosition() const {
 void Tile::Render(RenderTarget& target, Vector2f position, float radius,
                   const SpriteSheet& sprite_sheet) const {
   CircleShape tile(radius, 6);
-  tile.setOrigin({radius, radius});
-  tile.setPosition(position);
+  tile.set_origin({radius, radius});
+  tile.set_position(position);
 
   if (type_ == TileType::Sand) {
-    tile.setFillColor(ColorPalette::SandColorForPlayer(player_id_));
+    tile.set_fill_color(ColorPalette::SandColorForPlayer(player_id_));
   } else if (type_ == TileType::Water) {
-    tile.setFillColor(ColorPalette::OceanBlue);
+    tile.set_fill_color(ColorPalette::OceanBlue);
   } else if (type_ == TileType::Forest) {
-    tile.setFillColor(Color(60, 120, 60));
+    tile.set_fill_color(Color(60, 120, 60));
   }
   target.draw(tile);
 
@@ -81,9 +85,9 @@ void Tile::Render(RenderTarget& target, Vector2f position, float radius,
               Graphics::CreateSprite(sprite_sheet.GetTexture(), info->rect);
           // Sets origin to center of the sprite
           if (sprite) {
-            sprite->setOrigin(
-                {info->rect.size.width / 2.f, info->rect.size.height / 2.f});
-            sprite->setPosition(position);
+            sprite->set_origin(
+                {info->rect.size.x / 2.f, info->rect.size.y / 2.f});
+            sprite->set_position(position);
             target.draw(*sprite);
           }
         } else {
@@ -96,6 +100,21 @@ void Tile::Render(RenderTarget& target, Vector2f position, float radius,
                   << std::endl;
       }
     }
+  }
+
+  // --- Draw "D" if level_ == 1 ---
+  if (level() == 1) {
+    const Font& font = LevelRenderer::get_font();
+    std::cout << "Font loaded: " << font.is_loaded() << std::endl;
+    Text text(font, "D", 16);
+    text.set_fill_color(Color::Yellow);
+    text.set_outline_color(Color::Black);
+    text.set_outline_thickness(2);
+
+    FloatRect bounds = text.get_local_bounds();
+    text.set_origin({bounds.size.x / 2, bounds.size.y / 2});
+    text.set_position({position.x, position.y - radius / 2});
+    target.draw(text);
   }
 }
 

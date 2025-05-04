@@ -15,6 +15,10 @@ namespace konkr {
 class Bandit : public Entity {
  public:
   using Entity::Entity;
+
+
+ private:
+  int upkeep_cost = 1;
 };
 
 }  // namespace konkr

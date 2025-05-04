@@ -127,34 +127,29 @@ void Level::CreateTiles() {
     tiles_.push_back(std::move(row));
     ++i;
   }
+  UpdateTilesLevel();
 }
 
-void Level::AddWalls() const {
-  // tiles that are a +1 neighbor to a tile with a townhall
-  // or castle should have walls to the exterior
-  // those tiles should also belong to the same player
-  for (const auto& tile_building : tiles_buildings_) {
-    if (auto tile = tile_building.lock()) {
-      auto neighbors = tile->GetNeighboringTilesGridPosition();
 
-      for (const auto& neighbor_pos : neighbors) {
-        auto& neighbor_tile = tiles_[neighbor_pos.x][neighbor_pos.y];
-        if (neighbor_tile && neighbor_tile->get_owner() == tile->get_owner()) {
-          // Check if the neighbor tile is a sand tile
-          if (Tile::is_sand(neighbor_tile->type())) {
-            // Add walls to the neighbor tile
-            for (const auto& wall_pos :
-                 neighbor_tile->GetNeighboringTilesGridPosition()) {
-              if (wall_pos.x == tile->grid_position().x &&
-                  wall_pos.y == tile->grid_position().y) {
-                neighbor_tile->add_wall(WallPosition::TopRight);
-              }
-            }
-          }
+
+void Level::UpdateTilesLevel() {
+  // if Tile is Townhall or Castle, or neighbor of a Townhall or Castle,
+  // then set level_ to 1
+  for (const auto& building : tiles_buildings_) {
+    if (auto tile = building.lock()) {
+      tile->set_level(1);
+      tile->claim();
+      for (const auto& neighbor : tile->GetNeighboringTilesGridPosition()) {
+        auto& neighbor_tile = tiles_[neighbor.x][neighbor.y];
+        if (neighbor_tile && !Tile::is_decoration(neighbor_tile->type()) && tile->get_owner() == neighbor_tile->get_owner()) {
+          neighbor_tile->set_level(1);
+          neighbor_tile->claim();
         }
       }
     }
   }
+  
+  
 }
 
 void Level::UpdateActivePlayers() {

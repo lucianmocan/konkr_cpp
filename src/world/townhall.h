@@ -19,6 +19,19 @@ class Townhall : public Building {
 
   void IncreaseLevel() override;
   void DecreaseLevel() override;
+
+  inline int money() const { return money_; }
+  inline void setMoney(int money) { 
+    money_ = money;
+    if (money >= 10 * level()){
+      IncreaseLevel();
+    } else if (money < 10 * level()) {
+      DecreaseLevel();
+    }
+  }
+  
+  private:
+  int money_ = 10;
 };
 }  // namespace konkr
 

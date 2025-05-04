@@ -79,9 +79,9 @@ class Level {
     return tiles_buildings_;
   }
 
-  void AddWalls() const;
-
   void UpdateActivePlayers();
+
+  void UpdateTilesLevel();
 
   void NextTurn();
 

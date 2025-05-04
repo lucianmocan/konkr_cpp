@@ -4,7 +4,6 @@
 
 #include "rendering/level_renderer.h"
 
-#include <SFML/Graphics.hpp>
 #include <cmath>
 #include <filesystem>
 #include <iostream>
@@ -17,10 +16,14 @@
 
 namespace konkr {
 
+static Font g_font;
+static bool g_font_loaded = false;
+
 bool LevelRenderer::LoadFont(const std::string& path) {
-  if (!font_loaded_) {
-    if (font_.openFromFile(std::filesystem::path(path))) {
-      font_loaded_ = true;
+  if (!g_font_loaded) {
+    g_font = Font(path);
+    if (g_font.is_loaded()) {
+      g_font_loaded = true;
       return true;
     }
     return false;
@@ -28,10 +31,16 @@ bool LevelRenderer::LoadFont(const std::string& path) {
   return true;
 }
 
+const Font& LevelRenderer::get_font() {
+  return g_font;
+}
+
+
 void LevelRenderer::Render(RenderTarget& target,
                            std::shared_ptr<const Level> level,
                            float hex_radius) const {
   auto& sprite_sheet = SpriteSheet::GetInstance();
+  LoadFont("assets/fonts/OCRA/OCRA.ttf");
   const float hex_height = 2 * hex_radius;
   const float hex_width = std::sqrt(3.0f) * hex_radius;
   const float vert_spacing = hex_height * 0.75f;
@@ -43,18 +52,15 @@ void LevelRenderer::Render(RenderTarget& target,
   if (tiles.empty()) return;
 
   // We want to center the map in the window
-  // Calculate the map size
   const size_t num_rows = tiles.size();
   const size_t num_cols = tiles[0].size();
   const float map_width = num_cols * hex_width + (hex_width / 2);
   const float map_height = num_rows * vert_spacing;
 
-  // Then we get the window size
-  const Vector2u window_size = target.getSize();
+  const Vector2u window_size = target.get_size();
   const float window_width = static_cast<float>(window_size.x);
   const float window_height = static_cast<float>(window_size.y);
 
-  // And we calculate the offsets (so that the map is centered)
   const float x_offset = (window_width - map_width) / 2.0f;
   const float y_offset = (window_height - map_height) / 2.0f;
 
@@ -73,7 +79,6 @@ void LevelRenderer::Render(RenderTarget& target,
       tile_opt->Render(target, Vector2f(x, y), hex_radius, sprite_sheet);
     }
   }
-  // level->BuildWalls();
 }
 
 }  // namespace konkr

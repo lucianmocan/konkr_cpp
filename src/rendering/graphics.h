@@ -14,21 +14,41 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/Font.hpp>
 #include <memory>
 #include <string>
 #include <vector>
 
 namespace konkr {
+  
 
+template <typename T>
 struct Position {
-  int x;
-  int y;
+  T x;
+  T y;
+  Position() : x(0), y(0) {}
+  Position(T x, T y) : x(x), y(y) {}
 };
 
+template <typename T>
 struct Size {
-  int width;
-  int height;
+  T x;
+  T y;
+  Size() : x(0), y(0) {}
+  Size(T x, T y) : x(x), y(y) {}
 };
+
+template <typename T>
+struct Rect {
+  Position<T> pos;
+  Size<T> size;
+  Rect() : pos(), size() {}
+  Rect(Position<T> pos, Size<T> sz) : pos(pos), size(sz) {}
+};
+
+using IntRect = Rect<int>;
+using FloatRect = Rect<float>;
 
 template <typename T>
 struct Vector2 {
@@ -40,14 +60,6 @@ struct Vector2 {
 using Vector2f = Vector2<float>;
 using Vector2i = Vector2<int>;
 using Vector2u = Vector2<unsigned int>;
-
-struct IntRect {
-  Position pos;
-  Size size;
-
-  IntRect(Position pos, Size sz) : pos(pos), size(sz) {}
-  IntRect() : pos{0, 0}, size{0, 0} {}
-};
 
 class Texture {
  public:
@@ -65,8 +77,8 @@ class Sprite {
   Sprite(const Texture& texture);
   ~Sprite();
 
-  void setOrigin(Vector2f origin);
-  void setPosition(Vector2f position);
+  void set_origin(Vector2f origin);
+  void set_position(Vector2f position);
 
  private:
   friend class Graphics;
@@ -74,46 +86,84 @@ class Sprite {
   const Texture* texture_;
   sf::Sprite sprite_;
 };
+   
+   class CircleShape {
+    public:
+     CircleShape(float radius, int pointCount);
+     ~CircleShape();
+   
+     void set_origin(Vector2f origin);
+     void set_position(Vector2f position);
+     void set_fill_color(const class Color& color);
 
-class CircleShape {
- public:
-  CircleShape(float radius, int pointCount);
-  ~CircleShape();
+   
+    private:
+     friend class RenderTarget;
+     sf::CircleShape circle_shape_;
+   };
 
-  void setOrigin(Vector2f origin);
-  void setPosition(Vector2f position);
-  void setFillColor(const class Color& color);
-
- private:
-  friend class RenderTarget;
-  sf::CircleShape circle_shape_;
-};
-
-class RenderTarget {
- public:
-  RenderTarget(Vector2u size, const std::string& title);
-  ~RenderTarget();
-
-  void draw(const CircleShape& shape);
-  void draw(const Sprite& sprite);
-  Vector2u getSize() const;
-  sf::RenderWindow& getWindow();
-
- private:
-  sf::RenderWindow window_;
-};
 
 class Color {
  public:
   Color(int r, int g, int b);
   ~Color();
 
+  static Color Yellow;
+  static Color Black;
+
   operator sf::Color() const;
 
  private:
   friend class CircleShape;
+  friend class Text;
   sf::Color color_;
 };
+
+class Font {
+  public:
+    Font() = default;
+    Font(const std::string& path);
+    ~Font();
+
+    bool is_loaded() const { return loaded_; }
+  
+  private:
+    friend class Text;
+    sf::Font font_;
+    bool loaded_ = false;
+};
+
+class Text {
+  public:
+    Text(const Font& font, const std::string& text, unsigned int size);
+    ~Text();
+
+    void set_fill_color(const Color& color);
+    void set_position(Vector2f position);
+    void set_outline_color(const Color& color);
+    void set_outline_thickness(float thickness);
+    void set_origin(Vector2f origin);
+    FloatRect get_local_bounds() const;
+
+    private:
+      friend class RenderTarget;
+      sf::Text text_;
+};
+
+class RenderTarget {
+  public:
+   RenderTarget(Vector2u size, const std::string& title);
+   ~RenderTarget();
+ 
+   void draw(const CircleShape& shape);
+   void draw(const Sprite& sprite);
+   void draw(const Text& text);
+   Vector2u get_size() const;
+   sf::RenderWindow& get_window();
+ 
+  private:
+   sf::RenderWindow window_;
+ };
 
 class Graphics {
  public:

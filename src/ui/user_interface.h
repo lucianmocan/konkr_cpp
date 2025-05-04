@@ -34,7 +34,7 @@ class UserInterface {
 
   UserInterface(RenderTarget& render_target)
       : render_target_(render_target),
-        gui_(render_target.getWindow()),
+        gui_(render_target.get_window()),
         current_state_(UserInterfaceState::HomePage) {
     gui_.setFont("assets/fonts/OCRA/OCRA.ttf");
     SetupHomePage();

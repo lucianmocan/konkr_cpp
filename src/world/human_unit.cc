@@ -14,6 +14,7 @@ void HumanUnit::IncreaseLevel() {
     return;
   }
   setLevel(level() + 1);
+  set_upkeep_cost(upkeep_cost_ * 3);
 }
 
 void HumanUnit::DecreaseLevel() {
@@ -21,5 +22,6 @@ void HumanUnit::DecreaseLevel() {
     return;
   }
   setLevel(level() - 1);
+  set_upkeep_cost(upkeep_cost_ / 3);
 }
 }  // namespace konkr

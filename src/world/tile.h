@@ -45,7 +45,23 @@ class Tile {
 
   static inline bool is_decoration(char c) { return is_forest(c) || c == '~'; }
 
+  static inline bool is_decoration(TileType type) {
+    return type == TileType::Forest || type == TileType::Water;
+  }
+
   static inline bool is_forest(char c) { return c == '#'; }
+
+  static WallPosition GetWallPosition(const Vector2i& from, const Vector2i& to) {
+    int dx = to.x - from.x;
+    int dy = to.y - from.y;
+
+    if (dx == 0 && dy == 1)  return WallPosition::Right;
+    if (dx == 0 && dy == -1) return WallPosition::Left;
+    if (dx == -1 && dy == 0) return WallPosition::TopLeft;
+    if (dx == -1 && dy == 1) return WallPosition::TopRight;
+    if (dx == 1 && dy == 0)  return WallPosition::BottomLeft;
+    if (dx == 1 && dy == 1)  return WallPosition::BottomRight;
+  }
 
   Tile(TileType type) : type_(type) {}
   Tile(TileType type, std::optional<int> player_id)
@@ -61,7 +77,13 @@ class Tile {
     return nullptr;
   }
 
+  inline int level() const { return level_; }
+
+  inline void set_level(int level) { level_ = level; }
+
   inline void orphan() { is_orphan_ = true; }
+
+  inline bool is_orphan() const { return is_orphan_; }
 
   inline void claim() { is_orphan_ = false; }
 
@@ -111,6 +133,7 @@ class Tile {
   std::array<bool, 6> walls_ = {false};
   std::optional<int> player_id_;
   bool is_orphan_ = true;
+  int level_ = -1;
   Vector2i grid_position_ = {0, 0};
 };
 

@@ -89,6 +89,11 @@ class Entity {
   virtual void IncreaseLevel() {}
   virtual void DecreaseLevel() {}
 
+  inline bool is_building() {
+    return type_ == EntityType::Townhall || type_ == EntityType::Castle;
+  }
+
+
  private:
   EntityType type_;
   int level_ = 0;
