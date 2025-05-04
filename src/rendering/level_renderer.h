@@ -9,6 +9,7 @@
 #ifndef KONKR_RENDERING_LEVEL_RENDERER_H
 #define KONKR_RENDERING_LEVEL_RENDERER_H
 
+#include <SFML/Graphics.hpp>
 #include <memory>
 
 #include "rendering/graphics.h"
@@ -19,8 +20,14 @@ namespace konkr {
 
 class LevelRenderer {
  public:
+  bool LoadFont(const std::string& path);
+
   void Render(RenderTarget& target, std::shared_ptr<const Level> level,
               float hex_radius) const;
+
+ private:
+  sf::Font font_;
+  bool font_loaded_ = false;
 };
 
 }  // namespace konkr

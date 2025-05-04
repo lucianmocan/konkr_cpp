@@ -11,6 +11,8 @@
 
 #include <string>
 
+#include "world/townhall.h"
+
 namespace konkr {
 
 // Generates a random warrior name using a combination of prefixes, stems, and

@@ -9,6 +9,7 @@
 #ifndef KONKR_WORLD_ENTITY_H
 #define KONKR_WORLD_ENTITY_H
 
+#include <iostream>
 #include <memory>
 #include <string>
 
@@ -26,6 +27,10 @@ class Entity {
     Bandit,
     Unknown
   };
+
+  static inline bool is_building(char c) { return is_townhall(c) || c == 'C'; }
+
+  static inline bool is_townhall(char c) { return c == 'T'; }
 
   virtual ~Entity() = default;
 
@@ -47,6 +52,8 @@ class Entity {
   }
 
   static const EntityType char_to_entity_type(char type) {
+    std::cout << "char_to_entity_type: " << type << std::endl;
+
     switch (type) {
       case 'F':
         return EntityType::Forest;

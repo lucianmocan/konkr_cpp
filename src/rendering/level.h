@@ -27,7 +27,7 @@ namespace konkr {
 // information, and display the map in ASCII format.
 class Level {
  public:
-  using Tiles = std::vector<std::vector<std::optional<Tile>>>;
+  using Tiles = std::vector<std::vector<std::shared_ptr<Tile>>>;
 
   Level(const Level&) = delete;
   Level& operator=(const Level&) = delete;

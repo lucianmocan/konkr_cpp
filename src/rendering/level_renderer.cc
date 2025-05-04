@@ -4,14 +4,30 @@
 
 #include "rendering/level_renderer.h"
 
+#include <SFML/Graphics.hpp>
 #include <cmath>
+#include <filesystem>
+#include <iostream>
 #include <memory>
+#include <string>
 
 #include "rendering/graphics.h"
 #include "rendering/sprite_sheet.h"
 #include "world/tile.h"
 
 namespace konkr {
+
+bool LevelRenderer::LoadFont(const std::string& path) {
+  if (!font_loaded_) {
+    if (font_.openFromFile(std::filesystem::path(path))) {
+      font_loaded_ = true;
+      return true;
+    }
+    return false;
+  }
+  return true;
+}
+
 void LevelRenderer::Render(RenderTarget& target,
                            std::shared_ptr<const Level> level,
                            float hex_radius) const {
@@ -53,9 +69,11 @@ void LevelRenderer::Render(RenderTarget& target,
       float x = col * hex_width + (indent ? (hex_width / 2) : 0) + x_padding +
                 x_offset;
       float y = row * vert_spacing + y_padding + y_offset;
+
       tile_opt->Render(target, Vector2f(x, y), hex_radius, sprite_sheet);
     }
   }
+  // level->BuildWalls();
 }
 
 }  // namespace konkr

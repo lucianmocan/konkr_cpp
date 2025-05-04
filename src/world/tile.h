@@ -54,7 +54,12 @@ class Tile {
   inline void change_owner(int player_id) { player_id_ = player_id; }
 
   inline std::optional<int> get_owner() { return player_id_; }
-  inline std::shared_ptr<CircleShape> get_shape() { return std::make_shared<CircleShape>(shape_); }
+  inline std::shared_ptr<CircleShape> get_shape() {
+    if (shape_) {
+      return std::make_shared<CircleShape>(*shape_);
+    }
+    return nullptr;
+  }
 
   inline void orphan() { is_orphan_ = true; }
 
