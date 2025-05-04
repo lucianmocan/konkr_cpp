@@ -96,9 +96,12 @@ class Entity {
     return type_ == EntityType::Townhall || type_ == EntityType::Castle;
   }
 
+  virtual int upkeep_cost() const { return upkeep_cost_; }
+
  private:
   EntityType type_;
   int level_ = 0;
+  int upkeep_cost_ = 0;
   std::string sprite_name_;
   std::string name_;
 };

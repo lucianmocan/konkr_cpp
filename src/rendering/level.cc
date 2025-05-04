@@ -10,6 +10,7 @@
 #include <iostream>
 #include <memory>
 #include <optional>
+#include <set>
 
 #include "world/entity.h"
 #include "world/player.h"
@@ -75,6 +76,8 @@ void Level::DisplayMapAscii() const {
 
 void Level::CreateTiles() {
   tiles_.clear();
+  players_.clear();
+  tiles_buildings_.clear();
   tiles_.reserve(map_.size());
 
   int i = 0;
@@ -108,12 +111,18 @@ void Level::CreateTiles() {
             if (Entity::is_townhall(c)) {
               // for each townhall, we create a player
               // if the player doesn't exist
-              if (std::none_of(players_.begin(), players_.end(),
-                               [player_id](const Player& player) {
-                                 return player.id() == player_id;
-                               })) {
-                players_.emplace_back(player_id);
+              if (std::none_of(
+                      players_.begin(), players_.end(),
+                      [player_id](const std::pair<const int, Player>& p) {
+                        return p.second.id() == player_id;
+                      })) {
+                players_.emplace(player_id, Player(player_id));
               }
+              // get the player
+              auto& player = players_.at(player_id);
+              // add the townhall to the player
+              player.townhalls().push_back(
+                  std::dynamic_pointer_cast<Townhall>(tile->entity()));
             }
           }
           col += 2;
@@ -133,20 +142,75 @@ void Level::CreateTiles() {
 void Level::UpdateTilesLevel() {
   // if Tile is Townhall or Castle, or neighbor of a Townhall or Castle,
   // then set level_ to 1
+  // For each building (e.g., Townhall or Castle), claim connected tiles
+  for (const auto& building : tiles_buildings_) {
+    if (auto tile = building.lock()) {
+      auto connected = GetConnectedOwnedTiles(tile);
+      for (auto& t : connected) {
+        t->claim();
+      }
+    }
+  }
+
   for (const auto& building : tiles_buildings_) {
     if (auto tile = building.lock()) {
       tile->set_level(1);
-      tile->claim();
-      for (const auto& neighbor : tile->GetNeighboringTilesGridPosition()) {
+      auto neighbors = tile->GetNeighboringTilesGridPosition();
+      std::cout << "Building: " << tile->grid_position().x << ", "
+                << tile->grid_position().y << std::endl;
+      std::cout << "Neighbors: " << neighbors.size() << std::endl;
+      for (const auto& neighbor : neighbors) {
+        std::cout << "Neighbor: " << neighbor.x << ", " << neighbor.y
+                  << std::endl;
         auto& neighbor_tile = tiles_[neighbor.x][neighbor.y];
         if (neighbor_tile && !Tile::is_decoration(neighbor_tile->type()) &&
             tile->get_owner() == neighbor_tile->get_owner()) {
           neighbor_tile->set_level(1);
-          neighbor_tile->claim();
         }
       }
     }
   }
+}
+
+std::vector<std::shared_ptr<Tile>> Level::GetConnectedOwnedTiles(
+    const std::shared_ptr<Tile>& start_tile) {
+  std::vector<std::shared_ptr<Tile>> connected_tiles;
+  auto owner = start_tile->get_owner();
+  if (!owner.has_value()) {
+    return connected_tiles;
+  }
+
+  std::set<std::pair<int, int>> visited;
+  std::queue<std::shared_ptr<Tile>> to_visit;
+  to_visit.push(start_tile);
+
+  while (!to_visit.empty()) {
+    auto current_tile = to_visit.front();
+    to_visit.pop();
+
+    auto pos = current_tile->grid_position();
+    auto key = std::make_pair(pos.x, pos.y);
+    if (visited.count(key)) continue;
+    visited.insert(key);
+
+    if (current_tile->get_owner() == owner &&
+        !Tile::is_decoration(current_tile->type())) {
+      connected_tiles.push_back(current_tile);
+      current_tile->claim();
+
+      for (const auto& neighbor_pos :
+           current_tile->GetNeighboringTilesGridPosition()) {
+        auto& neighbor_tile = tiles_[neighbor_pos.x][neighbor_pos.y];
+        if (neighbor_tile &&
+            !visited.count(std::make_pair(neighbor_pos.x, neighbor_pos.y)) &&
+            neighbor_tile->get_owner() == owner &&
+            !Tile::is_decoration(neighbor_tile->type())) {
+          to_visit.push(neighbor_tile);
+        }
+      }
+    }
+  }
+  return connected_tiles;
 }
 
 void Level::UpdateActivePlayers() {
@@ -170,27 +234,28 @@ void Level::UpdateActivePlayers() {
     }
   }
 
-  for (std::vector<Player>::iterator p = players_.begin(); p != players_.end();
-       ++p) {
+  for (auto it = players_.begin(); it != players_.end();) {
     bool active = false;
     for (auto pid : active_players) {
-      if (pid == (*p).id()) {
+      if (pid.has_value() && pid.value() == it->first) {
         active = true;
+        break;
       }
     }
     if (!active) {
-      if (cur_player_idx_ >= (*p).id()) {
-        cur_player_idx_--;  //  Calibrating current player index according to
-                            //  the new number of players
+      if (cur_player_idx_ >= players_.size() - 1) {
+        if (cur_player_idx_ > 0) cur_player_idx_--;
       }
-      players_.erase(p);
+      it = players_.erase(it);
+    } else {
+      ++it;
     }
   }
 }
 
 void Level::NextTurn() {
   UpdateActivePlayers();
-  cur_player_idx_ = (cur_player_idx_ + 1) % activePlayersNb();
+  cur_player_idx_ = (cur_player_idx_ + 1) % active_players_count();
 }
 
 const bool Level::CheckEnd() {

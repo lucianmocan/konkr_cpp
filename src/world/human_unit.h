@@ -23,7 +23,6 @@ class HumanUnit : public Entity {
   void IncreaseLevel() override;
   void DecreaseLevel() override;
 
-  inline int upkeep_cost() const { return upkeep_cost_; }
   inline void set_upkeep_cost(int upkeep_cost) { upkeep_cost_ = upkeep_cost; }
 
  private:

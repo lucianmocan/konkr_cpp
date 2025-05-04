@@ -33,8 +33,11 @@ class Townhall : public Building {
     }
   }
 
+  inline int upkeep_cost() const override;
+
  private:
   int money_ = 10;
+  std::vector<std::shared_ptr<Entity>> units_;
 };
 }  // namespace konkr
 
