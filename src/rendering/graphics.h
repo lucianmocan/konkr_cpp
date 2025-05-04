@@ -10,12 +10,16 @@
 #ifndef KONKR_RENDERING_GRAPHICS_H
 #define KONKR_RENDERING_GRAPHICS_H
 
+#include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Texture.hpp>
 #include <memory>
 #include <string>
 #include <vector>
 
 namespace konkr {
+
 struct Position {
   int x;
   int y;
@@ -45,46 +49,21 @@ struct IntRect {
   IntRect() : pos{0, 0}, size{0, 0} {}
 };
 
-class Texture;
-class Sprite;
-class CircleShape;
-class RenderTarget;
-class Color;
-
-class Graphics {
- public:
-  static std::unique_ptr<Texture> LoadTexture(const std::string& file_path);
-  static std::unique_ptr<Sprite> CreateSprite(const Texture& texture,
-                                              const IntRect& rect);
-};
-
 class Texture {
  public:
   Texture();
   ~Texture();
 
-  Texture(Texture&&) noexcept;
-  Texture& operator=(Texture&&) noexcept;
-  Texture(const Texture&) = delete;
-  Texture& operator=(const Texture&) = delete;
-
  private:
   friend class Graphics;
   friend class Sprite;
-  struct Impl;
-  std::unique_ptr<Impl> impl_;
+  sf::Texture texture_;
 };
 
 class Sprite {
  public:
-  Sprite();
   Sprite(const Texture& texture);
   ~Sprite();
-
-  Sprite(Sprite&&) noexcept;
-  Sprite& operator=(Sprite&&) noexcept;
-  Sprite(const Sprite&) = delete;
-  Sprite& operator=(Sprite&) = delete;
 
   void setOrigin(Vector2f origin);
   void setPosition(Vector2f position);
@@ -92,8 +71,8 @@ class Sprite {
  private:
   friend class Graphics;
   friend class RenderTarget;
-  struct Impl;
-  std::unique_ptr<Impl> impl_;
+  const Texture* texture_;
+  sf::Sprite sprite_;
 };
 
 class CircleShape {
@@ -101,19 +80,13 @@ class CircleShape {
   CircleShape(float radius, int pointCount);
   ~CircleShape();
 
-  CircleShape(CircleShape&&) noexcept;
-  CircleShape& operator=(CircleShape&&) noexcept;
-  CircleShape(const CircleShape&) = delete;
-  CircleShape& operator=(const CircleShape&) = delete;
-
   void setOrigin(Vector2f origin);
   void setPosition(Vector2f position);
-  void setFillColor(const Color& color);
+  void setFillColor(const class Color& color);
 
  private:
   friend class RenderTarget;
-  struct Impl;
-  std::unique_ptr<Impl> impl_;
+  sf::CircleShape circle_shape_;
 };
 
 class RenderTarget {
@@ -121,20 +94,13 @@ class RenderTarget {
   RenderTarget(Vector2u size, const std::string& title);
   ~RenderTarget();
 
-  sf::RenderWindow& getWindow();
-
-  RenderTarget(RenderTarget&&) noexcept;
-  RenderTarget& operator=(RenderTarget&&) noexcept;
-  RenderTarget(const RenderTarget&) = delete;
-  RenderTarget& operator=(const RenderTarget&) = delete;
-
   void draw(const CircleShape& shape);
   void draw(const Sprite& sprite);
   Vector2u getSize() const;
+  sf::RenderWindow& getWindow();
 
  private:
-  struct Impl;
-  std::unique_ptr<Impl> impl_;
+  sf::RenderWindow window_;
 };
 
 class Color {
@@ -142,17 +108,18 @@ class Color {
   Color(int r, int g, int b);
   ~Color();
 
-  Color(Color&&) noexcept;
-  Color& operator=(Color&&) noexcept;
-  Color(const Color&) = delete;
-  Color& operator=(const Color&) = delete;
-
   operator sf::Color() const;
 
  private:
   friend class CircleShape;
-  struct Impl;
-  std::unique_ptr<Impl> impl_;
+  sf::Color color_;
+};
+
+class Graphics {
+ public:
+  static std::unique_ptr<Texture> LoadTexture(const std::string& file_path);
+  static std::unique_ptr<Sprite> CreateSprite(const Texture& texture,
+                                              const IntRect& rect);
 };
 
 }  // namespace konkr

@@ -5,114 +5,75 @@
 #include "rendering/graphics.h"
 
 #include <SFML/Graphics.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
-#include <algorithm>  // for std::clamp
+#include <algorithm>
 
 namespace konkr {
-struct Texture::Impl {
-  sf::Texture texture;
-  Impl() = default;
-};
-
-struct Sprite::Impl {
-  sf::Sprite sprite;
-  // Use only the constructor that takes a Texture.
-  Impl(const Texture& texture) : sprite(texture.impl_->texture) {}
-};
-
-struct CircleShape::Impl {
-  sf::CircleShape circle_shape;
-};
-
-struct RenderTarget::Impl {
-  sf::RenderWindow window;
-  Impl(Vector2u size, const std::string& title)
-      : window(sf::VideoMode({size.x, size.y}), title) {}
-};
-
-struct Color::Impl {
-  sf::Color color;
-  Impl(int r, int g, int b) : color(r, g, b) {}
-
-  operator sf::Color() const { return color; };
-};
 
 // Texture
-Texture::Texture() : impl_(std::make_unique<Impl>()) {}
+Texture::Texture() = default;
 Texture::~Texture() = default;
-Texture::Texture(Texture&&) noexcept = default;
-Texture& Texture::operator=(Texture&&) noexcept = default;
 
 // Sprite
 Sprite::Sprite(const Texture& texture)
-    : impl_(std::make_unique<Impl>(texture)) {}
+    : texture_(&texture), sprite_(texture.texture_) {}
 Sprite::~Sprite() = default;
-Sprite::Sprite(Sprite&&) noexcept = default;
-Sprite& Sprite::operator=(Sprite&&) noexcept = default;
 
 void Sprite::setOrigin(Vector2f origin) {
-  impl_->sprite.setOrigin({origin.x, origin.y});
+  sprite_.setOrigin({origin.x, origin.y});
 }
 
 void Sprite::setPosition(Vector2f position) {
-  impl_->sprite.setPosition({position.x, position.y});
+  sprite_.setPosition({position.x, position.y});
 }
 
 // CircleShape
-CircleShape::CircleShape(float radius, int pointCount)
-    : impl_(std::make_unique<Impl>()) {
-  if (radius < 0.0f) radius = 0.0f;    // Ensure non-negative radius
-  if (pointCount < 3) pointCount = 3;  // Ensure valid polygon
-  impl_->circle_shape.setRadius(radius);
-  impl_->circle_shape.setPointCount(pointCount);
+CircleShape::CircleShape(float radius, int pointCount) {
+  if (radius < 0.0f) radius = 0.0f;
+  if (pointCount < 3) pointCount = 3;
+  circle_shape_.setRadius(radius);
+  circle_shape_.setPointCount(pointCount);
 }
 CircleShape::~CircleShape() = default;
-CircleShape::CircleShape(CircleShape&&) noexcept = default;
-CircleShape& CircleShape::operator=(CircleShape&&) noexcept = default;
 
 void CircleShape::setOrigin(Vector2f origin) {
-  impl_->circle_shape.setOrigin({origin.x, origin.y});
+  circle_shape_.setOrigin({origin.x, origin.y});
 }
 
 void CircleShape::setPosition(Vector2f position) {
-  impl_->circle_shape.setPosition({position.x, position.y});
+  circle_shape_.setPosition({position.x, position.y});
 }
 
 void CircleShape::setFillColor(const Color& color) {
-  impl_->circle_shape.setFillColor(color.impl_->color);
+  circle_shape_.setFillColor(color.color_);
 }
 
 // RenderTarget
 RenderTarget::RenderTarget(Vector2u size, const std::string& title)
-    : impl_(std::make_unique<Impl>(size, title)) {}
+    : window_(sf::VideoMode({size.x, size.y}), title) {}
 RenderTarget::~RenderTarget() = default;
-RenderTarget::RenderTarget(RenderTarget&&) noexcept = default;
-RenderTarget& RenderTarget::operator=(RenderTarget&&) noexcept = default;
 
 void RenderTarget::draw(const CircleShape& shape) {
-  impl_->window.draw(shape.impl_->circle_shape);
+  window_.draw(shape.circle_shape_);
 }
 
-void RenderTarget::draw(const Sprite& sprite) {
-  impl_->window.draw(sprite.impl_->sprite);
-}
+void RenderTarget::draw(const Sprite& sprite) { window_.draw(sprite.sprite_); }
 
 Vector2u RenderTarget::getSize() const {
-  auto size = impl_->window.getSize();
+  auto size = window_.getSize();
   return {size.x, size.y};
 }
 
+sf::RenderWindow& RenderTarget::getWindow() { return window_; }
+
 // Color
-Color::Color(int r, int g, int b) : impl_(std::make_unique<Impl>(r, g, b)) {}
+Color::Color(int r, int g, int b) : color_(r, g, b) {}
 Color::~Color() = default;
-Color::Color(Color&&) noexcept = default;
-Color& Color::operator=(Color&&) noexcept = default;
-Color::operator sf::Color() const { return impl_->color; }
+Color::operator sf::Color() const { return color_; }
 
 // Graphics
 std::unique_ptr<Texture> Graphics::LoadTexture(const std::string& file_path) {
   auto texture = std::make_unique<Texture>();
-  if (!texture->impl_->texture.loadFromFile(file_path)) {
+  if (!texture->texture_.loadFromFile(file_path)) {
     return nullptr;
   }
   return texture;
@@ -121,11 +82,9 @@ std::unique_ptr<Texture> Graphics::LoadTexture(const std::string& file_path) {
 std::unique_ptr<Sprite> Graphics::CreateSprite(const Texture& texture,
                                                const IntRect& rect) {
   auto sprite = std::make_unique<Sprite>(texture);
-  sprite->impl_->sprite.setTextureRect(sf::IntRect(
+  sprite->sprite_.setTextureRect(sf::IntRect(
       {rect.pos.x, rect.pos.y}, {rect.size.width, rect.size.height}));
   return sprite;
 }
-
-sf::RenderWindow& RenderTarget::getWindow() { return impl_->window; }
 
 }  // namespace konkr
