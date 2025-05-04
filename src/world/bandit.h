@@ -12,10 +12,12 @@
 #include "world/entity.h"
 
 namespace konkr {
+/**
+  @class A bandit is automatically moved by the game on the map.
+*/
 class Bandit : public Entity {
  public:
   using Entity::Entity;
-
 
  private:
   int upkeep_cost = 1;

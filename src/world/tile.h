@@ -34,6 +34,10 @@ enum class WallPosition {
 // The other tiles are just for decoration.
 enum class TileType { Water, Forest, Sand };
 
+/**
+  @class A tile is an hexagon representing a location that can contain an entity
+  or be empty.
+*/
 class Tile {
  public:
   static std::shared_ptr<Tile> FromAscii(
@@ -51,18 +55,6 @@ class Tile {
 
   static inline bool is_forest(char c) { return c == '#'; }
 
-  static WallPosition GetWallPosition(const Vector2i& from, const Vector2i& to) {
-    int dx = to.x - from.x;
-    int dy = to.y - from.y;
-
-    if (dx == 0 && dy == 1)  return WallPosition::Right;
-    if (dx == 0 && dy == -1) return WallPosition::Left;
-    if (dx == -1 && dy == 0) return WallPosition::TopLeft;
-    if (dx == -1 && dy == 1) return WallPosition::TopRight;
-    if (dx == 1 && dy == 0)  return WallPosition::BottomLeft;
-    if (dx == 1 && dy == 1)  return WallPosition::BottomRight;
-  }
-
   Tile(TileType type) : type_(type) {}
   Tile(TileType type, std::optional<int> player_id)
       : type_(type), player_id_(player_id) {}
@@ -70,12 +62,13 @@ class Tile {
   inline void change_owner(int player_id) { player_id_ = player_id; }
 
   inline std::optional<int> get_owner() { return player_id_; }
-  inline std::shared_ptr<CircleShape> get_shape() {
-    if (shape_) {
-      return std::make_shared<CircleShape>(*shape_);
-    }
-    return nullptr;
-  }
+  // inline std::shared_ptr<CircleShape> get_shape() {
+  //   return std::make_shared<CircleShape>(*shape_);
+  // }
+
+  // inline void set_shape(std::unique_ptr<CircleShape> shape) {
+  //   shape_ = std::move(shape);
+  // }
 
   inline int level() const { return level_; }
 
@@ -124,11 +117,12 @@ class Tile {
   std::vector<Vector2i> GetNeighboringTilesGridPosition() const;
 
   void Render(RenderTarget& target, Vector2f position, float radius,
-              const SpriteSheet& sprite_sheet) const;
+              const SpriteSheet& sprite_sheet);
 
  private:
   std::unique_ptr<Entity> entity_ = nullptr;
-  std::optional<CircleShape> shape_;
+  std::unique_ptr<CircleShape> shape_ =
+      nullptr;  // Object being rendered on the window
   TileType type_;
   std::array<bool, 6> walls_ = {false};
   std::optional<int> player_id_;

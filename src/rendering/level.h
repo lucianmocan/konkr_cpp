@@ -83,19 +83,27 @@ class Level {
 
   void UpdateTilesLevel();
 
+  /**
+    @brief Goes to the next turn.
+  */
   void NextTurn();
 
+  /**
+    @brief Checks if the game is over.
+    @returns true if the game is over (only one player remaining), false
+    otherwise.
+  */
   const bool CheckEnd();
 
  private:
   std::string name_;
   std::string category_;
   std::filesystem::path file_path_;
-  std::vector<std::string> map_;
-  Tiles tiles_;
+  std::vector<std::string> map_;  // ASCII representation of the map
+  Tiles tiles_;                   // Matrix of tiles representing the map
   std::vector<std::weak_ptr<Tile>> tiles_buildings_;
   std::vector<Player> players_;
-  size_t cur_player_idx_ = 0;
+  size_t cur_player_idx_ = 0;  // Current index in players_
   bool loaded_ = false;
 };
 

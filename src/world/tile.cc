@@ -4,18 +4,18 @@
 
 #include "world/tile.h"
 
+#include <SFML/Graphics/Font.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <filesystem>
 #include <iostream>
 #include <memory>
-#include <filesystem>
 #include <optional>
 #include <string>
-#include <SFML/Graphics/Text.hpp>
-#include <SFML/Graphics/Font.hpp>
 
 #include "rendering/color_palette.h"
 #include "rendering/graphics.h"
-#include "rendering/sprite_sheet.h"
 #include "rendering/level_renderer.h"
+#include "rendering/sprite_sheet.h"
 
 namespace konkr {
 
@@ -59,19 +59,19 @@ std::vector<Vector2i> Tile::GetNeighboringTilesGridPosition() const {
 }
 
 void Tile::Render(RenderTarget& target, Vector2f position, float radius,
-                  const SpriteSheet& sprite_sheet) const {
-  CircleShape tile(radius, 6);
-  tile.set_origin({radius, radius});
-  tile.set_position(position);
+                  const SpriteSheet& sprite_sheet) {
+  CircleShape circle(radius, 6);
+  circle.set_origin({radius, radius});
+  circle.set_position(position);
 
   if (type_ == TileType::Sand) {
-    tile.set_fill_color(ColorPalette::SandColorForPlayer(player_id_));
+    circle.set_fill_color(ColorPalette::SandColorForPlayer(player_id_));
   } else if (type_ == TileType::Water) {
-    tile.set_fill_color(ColorPalette::OceanBlue);
+    circle.set_fill_color(ColorPalette::OceanBlue);
   } else if (type_ == TileType::Forest) {
-    tile.set_fill_color(Color(60, 120, 60));
+    circle.set_fill_color(Color(60, 120, 60));
   }
-  target.draw(tile);
+  target.draw(circle);
 
   if (entity_) {
     if (entity_->type() != Entity::EntityType::Unknown) {
@@ -105,7 +105,6 @@ void Tile::Render(RenderTarget& target, Vector2f position, float radius,
   // --- Draw "D" if level_ == 1 ---
   if (level() == 1) {
     const Font& font = LevelRenderer::get_font();
-    std::cout << "Font loaded: " << font.is_loaded() << std::endl;
     Text text(font, "D", 16);
     text.set_fill_color(Color::Yellow);
     text.set_outline_color(Color::Black);

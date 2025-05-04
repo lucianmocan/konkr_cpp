@@ -54,7 +54,19 @@ class UserInterface {
     return selected_level_;
   }
 
+  /**
+    @brief Checks if the given tile is clicked.
+    @param tile Tile to check.
+    @param mousePos Position of the mouse when clicked.
+    @returns true if tile clicked, false otherwise.
+  */
   bool TileClicked(std::shared_ptr<CircleShape> tile, sf::Vector2f mousePos);
+
+  /**
+    @brief Handles event occuring on the tile map.
+    @param event The event.
+  */
+  void TileMapEvent(const sf::Event& event);
 
  private:
   // Sets up the GUI for the home page

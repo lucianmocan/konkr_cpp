@@ -31,10 +31,7 @@ bool LevelRenderer::LoadFont(const std::string& path) {
   return true;
 }
 
-const Font& LevelRenderer::get_font() {
-  return g_font;
-}
-
+const Font& LevelRenderer::get_font() { return g_font; }
 
 void LevelRenderer::Render(RenderTarget& target,
                            std::shared_ptr<const Level> level,

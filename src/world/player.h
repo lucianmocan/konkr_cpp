@@ -19,6 +19,9 @@ namespace konkr {
 // suffixes. The idea is to have a funny name (with some easter eggs).
 std::string GenerateWarriorName();
 
+/**
+  @class Represents a player of the game.
+*/
 class Player {
  public:
   Player(int id) : id_(id) { name_ = GenerateWarriorName(); }

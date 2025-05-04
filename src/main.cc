@@ -8,9 +8,9 @@
 #include <vector>
 
 #include "rendering/color_palette.h"
+#include "rendering/graphics.h"
 #include "rendering/level.h"
 #include "rendering/level_renderer.h"
-#include "rendering/graphics.h"
 #include "rendering/sprite_sheet.h"
 #include "ui/user_interface.h"
 #include "world/entity.h"
@@ -41,8 +41,6 @@ int main() {
     std::cerr << "Failed to load texture." << std::endl;
     return -1;
   }
-
-
 
   if (sprite_sheet.LoadEntitySpriteMappings("assets/entity_sprites.json")) {
     std::cout << "Successfully loaded entity sprite mappings." << std::endl;
@@ -80,7 +78,7 @@ int main() {
     //   float x = 100.0f;
     //   float y = 70.0f;
     //   float spacing = 80.0f;
-  
+
     //   for (const auto& name : sprite_defs) {
     //     if (name.find("palisade") != std::string::npos) {
     //       auto sprite = sprite_sheet.CreateSprite(name);

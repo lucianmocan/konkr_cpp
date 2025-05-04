@@ -130,8 +130,6 @@ void Level::CreateTiles() {
   UpdateTilesLevel();
 }
 
-
-
 void Level::UpdateTilesLevel() {
   // if Tile is Townhall or Castle, or neighbor of a Townhall or Castle,
   // then set level_ to 1
@@ -141,15 +139,14 @@ void Level::UpdateTilesLevel() {
       tile->claim();
       for (const auto& neighbor : tile->GetNeighboringTilesGridPosition()) {
         auto& neighbor_tile = tiles_[neighbor.x][neighbor.y];
-        if (neighbor_tile && !Tile::is_decoration(neighbor_tile->type()) && tile->get_owner() == neighbor_tile->get_owner()) {
+        if (neighbor_tile && !Tile::is_decoration(neighbor_tile->type()) &&
+            tile->get_owner() == neighbor_tile->get_owner()) {
           neighbor_tile->set_level(1);
           neighbor_tile->claim();
         }
       }
     }
   }
-  
-  
 }
 
 void Level::UpdateActivePlayers() {

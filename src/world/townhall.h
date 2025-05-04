@@ -13,6 +13,9 @@
 #include "world/entity.h"
 
 namespace konkr {
+/**
+  @class The townhall is the core of a player's realm.
+*/
 class Townhall : public Building {
  public:
   using Building::Building;
@@ -21,16 +24,16 @@ class Townhall : public Building {
   void DecreaseLevel() override;
 
   inline int money() const { return money_; }
-  inline void setMoney(int money) { 
+  inline void setMoney(int money) {
     money_ = money;
-    if (money >= 10 * level()){
+    if (money >= 10 * level()) {
       IncreaseLevel();
     } else if (money < 10 * level()) {
       DecreaseLevel();
     }
   }
-  
-  private:
+
+ private:
   int money_ = 10;
 };
 }  // namespace konkr

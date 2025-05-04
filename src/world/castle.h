@@ -12,13 +12,16 @@
 #include "world/building.h"
 
 namespace konkr {
+/**
+  @class A castle protects an area in the map for the player who placed it.
+*/
 class Castle : public Building {
  public:
   using Building::Building;
 
   inline int upkeep_cost() const { return upkeep_cost_; }
 
-  private:
+ private:
   int buy_cost = 20;
   int upkeep_cost_ = 2;
 };
