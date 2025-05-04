@@ -59,7 +59,7 @@ class Level {
   void DisplayMapAscii() const;
 
   void CreateTiles();
-  inline const std::vector<std::vector<std::optional<Tile>>>& tiles() const {
+  inline const std::vector<std::vector<std::shared_ptr<Tile>>>& tiles() const {
     return tiles_;
   }
 
@@ -73,6 +73,12 @@ class Level {
     return std::make_shared<Player>(players_[cur_player_idx_]);
   }
 
+  inline const std::vector<std::weak_ptr<Tile>>& tiles_buildings() const {
+    return tiles_buildings_;
+  }
+
+  void AddWalls() const;
+
   void UpdateActivePlayers();
 
   void NextTurn();
@@ -84,7 +90,8 @@ class Level {
   std::string category_;
   std::filesystem::path file_path_;
   std::vector<std::string> map_;
-  std::vector<std::vector<std::optional<Tile>>> tiles_;
+  std::vector<std::vector<std::shared_ptr<Tile>>> tiles_;
+  std::vector<std::weak_ptr<Tile>> tiles_buildings_;
   std::vector<Player> players_;
   size_t cur_player_idx_ = 0;
   bool loaded_ = false;
