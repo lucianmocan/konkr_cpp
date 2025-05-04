@@ -14,37 +14,56 @@
 
 namespace konkr {
 
-bool UserInterface::TileClicked(std::shared_ptr<CircleShape> tile,
-                                sf::Vector2f mousePos) {
-  return true;  // TODO
+bool UserInterface::TileClicked(std::shared_ptr<CircleShape> tile, sf::Vector2f mousePos) {
+  std::vector<Vector2f> points;
+  std::cerr << tile << std::endl;
+  for (std::size_t i = 0; i < tile->getPointCount(); ++i) {
+    points.push_back(tile->getTransform().transformPoint(tile->getPoint(i)));
+  }
+  bool inside = false;
+  size_t j = points.size() - 1;
+  for (size_t i = 0; i < points.size(); i++) {
+    std::cerr << i << j << std::endl;
+    if ((points[i].y > mousePos.y) != (points[j].y > mousePos.y) &&
+        mousePos.x < (points[j].x - points[i].x) * (mousePos.y - points[i].y) / (points[j].y - points[i].y) + points[i].x) {
+      inside = true;
+    }
+    j = i;
+  }
+  return inside;
+}
+
+void UserInterface::TileMapEvent(const sf::Event& event) {
+  std::shared_ptr<Level::Tiles> tiles = std::make_shared<Level::Tiles>(selected_level_->tiles());
+
+  if (event.is<sf::Event::MouseButtonPressed>() &&
+  event.getIf<sf::Event::MouseButtonPressed>()->button ==
+  sf::Mouse::Button::Left) {
+    if (!tiles->empty()) {
+      for (size_t row = 0; row < tiles->size(); ++row) {
+        const auto& tile_row = tiles->at(row);
+
+        for (size_t col = 0; col < tile_row.size(); ++col) {
+          const auto& tile_opt = tile_row[col];
+          if (!tile_opt) continue;
+          sf::Vector2i mousePos = sf::Mouse::getPosition(render_target_.getWindow());
+          sf::Vector2f worldPos = render_target_.getWindow().mapPixelToCoords(mousePos);
+
+          if (TileClicked(tile_opt->get_shape(), worldPos)) {
+            std::cerr << "Cliquééé" << std::endl;
+          }
+        }
+      }
+    }
+  }
 }
 
 void UserInterface::HandleEvent(const sf::Event& event) {
   gui_.handleEvent(event);
-  // std::shared_ptr<Level::Tiles> tiles =
-  // std::make_shared<Level::Tiles>(selected_level_->tiles());
 
-  // if (event.is<sf::Event::MouseButtonPressed>() &&
-  // event.getIf<sf::Event::MouseButtonPressed>()->button ==
-  // sf::Mouse::Button::Left) {
-  //   if (!tiles->empty()) {
-  //     for (size_t row = 0; row < tiles->size(); ++row) {
-  //       const auto& tile_row = tiles->at(row);
-
-  //       for (size_t col = 0; col < tile_row.size(); ++col) {
-  //         const auto& tile_opt = tile_row[col];
-  //         if (!tile_opt) continue;
-  //         sf::Vector2i mousePos =
-  //         sf::Mouse::getPosition(render_target_.getWindow()); sf::Vector2f
-  //         worldPos = render_target_.getWindow().mapPixelToCoords(mousePos);
-
-  //         if (TileClicked(nullptr, worldPos)) {
-  //           std::cout << "hey" << std::endl;
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
+  if (current_state_ == UserInterfaceState::Game) {
+    TileMapEvent(event);
+  }
 }
 
 void UserInterface::Draw() { gui_.draw(); }

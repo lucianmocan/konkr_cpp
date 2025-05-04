@@ -26,6 +26,20 @@ void Sprite::setPosition(Vector2f position) {
   sprite_.setPosition({position.x, position.y});
 }
 
+// Transform
+Transform::Transform(const sf::Transform& sfml_transform) {
+  const float* mat = sfml_transform.getMatrix();
+  for (int i = 0; i < 12; ++i) m_matrix[i] = mat[i];
+  m_matrix[12] = 0.f; m_matrix[13] = 0.f; m_matrix[14] = 0.f; m_matrix[15] = 1.f;
+}
+
+Transform::~Transform() = default;
+
+Vector2f Transform::transformPoint(Vector2f point) const {
+  return {m_matrix[0] * point.x + m_matrix[4] * point.y + m_matrix[12],
+          m_matrix[1] * point.x + m_matrix[5] * point.y + m_matrix[13]};
+}
+
 // CircleShape
 CircleShape::CircleShape(float radius, int pointCount) {
   if (radius < 0.0f) radius = 0.0f;
@@ -45,6 +59,19 @@ void CircleShape::setPosition(Vector2f position) {
 
 void CircleShape::setFillColor(const Color& color) {
   circle_shape_.setFillColor(color.color_);
+}
+
+Transform CircleShape::getTransform() const {
+  return circle_shape_.getTransform();
+}
+
+std::size_t CircleShape::getPointCount() const {
+  return circle_shape_.getPointCount();
+}
+
+Vector2f CircleShape::getPoint(std::size_t index) const {
+  sf::Vector2f v = circle_shape_.getPoint(index);
+  return Vector2f({v.x, v.y});
 }
 
 // RenderTarget

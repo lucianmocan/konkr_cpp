@@ -56,18 +56,18 @@ std::vector<Vector2i> Tile::GetNeighboringTilesGridPosition() const {
 
 void Tile::Render(RenderTarget& target, Vector2f position, float radius,
                   const SpriteSheet& sprite_sheet) const {
-  CircleShape tile(radius, 6);
-  tile.setOrigin({radius, radius});
-  tile.setPosition(position);
+  shape_ = std::make_unique<CircleShape>(radius, 6);
+  shape_.setOrigin({radius, radius});
+  shape_.setPosition(position);
 
   if (type_ == TileType::Sand) {
-    tile.setFillColor(ColorPalette::SandColorForPlayer(player_id_));
+    shape_.setFillColor(ColorPalette::SandColorForPlayer(player_id_));
   } else if (type_ == TileType::Water) {
-    tile.setFillColor(ColorPalette::OceanBlue);
+    shape_.setFillColor(ColorPalette::OceanBlue);
   } else if (type_ == TileType::Forest) {
-    tile.setFillColor(Color(60, 120, 60));
+    shape_.setFillColor(Color(60, 120, 60));
   }
-  target.draw(tile);
+  target.draw(shape_);
 
   if (entity_) {
     if (entity_->type() != Entity::EntityType::Unknown) {

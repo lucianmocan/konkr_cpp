@@ -75,14 +75,30 @@ class Sprite {
   sf::Sprite sprite_;
 };
 
+class Transform {
+ public:
+  Transform(float a00, float a01, float a02, float a10, float a11, float a12, float a20, float a21, float a22);
+  Transform(const sf::Transform& sfml_transform); // Conversion constructor
+  ~Transform();
+
+  Vector2f transformPoint(Vector2f point) const;
+
+ private:
+  std::array<float, 16> m_matrix;
+};
+
 class CircleShape {
  public:
   CircleShape(float radius, int pointCount);
+  CircleShape(CircleShape&& c);
   ~CircleShape();
 
   void setOrigin(Vector2f origin);
   void setPosition(Vector2f position);
   void setFillColor(const class Color& color);
+  Transform getTransform() const;
+  std::size_t getPointCount() const;
+  Vector2f getPoint(std::size_t index) const;
 
  private:
   friend class RenderTarget;
