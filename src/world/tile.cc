@@ -5,6 +5,7 @@
 #include "world/tile.h"
 
 #include <iostream>
+#include <memory>
 #include <optional>
 #include <string>
 
@@ -14,17 +15,43 @@
 
 namespace konkr {
 
-std::optional<Tile> Tile::FromAscii(char c, std::optional<int> player_id) {
+std::shared_ptr<Tile> Tile::FromAscii(char c, std::optional<int> player_id) {
   if (c == '~') {
-    return Tile(TileType::Water);
+    return std::make_shared<Tile>(TileType::Water);
   } else if (c == '#') {
-    return Tile(TileType::Forest);
+    return std::make_shared<Tile>(TileType::Forest);
   } else if (std::string("STCVB").find(c) != std::string::npos) {
-    // TODO: pass the right entity type
-    return Tile(TileType::Sand, player_id);
+    return std::make_shared<Tile>(TileType::Sand, player_id);
   } else {
-    return std::nullopt;
+    return nullptr;
   }
+}
+
+std::vector<Vector2i> Tile::GetNeighboringTilesGridPosition() const {
+  std::vector<Vector2i> neighbors;
+  neighbors.reserve(6);
+  // The tile is a hexagon, so we have 6 neighbors
+  // The neighbors are at the following positions:
+  // (x, y - 1), (x, y + 1), (x - 1, y), (x - 1, y + 1),
+  // (x + 1, y), (x + 1, y + 1)
+  // x is the row, and y is the column
+  neighbors.push_back({grid_position_.x, grid_position_.y - 1});
+  neighbors.push_back({grid_position_.x, grid_position_.y + 1});
+  neighbors.push_back({grid_position_.x - 1, grid_position_.y});
+  neighbors.push_back({grid_position_.x - 1, grid_position_.y + 1});
+  neighbors.push_back({grid_position_.x + 1, grid_position_.y});
+  neighbors.push_back({grid_position_.x + 1, grid_position_.y + 1});
+
+  // Remove neighbors that are out of bounds
+  for (auto it = neighbors.begin(); it != neighbors.end();) {
+    if (it->x < 0 || it->y < 0) {
+      it = neighbors.erase(it);
+    } else {
+      ++it;
+    }
+  }
+
+  return neighbors;
 }
 
 void Tile::Render(RenderTarget& target, Vector2f position, float radius,

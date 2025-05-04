@@ -27,7 +27,7 @@ namespace konkr {
 // information, and display the map in ASCII format.
 class Level {
  public:
-  using Tiles = std::vector<std::vector<std::optional<Tile>>>;
+  using Tiles = std::vector<std::vector<std::shared_ptr<Tile>>>;
 
   Level(const Level&) = delete;
   Level& operator=(const Level&) = delete;
@@ -61,7 +61,7 @@ class Level {
   void DisplayMapAscii() const;
 
   void CreateTiles();
-  inline const std::vector<std::vector<std::optional<Tile>>>& tiles() const {
+  inline const std::vector<std::vector<std::shared_ptr<Tile>>>& tiles() const {
     return tiles_;
   }
 
@@ -75,9 +75,12 @@ class Level {
     return std::make_shared<Player>(players_[cur_player_idx_]);
   }
 
-  /**
-    @brief Updates the vector of active players by removing dead players.
-  */
+  inline const std::vector<std::weak_ptr<Tile>>& tiles_buildings() const {
+    return tiles_buildings_;
+  }
+
+  void AddWalls() const;
+
   void UpdateActivePlayers();
 
   /**
@@ -97,6 +100,7 @@ class Level {
   std::filesystem::path file_path_;
   std::vector<std::string> map_; // ASCII representation of the map
   Tiles tiles_; // Matrix of tiles representing the map
+  std::vector<std::weak_ptr<Tile>> tiles_buildings_;
   std::vector<Player> players_;
   size_t cur_player_idx_ = 0; // Current index in players_
   bool loaded_ = false;

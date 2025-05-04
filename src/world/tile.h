@@ -39,36 +39,48 @@ enum class TileType { Water, Forest, Sand };
 */
 class Tile {
  public:
-  static std::optional<Tile> FromAscii(
+  static std::shared_ptr<Tile> FromAscii(
       char c, std::optional<int> player_id = std::nullopt);
+
+  static inline bool is_sand(char c) { return c == 'S'; }
+
+  static inline bool is_sand(TileType type) { return type == TileType::Sand; }
+
+  static inline bool is_decoration(char c) { return is_forest(c) || c == '~'; }
+
+  static inline bool is_forest(char c) { return c == '#'; }
 
   Tile(TileType type) : type_(type) {}
   Tile(TileType type, std::optional<int> player_id)
       : type_(type), player_id_(player_id) {}
 
-  inline void changeOwner(int player_id) { player_id_ = player_id; }
+  inline void change_owner(int player_id) { player_id_ = player_id; }
 
-  inline const std::optional<int> getOwner() { return player_id_; }
-
-  inline std::shared_ptr<CircleShape> getShape() { return std::make_shared<CircleShape>(shape_); }
+  inline std::optional<int> get_owner() { return player_id_; }
+  inline std::shared_ptr<CircleShape> get_shape() {
+    if (shape_) {
+      return std::make_shared<CircleShape>(*shape_);
+    }
+    return nullptr;
+  }
 
   inline void orphan() { is_orphan_ = true; }
 
   inline void claim() { is_orphan_ = false; }
 
-  inline void addWall(WallPosition wall_position) {
+  inline void add_wall(WallPosition wall_position) {
     walls_[static_cast<int>(wall_position)] = true;
   }
 
-  inline void removeWall(WallPosition wall_position) {
+  inline void remove_wall(WallPosition wall_position) {
     walls_[static_cast<int>(wall_position)] = false;
   }
 
-  inline bool hasWall(WallPosition wall_position) const {
+  inline bool has_wall(WallPosition wall_position) const {
     return walls_[static_cast<int>(wall_position)];
   }
 
-  inline bool hasAnyWall() const {
+  inline bool has_any_walls() const {
     for (const auto& wall : walls_) {
       if (wall) {
         return true;
@@ -79,10 +91,18 @@ class Tile {
 
   inline TileType type() const { return type_; }
 
-  inline void setEntity(std::unique_ptr<Entity> entity) {
+  inline void set_grid_position(Vector2i grid_position) {
+    grid_position_ = grid_position;
+  };
+
+  inline const Vector2i& grid_position() const { return grid_position_; }
+
+  inline void set_entity(std::unique_ptr<Entity> entity) {
     entity_ = std::move(entity);
   }
   inline const std::unique_ptr<Entity>& entity() const { return entity_; }
+
+  std::vector<Vector2i> GetNeighboringTilesGridPosition() const;
 
   void Render(RenderTarget& target, Vector2f position, float radius,
               const SpriteSheet& sprite_sheet) const;
@@ -94,6 +114,7 @@ class Tile {
   std::array<bool, 6> walls_ = {false};
   std::optional<int> player_id_;
   bool is_orphan_ = true;
+  Vector2i grid_position_ = {0, 0};
 };
 
 }  // namespace konkr

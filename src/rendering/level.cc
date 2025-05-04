@@ -77,37 +77,43 @@ void Level::CreateTiles() {
   tiles_.clear();
   tiles_.reserve(map_.size());
 
+  int i = 0;
   for (const std::string& line : map_) {
-    std::vector<std::optional<Tile>> row;
+    std::vector<std::shared_ptr<Tile>> row;
     bool indent = !line.empty() && line[0] == '|';
     size_t col_start = indent ? 1 : 0;
     size_t col = col_start;
-
+    int j = 0;
     while (col < line.size()) {
-      std::optional<Tile> tile_opt;
+      std::shared_ptr<Tile> tile;
       char c = line[col];
-      if (c == '~' || c == '#') {
-        tile_opt = Tile::FromAscii(c);
-        if (c == '#') {
-          tile_opt->setEntity(CreateEntity(Entity::EntityType::Forest));
+      if (Tile::is_decoration(c)) {
+        tile = Tile::FromAscii(c);
+        if (Tile::is_forest(c)) {
+          tile->set_entity(CreateEntity(Entity::EntityType::Forest));
         }
         ++col;
       } else {
         if (col + 1 < line.size() && std::isdigit(line[col + 1])) {
           int player_id = line[col + 1] - '0';
-          tile_opt = Tile::FromAscii(c, player_id);
-          if (c != 'S') {
+          tile = Tile::FromAscii(c, player_id);
+          if (!Tile::is_sand(c)) {
+            std::cout << "Found not sand: " << c << " for player " << player_id
+                      << std::endl;
             // if it's not sand we create an entity
-            tile_opt->setEntity(CreateEntity(c));
+            tile->set_entity(CreateEntity(c));
           }
-          if (c == 'T') {
-            // for each townhall, we create a player
-            // if the player doesn't exist
-            if (std::none_of(players_.begin(), players_.end(),
-                             [player_id](const Player& player) {
-                               return player.id() == player_id;
-                             })) {
-              players_.emplace_back(player_id);
+          if (Entity::is_building(c)) {
+            tiles_buildings_.push_back(tile);
+            if (Entity::is_townhall(c)) {
+              // for each townhall, we create a player
+              // if the player doesn't exist
+              if (std::none_of(players_.begin(), players_.end(),
+                               [player_id](const Player& player) {
+                                 return player.id() == player_id;
+                               })) {
+                players_.emplace_back(player_id);
+              }
             }
           }
           col += 2;
@@ -115,9 +121,39 @@ void Level::CreateTiles() {
           ++col;
         }
       }
-      row.push_back(std::move(tile_opt));
+      tile->set_grid_position({i, j++});
+      row.push_back(std::move(tile));
     }
     tiles_.push_back(std::move(row));
+    ++i;
+  }
+}
+
+void Level::AddWalls() const {
+  // tiles that are a +1 neighbor to a tile with a townhall
+  // or castle should have walls to the exterior
+  // those tiles should also belong to the same player
+  for (const auto& tile_building : tiles_buildings_) {
+    if (auto tile = tile_building.lock()) {
+      auto neighbors = tile->GetNeighboringTilesGridPosition();
+
+      for (const auto& neighbor_pos : neighbors) {
+        auto& neighbor_tile = tiles_[neighbor_pos.x][neighbor_pos.y];
+        if (neighbor_tile && neighbor_tile->get_owner() == tile->get_owner()) {
+          // Check if the neighbor tile is a sand tile
+          if (Tile::is_sand(neighbor_tile->type())) {
+            // Add walls to the neighbor tile
+            for (const auto& wall_pos :
+                 neighbor_tile->GetNeighboringTilesGridPosition()) {
+              if (wall_pos.x == tile->grid_position().x &&
+                  wall_pos.y == tile->grid_position().y) {
+                neighbor_tile->add_wall(WallPosition::TopRight);
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 
@@ -133,7 +169,7 @@ void Level::UpdateActivePlayers() {
       const auto& tile_opt = tile_row[col];
       if (!tile_opt) continue;
 
-      std::optional<int> tile_owner = ((Tile&)tile_opt).getOwner();
+      std::optional<int> tile_owner = ((Tile&)tile_opt).get_owner();
       // If current "winner" isn't the only one left on the map, then the game
       // isn't over:
       if (tile_owner.has_value()) {
@@ -177,7 +213,7 @@ const bool Level::CheckEnd() {
       const auto& tile_opt = tile_row[col];
       if (!tile_opt) continue;
 
-      std::optional<int> tile_owner = ((Tile&)tile_opt).getOwner();
+      std::optional<int> tile_owner = ((Tile&)tile_opt).get_owner();
       // If current "winner" isn't the only one left on the map, then the game
       // isn't over:
       if (tile_owner.has_value()) {

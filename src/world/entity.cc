@@ -30,7 +30,7 @@ std::unique_ptr<Entity> CreateEntity(Entity::EntityType type, int level) {
     case Entity::EntityType::Townhall:
       return std::make_unique<Townhall>(type, level);
     case Entity::EntityType::Castle:
-      return std::make_unique<Castle>(level);
+      return std::make_unique<Castle>(type, level);
     default:
       return std::make_unique<Entity>(type, level);
   }
