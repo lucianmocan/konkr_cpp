@@ -12,6 +12,7 @@
 #define KONKR_RENDERING_LEVEL_H
 
 #include <filesystem>
+#include <map>
 #include <memory>
 #include <optional>
 #include <string>
@@ -65,19 +66,26 @@ class Level {
     return tiles_;
   }
 
-  inline std::shared_ptr<std::vector<Player>> activePlayers() {
-    return std::make_shared<std::vector<Player>>(players_);
+  // Return a const reference to the map of players
+  inline const std::map<int, Player>& active_players() const {
+    return players_;
   }
 
-  inline size_t activePlayersNb() { return activePlayers()->size(); }
+  inline size_t active_players_count() { return active_players().size(); }
 
-  inline const std::shared_ptr<Player> getCurPlayer() {
-    return std::make_shared<Player>(players_[cur_player_idx_]);
+  inline std::shared_ptr<Player> get_current_player() const {
+    if (players_.empty() || cur_player_idx_ >= players_.size()) return nullptr;
+    auto it = players_.begin();
+    std::advance(it, cur_player_idx_);
+    return std::make_shared<Player>(it->second);
   }
 
   inline const std::vector<std::weak_ptr<Tile>>& tiles_buildings() const {
     return tiles_buildings_;
   }
+
+  std::vector<std::shared_ptr<Tile>> GetConnectedOwnedTiles(
+      const std::shared_ptr<Tile>& start_tile);
 
   void UpdateActivePlayers();
 
@@ -102,7 +110,7 @@ class Level {
   std::vector<std::string> map_;  // ASCII representation of the map
   Tiles tiles_;                   // Matrix of tiles representing the map
   std::vector<std::weak_ptr<Tile>> tiles_buildings_;
-  std::vector<Player> players_;
+  std::map<int, Player> players_;
   size_t cur_player_idx_ = 0;  // Current index in players_
   bool loaded_ = false;
 };

@@ -108,7 +108,7 @@ class Tile {
   inline void set_entity(std::unique_ptr<Entity> entity) {
     entity_ = std::move(entity);
   }
-  inline const std::unique_ptr<Entity>& entity() const { return entity_; }
+  inline const std::shared_ptr<Entity>& entity() const { return entity_; }
 
   std::vector<Vector2i> GetNeighboringTilesGridPosition() const;
 
@@ -116,7 +116,7 @@ class Tile {
               const SpriteSheet& sprite_sheet);
 
  private:
-  std::unique_ptr<Entity> entity_ = nullptr;
+  std::shared_ptr<Entity> entity_ = nullptr;
   std::unique_ptr<CircleShape> shape_ =
       nullptr;  // Object being rendered on the window
   TileType type_;

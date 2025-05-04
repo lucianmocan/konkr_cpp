@@ -6,6 +6,7 @@
 
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Text.hpp>
+#include <cmath>
 #include <filesystem>
 #include <iostream>
 #include <memory>
@@ -41,7 +42,7 @@ std::vector<Vector2i> Tile::GetNeighboringTilesGridPosition() const {
   // x is the row, and y is the column
   neighbors.push_back({grid_position_.x, grid_position_.y - 1});
   neighbors.push_back({grid_position_.x, grid_position_.y + 1});
-  if (grid_position_.y % 2 != 0) {
+  if (grid_position_.x % 2 != 0) {
     neighbors.push_back({grid_position_.x - 1, grid_position_.y});
     neighbors.push_back({grid_position_.x - 1, grid_position_.y + 1});
     neighbors.push_back({grid_position_.x + 1, grid_position_.y});
@@ -72,7 +73,12 @@ void Tile::Render(RenderTarget& target, Vector2f position, float radius,
   tile.set_position(position);
 
   if (type_ == TileType::Sand) {
-    tile.set_fill_color(ColorPalette::SandColorForPlayer(player_id_));
+    Color base = ColorPalette::SandColorForPlayer(player_id_);
+    if (is_orphan_) {
+      base = Color(std::max(0, base.r() - 60), std::max(0, base.g() - 60),
+                   std::max(0, base.b() - 60));
+    }
+    tile.set_fill_color(base);
   } else if (type_ == TileType::Water) {
     tile.set_fill_color(ColorPalette::OceanBlue);
   } else if (type_ == TileType::Forest) {

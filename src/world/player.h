@@ -28,10 +28,15 @@ class Player {
 
   inline std::string name() const { return name_; }
   inline int id() const { return id_; }
+  inline std::vector<std::shared_ptr<Townhall>> townhalls() const {
+    return townhalls_;
+  }
 
  private:
   int id_;
   std::string name_;
+  std::vector<std::shared_ptr<Townhall>> townhalls_;
+  int selected_townhall_ = 0;
 };
 }  // namespace konkr
 

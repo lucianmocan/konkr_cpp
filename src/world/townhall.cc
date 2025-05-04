@@ -21,4 +21,15 @@ void Townhall::DecreaseLevel() {
   }
   setLevel(level() - 1);
 }
+
+int Townhall::upkeep_cost() const {
+  int total_cost = 0;
+  for (auto& unit : units_) {
+    if (unit) {
+      total_cost += unit->upkeep_cost();
+    }
+  }
+  return total_cost;
+}
+
 }  // namespace konkr

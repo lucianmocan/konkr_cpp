@@ -127,6 +127,9 @@ class Color {
   static Color Black;
 
   operator sf::Color() const;
+  int r() const { return color_.r; }
+  int g() const { return color_.g; }
+  int b() const { return color_.b; }
 
  private:
   friend class CircleShape;

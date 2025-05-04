@@ -232,23 +232,24 @@ void UserInterface::SetupGame() {
   auto infoPanel = tgui::Panel::create();
   infoPanel->setPosition(10, 10);
   infoPanel->setSize(400, 60);
-  infoPanel->getRenderer()->setBackgroundColor(tgui::Color::Transparent);
-  infoPanel->getRenderer()->setBorders(0);
+  infoPanel->getRenderer()->setBackgroundColor(tgui::Color(30, 30, 30, 200));
+  infoPanel->getRenderer()->setBorders(1);
+  infoPanel->getRenderer()->setBorderColor(tgui::Color::White);
 
   // Level name
   auto levelLabel =
       tgui::Label::create("Playing level: " + selected_level_->name());
-  levelLabel->setPosition(0, 0);
   levelLabel->setTextSize(16);
   levelLabel->getRenderer()->setTextColor(tgui::Color::White);
+  levelLabel->setPosition("(&.width - width) / 2", 4);
   infoPanel->add(levelLabel);
 
   // Category name
   auto worldLabel =
       tgui::Label::create("World: " + selected_level_->category());
-  worldLabel->setPosition(0, 28);
   worldLabel->setTextSize(14);
   worldLabel->getRenderer()->setTextColor(tgui::Color::Yellow);
+  worldLabel->setPosition("(&.width - width) / 2", 32);
   infoPanel->add(worldLabel);
 
   gui_.add(infoPanel);
@@ -264,6 +265,34 @@ void UserInterface::SetupGame() {
                           "(&.height) - 80");  // bottom right corner
   exitButton->onClick([this] { render_target_.get_window().close(); });
   gui_.add(exitButton);
+
+  // display current player
+
+  auto player = selected_level_->get_current_player();
+
+  // Create a panel for the player info
+  auto playerPanel = tgui::Panel::create();
+  playerPanel->setSize(400, 40);
+  playerPanel->setPosition("(&.width) - 420", 10);
+  playerPanel->getRenderer()->setBackgroundColor(tgui::Color(30, 30, 30, 200));
+  playerPanel->getRenderer()->setBorders(1);
+  playerPanel->getRenderer()->setBorderColor(tgui::Color::White);
+
+  // "Current player:" label
+  auto playerTextLabel = tgui::Label::create("Current player:");
+  playerTextLabel->setPosition(10, 8);
+  playerTextLabel->setTextSize(16);
+  playerTextLabel->getRenderer()->setTextColor(tgui::Color::White);
+  playerPanel->add(playerTextLabel);
+
+  // Player name label in yellow
+  auto playerNameLabel = tgui::Label::create(player->name());
+  playerNameLabel->setPosition(200, 8);
+  playerNameLabel->setTextSize(16);
+  playerNameLabel->getRenderer()->setTextColor(tgui::Color::Yellow);
+  playerPanel->add(playerNameLabel);
+
+  gui_.add(playerPanel);
 }
 
 }  // namespace konkr

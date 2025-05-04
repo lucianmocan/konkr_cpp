@@ -19,8 +19,6 @@ class Castle : public Building {
  public:
   using Building::Building;
 
-  inline int upkeep_cost() const { return upkeep_cost_; }
-
  private:
   int buy_cost = 20;
   int upkeep_cost_ = 2;
