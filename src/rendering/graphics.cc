@@ -109,6 +109,12 @@ Transform CircleShape::get_transform() const {
   return circle_shape_.getTransform();
 }
 
+FloatRect CircleShape::get_global_bounds() const {
+  sf::FloatRect bounds = circle_shape_.getGlobalBounds();
+  return FloatRect({bounds.position.x, bounds.position.y},
+    {bounds.size.x, bounds.size.y});
+}
+
 std::size_t CircleShape::get_point_count() const {
   return circle_shape_.getPointCount();
 }

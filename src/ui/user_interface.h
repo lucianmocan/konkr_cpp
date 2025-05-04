@@ -56,11 +56,12 @@ class UserInterface {
 
   /**
     @brief Checks if the given tile is clicked.
-    @param tile Tile to check.
+    @param points Points of the tile to check.
     @param mousePos Position of the mouse when clicked.
     @returns true if tile clicked, false otherwise.
   */
-  bool TileClicked(std::shared_ptr<CircleShape> tile, sf::Vector2f mousePos);
+  bool TileClicked(std::shared_ptr<FloatRect> bounds,
+    Vector2f mouse_pos);
 
   /**
     @brief Handles event occuring on the tile map.

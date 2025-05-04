@@ -116,7 +116,10 @@ void Tile::Render(RenderTarget& target, Vector2f position, float radius,
     target.draw(text);
   }
 
-  shape_ = std::make_unique<CircleShape>(tile);
+  bounds_ = std::make_unique<FloatRect>(
+    Position(tile.get_global_bounds().pos.x, tile.get_global_bounds().pos.y),
+    Size(tile.get_global_bounds().size.x, tile.get_global_bounds().size.y)
+  );
 }
 
 }  // namespace konkr

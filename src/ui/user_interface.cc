@@ -14,26 +14,9 @@
 
 namespace konkr {
 
-bool UserInterface::TileClicked(std::shared_ptr<CircleShape> tile,
-                                sf::Vector2f mousePos) {
-  std::vector<Vector2f> points;
-  std::cerr << tile << std::endl;
-  for (std::size_t i = 0; i < tile->get_point_count(); ++i) {
-    points.push_back(tile->get_transform().transformPoint(tile->get_point(i)));
-  }
-  bool inside = false;
-  size_t j = points.size() - 1;
-  for (size_t i = 0; i < points.size(); i++) {
-    std::cerr << i << j << std::endl;
-    if ((points[i].y > mousePos.y) != (points[j].y > mousePos.y) &&
-        mousePos.x < (points[j].x - points[i].x) * (mousePos.y - points[i].y) /
-                             (points[j].y - points[i].y) +
-                         points[i].x) {
-      inside = true;
-    }
-    j = i;
-  }
-  return inside;
+bool UserInterface::TileClicked(std::shared_ptr<FloatRect> bounds,
+                                Vector2f mouse_pos) {
+  return bounds->contains(mouse_pos);
 }
 
 void UserInterface::TileMapEvent(const sf::Event& event) {
@@ -50,13 +33,14 @@ void UserInterface::TileMapEvent(const sf::Event& event) {
         for (size_t col = 0; col < tile_row.size(); ++col) {
           const auto& tile_opt = tile_row[col];
           if (!tile_opt) continue;
-          sf::Vector2i mousePos =
+          sf::Vector2i mouse_pos =
               sf::Mouse::getPosition(render_target_.get_window());
-          sf::Vector2f worldPos =
-              render_target_.get_window().mapPixelToCoords(mousePos);
+          sf::Vector2f world_pos =
+              render_target_.get_window().mapPixelToCoords(mouse_pos);
 
-          if (TileClicked(tile_opt->get_shape(), worldPos)) {
-            std::cerr << "Cliquééé" << std::endl;
+          if (TileClicked(tile_opt->get_bounds(), Vector2f(world_pos.x, world_pos.y))) {
+            std::cerr << tile_opt->get_bounds()->pos.y << std::endl;
+            std::cerr << "Cliqué!" << std::endl;
           }
         }
       }

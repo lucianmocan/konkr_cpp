@@ -39,17 +39,6 @@ struct Size {
 };
 
 template <typename T>
-struct Rect {
-  Position<T> pos;
-  Size<T> size;
-  Rect() : pos(), size() {}
-  Rect(Position<T> pos, Size<T> sz) : pos(pos), size(sz) {}
-};
-
-using IntRect = Rect<int>;
-using FloatRect = Rect<float>;
-
-template <typename T>
 struct Vector2 {
   T x;
   T y;
@@ -59,6 +48,32 @@ struct Vector2 {
 using Vector2f = Vector2<float>;
 using Vector2i = Vector2<int>;
 using Vector2u = Vector2<unsigned int>;
+
+template <typename T>
+struct Rect {
+  Position<T> pos;
+  Size<T> size;
+  Rect() : pos(), size() {}
+  Rect(Position<T> pos, Size<T> sz) : pos(pos), size(sz) {}
+  constexpr bool contains(Vector2<T> point) const {
+    // Not using 'std::min' and 'std::max' to avoid depending on '<algorithm>'
+    const auto min = [](T a, T b) { return (a < b) ? a : b; };
+    const auto max = [](T a, T b) { return (a < b) ? b : a; };
+
+    // Rectangles with negative dimensions are allowed, so we must handle them correctly
+
+    // Compute the real min and max of the rectangle on both axes
+    const T minX = min(pos.x, static_cast<T>(pos.x + size.x));
+    const T maxX = max(pos.x, static_cast<T>(pos.x + size.x));
+    const T minY = min(pos.y, static_cast<T>(pos.y + size.y));
+    const T maxY = max(pos.y, static_cast<T>(pos.y + size.y));
+
+    return (point.x >= minX) && (point.x < maxX) && (point.y >= minY) && (point.y < maxY);
+  }
+};
+
+using IntRect = Rect<int>;
+using FloatRect = Rect<float>;
 
 class Texture {
  public:
@@ -112,6 +127,7 @@ class CircleShape {
   Transform get_transform() const;
   std::size_t get_point_count() const;
   Vector2f get_point(std::size_t index) const;
+  FloatRect get_global_bounds() const;
 
  private:
   friend class RenderTarget;
